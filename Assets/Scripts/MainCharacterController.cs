@@ -5,7 +5,7 @@ using UnityEngine;
 public class MainCharacterController : MonoBehaviour
 {
 
-    public float speed = 3.0f;
+    public float speed = 1.80f;
     
     public int maxHealth = 5;
     int currentHealth;
