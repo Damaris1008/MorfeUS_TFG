@@ -15,7 +15,7 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)){
+       /* if(Input.GetKeyDown(KeyCode.Escape)){
             if(inventory.activeSelf){
                 OpenOrCloseInventory();
             }else{
@@ -24,36 +24,23 @@ public class MenuController : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.R)){
             OpenOrCloseInventory();
-        }
+        }*/
     }
 
-    public void ShowOrHideMenu(){
+    /*public void ShowOrHideMenu(){
         if(menu.activeSelf){
             menu.SetActive(false);
             ResumeGame();
         }else{
             menu.SetActive(true);
             PauseGame();
-            /*GameObject audioToggle = GameObject.Find("AudioToggle");
+            GameObject audioToggle = GameObject.Find("AudioToggle");
             if(AudioListener.volume == 0){
                 audioToggle.GetComponent<Toggle>().isOn = true;
-            }*/
+            }
         }
-    }
+    }*/
 
-    public void OpenOrCloseInventory(){
-        if(inventory.activeSelf){
-            inventory.SetActive(false);
-            ResumeGame();
-        }else{
-            inventory.SetActive(true);
-            PauseGame();
-            /*GameObject audioToggle = GameObject.Find("AudioToggle");
-            if(AudioListener.volume == 0){
-                audioToggle.GetComponent<Toggle>().isOn = true;
-            }*/
-        }
-    }
 
     public static void PauseGame ()
     {
