@@ -12,6 +12,13 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Slider volumeSlider = null;
     [SerializeField] private GameObject muteMusicButton = null;
     [SerializeField] private GameObject unmuteMusicButton = null;
+
+    [Header("Graphics Settings")]
+    [SerializeField] private Text brightnessLevelText = null;
+    [SerializeField] private Slider brightnessSlider = null;
+    private float _brightnessLevel;
+    private bool _isFullScreen;
+    private int _qualityLevel;
     
     public void PlayGame()
     {
@@ -28,6 +35,22 @@ public class MainMenuController : MonoBehaviour
         AudioListener.volume = volume;
         volumeLevelText.text = volume.ToString("0") + "%" ;
     }
+
+    /*public void SetBrightness(float brightness)
+    {
+        _brightnessLevel = brightness;
+        brightnessLevelText = brightness.ToString("0.0");
+    }
+
+    public void SetFullscreen(bool isFullScreen)
+    {
+        _isFullScreen = isFullScreen;
+    }
+
+    public void SetQuality(int qualityIndex)
+    {
+
+    }*/
      
     public void AudioSettingsApply()
     {
