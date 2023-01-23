@@ -17,11 +17,8 @@ public class MainMenuController : MonoBehaviour
 
     [Header("Graphics Settings")]
     [SerializeField] private Dropdown qualityDropdown = null;
-    [SerializeField] private Text brightnessLevelText = null;
-    [SerializeField] private Slider brightnessSlider = null;
     [SerializeField] private GameObject enableFullScreenButton = null;
     [SerializeField] private GameObject disableFullScreenButton = null;
-    private float _brightnessLevel;
     private bool _isFullScreen;
     private int _qualityLevel;
 
@@ -43,12 +40,6 @@ public class MainMenuController : MonoBehaviour
     {
         _volumeLevel = volume;
         volumeLevelText.text = volume.ToString("0") + "%" ;
-    }
-
-    public void SetBrightness(float brightness)
-    {
-        _brightnessLevel = brightness;
-        brightnessLevelText.text = brightness.ToString("0.0");
     }
 
     public void SetResolution(int resolutionIndex)
@@ -97,7 +88,6 @@ public class MainMenuController : MonoBehaviour
 
     public void GraphicsApply()
     {
-        PlayerPrefs.SetFloat("brightnessLevel", _brightnessLevel);
         PlayerPrefs.SetInt("qualityLevel", _qualityLevel);
         QualitySettings.SetQualityLevel(_qualityLevel);
         PlayerPrefs.SetInt("fullscreen", (_isFullScreen ? 1:0));
@@ -129,8 +119,6 @@ public class MainMenuController : MonoBehaviour
     public void GetGraphicsPrefs()
     {
         qualityDropdown.value = PlayerPrefs.GetInt("qualityLevel");
-        brightnessSlider.value = PlayerPrefs.GetFloat("brightnessLevel");
-        brightnessLevelText.text = PlayerPrefs.GetFloat("brightnessLevel").ToString("0.0");
 
         if(PlayerPrefs.GetInt("fullscreen") == 0)
         {
