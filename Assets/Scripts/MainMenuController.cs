@@ -13,6 +13,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject muteMusicButton = null;
     [SerializeField] private GameObject unmuteMusicButton = null;
     private bool _backgroundMusic;
+    private float _volumeLevel;
 
     [Header("Graphics Settings")]
     [SerializeField] private Dropdown qualityDropdown = null;
@@ -27,8 +28,51 @@ public class MainMenuController : MonoBehaviour
     [Header("Resolution Dropdowns")]
     public Dropdown resolutionDropdown;
     private Resolution[] resolutions;
+    
+    public void PlayNewGame()
+    {
+        SceneManager.LoadSceneAsync(1);
+    }
 
-    public void Start()
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void SetVolume(float volume)
+    {
+        _volumeLevel = volume;
+        volumeLevelText.text = volume.ToString("0") + "%" ;
+    }
+
+    public void SetBrightness(float brightness)
+    {
+        _brightnessLevel = brightness;
+        brightnessLevelText.text = brightness.ToString("0.0");
+    }
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    public void SetFullscreen(bool isFullScreen)
+    {
+        _isFullScreen = isFullScreen;
+    }
+
+    public void SetBackgroundMusic(bool backgroundMusic)
+    {
+        _backgroundMusic = backgroundMusic;
+    }
+
+    public void SetQuality(int qualityIndex)
+    {
+        _qualityLevel = qualityIndex;
+    }
+
+    public void LoadResolutions()
     {
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
@@ -50,50 +94,6 @@ public class MainMenuController : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
-    
-    public void PlayNewGame()
-    {
-        SceneManager.LoadSceneAsync(1);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
-    public void SetVolume(float volume)
-    {
-        AudioListener.volume = volume;
-        volumeLevelText.text = volume.ToString("0") + "%" ;
-    }
-
-    public void SetBrightness(float brightness)
-    {
-        _brightnessLevel = brightness;
-        brightnessLevelText.text = brightness.ToString("0.0");
-    }
-
-    public void SetResolution(int resolutionIndex)
-    {
-        PlayerPrefs.SetInt("resolutionIndex", resolutionIndex);
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-    }
-
-    public void SetFullscreen(bool isFullScreen)
-    {
-        _isFullScreen = isFullScreen;
-    }
-
-    public void SetBackgroundMusic(bool backgroundMusic)
-    {
-        _backgroundMusic = backgroundMusic;
-    }
-
-    public void SetQuality(int qualityIndex)
-    {
-        _qualityLevel = qualityIndex;
-    }
 
     public void GraphicsApply()
     {
@@ -106,7 +106,8 @@ public class MainMenuController : MonoBehaviour
      
     public void AudioSettingsApply()
     {
-        PlayerPrefs.SetFloat("volumeLevel", AudioListener.volume);
+        PlayerPrefs.SetFloat("volumeLevel", _volumeLevel);
+        AudioListener.volume = _volumeLevel;
         PlayerPrefs.SetInt("backgroundMusic", (_backgroundMusic ? 1:0));
     }
 
@@ -128,7 +129,6 @@ public class MainMenuController : MonoBehaviour
     public void GetGraphicsPrefs()
     {
         qualityDropdown.value = PlayerPrefs.GetInt("qualityLevel");
-        resolutionDropdown.value = PlayerPrefs.GetInt("resolutionIndex");
         brightnessSlider.value = PlayerPrefs.GetFloat("brightnessLevel");
         brightnessLevelText.text = PlayerPrefs.GetFloat("brightnessLevel").ToString("0.0");
 
