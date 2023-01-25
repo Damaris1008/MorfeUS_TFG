@@ -12,8 +12,8 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Slider volumeSlider = null;
     [SerializeField] private GameObject muteMusicButton = null;
     [SerializeField] private GameObject unmuteMusicButton = null;
-    private bool _backgroundMusic;
-    private float _volumeLevel;
+    private bool _backgroundMusic = true;
+    private float _volumeLevel = 0.5f;
 
     [Header("Graphics Settings")]
     [SerializeField] private Dropdown qualityDropdown = null;
@@ -26,6 +26,11 @@ public class MainMenuController : MonoBehaviour
     public Dropdown resolutionDropdown;
     private Resolution[] resolutions;
     
+    public void Start()
+    {
+        _isFullScreen = Screen.fullScreen;
+    }
+
     public void PlayNewGame()
     {
         SceneManager.LoadSceneAsync(1);
@@ -103,8 +108,8 @@ public class MainMenuController : MonoBehaviour
 
     public void GetAudioPrefs()
     {
-        volumeSlider.value = PlayerPrefs.GetFloat("volumeLevel");
-        volumeLevelText.text = PlayerPrefs.GetFloat("volumeLevel").ToString("0") + "%" ;
+        volumeSlider.value = PlayerPrefs.GetFloat("volumeLevel", 50.0f);
+        volumeLevelText.text = PlayerPrefs.GetFloat("volumeLevel",50.0f).ToString("0") + "%" ;
 
         if(PlayerPrefs.GetInt("backgroundMusic") == 0)
         {
