@@ -13,20 +13,43 @@ public class InventoryController : MonoBehaviour
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
+    [Header("Select Items")]
+    int selectedSlot = -1;
+
+    private void Start(){
+        ChangeSelectedSlot(0);
+    }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && inventory.activeSelf){
-            CloseInventory();
-        }
-
-        if(Input.GetKeyDown(KeyCode.R)){
-            if(inventory.activeSelf){
+        if(Input.inputString != null){
+            
+            bool isNumber = int.TryParse(Input.inputString, out int number);
+            if(isNumber && number > 0 && number < 10){
+                ChangeSelectedSlot(number - 1);
+            }
+            
+            if(Input.GetKeyDown(KeyCode.Escape) && inventory.activeSelf){
                 CloseInventory();
-            }else{
-                OpenInventory();
-            }  
+            }
+
+            if(Input.GetKeyDown(KeyCode.R)){
+                if(inventory.activeSelf){
+                    CloseInventory();
+                }else{
+                    OpenInventory();
+                }  
+            }
+
+        } 
+    }
+
+    void ChangeSelectedSlot(int newValue){
+        if(selectedSlot >= 0) {
+            inventorySlots[selectedSlot].Deselect();
         }
+        inventorySlots[newValue].Select();
+        selectedSlot = newValue;
     }
 
     public void OpenInventory(){
