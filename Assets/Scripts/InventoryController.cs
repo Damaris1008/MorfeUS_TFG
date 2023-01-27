@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,14 +15,30 @@ public class InventoryController : MonoBehaviour
     public GameObject inventoryItemPrefab;
 
     [Header("Select Items")]
+    public GameObject toolbar;
     int selectedSlot = -1;
+    private int toolbarNumOfSlots;
 
     private void Start(){
         ChangeSelectedSlot(0);
+        toolbarNumOfSlots = toolbar.transform.childCount;
     }
 
     void Update()
     {
+        float mouseScrollWheelValue = Input.GetAxis("Mouse ScrollWheel");
+        if(mouseScrollWheelValue != null){
+            inventorySlots[selectedSlot].Deselect();
+            if(mouseScrollWheelValue > 0.0){
+                selectedSlot = (selectedSlot + 1)%9;
+            }
+            else if(mouseScrollWheelValue < 0.0){
+                selectedSlot = ((selectedSlot - 1)<0?(toolbarNumOfSlots-1):(selectedSlot-1)%9);
+            }
+            ChangeSelectedSlot(selectedSlot); 
+        }
+        
+
         if(Input.inputString != null){
             
             bool isNumber = int.TryParse(Input.inputString, out int number);
@@ -44,7 +61,7 @@ public class InventoryController : MonoBehaviour
         } 
     }
 
-    void ChangeSelectedSlot(int newValue){
+    public void ChangeSelectedSlot(int newValue){
         if(selectedSlot >= 0) {
             inventorySlots[selectedSlot].Deselect();
         }
