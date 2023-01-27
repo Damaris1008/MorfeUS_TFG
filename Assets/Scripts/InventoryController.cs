@@ -98,4 +98,32 @@ public class InventoryController : MonoBehaviour
         InventoryItem inventoryItem = newItemGO.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem(item);
     }
+
+    public Item GetSelectedItem(){
+        InventorySlot slot = inventorySlots[selectedSlot];
+        InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+        if(itemInSlot != null){
+            Item item = itemInSlot.item;
+            return item;
+        }else{
+            return null;
+        }
+    }
+
+    public Item UseSelectedItem(){
+        InventorySlot slot = inventorySlots[selectedSlot];
+        InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+        if(itemInSlot != null){
+            Item item = itemInSlot.item;
+            itemInSlot.count--;
+            if(itemInSlot.count <= 0){
+                Destroy(itemInSlot.gameObject);
+            }else{
+                itemInSlot.RefreshCount();
+            }
+            return item;
+        }else{
+            return null;
+        }
+    }
 }
