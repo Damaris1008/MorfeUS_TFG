@@ -5,8 +5,13 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
 
+    [Header("Open/Close Inventory")]
     public GameObject inventory;
     public GameObject showInventoryButton;
+
+    [Header("Add Items")]
+    public InventorySlot[] inventorySlots;
+    public GameObject inventoryItemPrefab;
 
 
     void Update()
@@ -34,5 +39,24 @@ public class InventoryController : MonoBehaviour
         inventory.SetActive(false);
         showInventoryButton.SetActive(true);
         MenuController.ResumeGame();
+    }
+
+    public bool AddItem(Item item){
+        //Find any empty slot
+        for(int i = 0; i < inventorySlots.Length; i++){
+            InventorySlot slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if(itemInSlot == null){
+                SpawnNewItem(item, slot);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void SpawnNewItem(Item item, InventorySlot slot){
+        GameObject newItemGO = Instantiate(inventoryItemPrefab, slot.transform);
+        InventoryItem inventoryItem = newItemGO.GetComponent<InventoryItem>();
+        inventoryItem.InitialiseItem(item);
     }
 }
