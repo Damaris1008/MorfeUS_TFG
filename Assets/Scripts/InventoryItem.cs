@@ -44,7 +44,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
     public void OnEndDrag(PointerEventData eventData){
-        Debug.Log("jelou");
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
     }
