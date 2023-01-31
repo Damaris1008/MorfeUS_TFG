@@ -20,6 +20,10 @@ public class Item : ScriptableObject
     [Header("Both")]
     public Sprite image;
 
+    [Header("Item Info")]
+    public string description;
+    public int health = 0;
+
 }
 
 public enum ItemType{
