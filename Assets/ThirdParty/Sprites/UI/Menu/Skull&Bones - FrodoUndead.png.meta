@@ -1,0 +1,706 @@
+fileFormatVersion: 2
+guid: bb99367bd828e4d4db520dee45d78359
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_0
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 362
+        width: 54
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1736d3159d6d1d2419064d37caef65c5
+      internalID: 1581599341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 365
+        width: 66
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d201fd56192f89c4c8bbffc9d0de0920
+      internalID: 1056735081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 362
+        width: 55
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d19835238ea7d14e979934c0d643b61
+      internalID: -465667264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_3
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 365
+        width: 66
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ad9d53364501564ba76ced9fb91bdd2
+      internalID: 1553206737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_4
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 323
+        width: 70
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adb867c84ec11f64e98beca04a4dc3b9
+      internalID: -1580128828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_5
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 323
+        width: 69
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 656eae9e396343b4f8cb535995cfc07f
+      internalID: 650380407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_6
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 312
+        width: 8
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f19a6331d0b2df449f2e51ffb589aaf
+      internalID: 40987674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_7
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 312
+        width: 8
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc20570b2027d4349beff7a73276c282
+      internalID: -1267399171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_8
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 288
+        width: 93
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea2c895c995f795488758b694a345b2a
+      internalID: 1252027307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_9
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 288
+        width: 92
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4519ab665fd311148b885bc023d6ac96
+      internalID: 1418823859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_10
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 219
+        width: 54
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aab6e04010ea48745bafd8051fed0e37
+      internalID: 1754806331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 223
+        width: 66
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc0951569de930441b472ddc683e491d
+      internalID: 594270949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_12
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 219
+        width: 55
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c3aa40a568502f4c98de99dc025189e
+      internalID: 1577353327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_13
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 223
+        width: 66
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20d85397da961ae489429483529896f5
+      internalID: 100618642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_14
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 181
+        width: 70
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b1bdb7ac86b2564c9b82a844fc82e50
+      internalID: 324394224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_15
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 181
+        width: 69
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9efea0a91f88b346bff146a247f0fc2
+      internalID: 1255168284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_16
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 146
+        width: 92
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cc89586145262149b68dfb0dd894cd4
+      internalID: 1410977651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_17
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 146
+        width: 93
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b26f9ad9d13889479dcdd6615ad9b53
+      internalID: -936730232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_18
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 77
+        width: 54
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1a796f6d7c79c44587b4e894136158e
+      internalID: -1434333850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_19
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 81
+        width: 66
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 904e0cd97c186674c96a1b57b333b6e0
+      internalID: -2035924443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_20
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 77
+        width: 55
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 392b7bef14323c343a9794d63877734e
+      internalID: 213663738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_21
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 81
+        width: 66
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dc6824df90093b40821209c77031df1
+      internalID: 2093255434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_22
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 38
+        width: 70
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 755550b6d37b68e43ae7f70d2e04f1c3
+      internalID: 617108027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_23
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 38
+        width: 69
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 641698fe1b5c52c4d9ee94d7abcd940b
+      internalID: 1679250156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_24
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 4
+        width: 92
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 005cdb2db7a39544784c4ec02e118927
+      internalID: -368252358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skull&Bones - FrodoUndead_25
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 4
+        width: 93
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0eec36993c5162b40b1d2e55cb64d919
+      internalID: -952392905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Skull&Bones - FrodoUndead_5: 650380407
+      Skull&Bones - FrodoUndead_14: 324394224
+      Skull&Bones - FrodoUndead_16: 1410977651
+      Skull&Bones - FrodoUndead_25: -952392905
+      Skull&Bones - FrodoUndead_15: 1255168284
+      Skull&Bones - FrodoUndead_22: 617108027
+      Skull&Bones - FrodoUndead_6: 40987674
+      Skull&Bones - FrodoUndead_3: 1553206737
+      Skull&Bones - FrodoUndead_12: 1577353327
+      Skull&Bones - FrodoUndead_0: 1581599341
+      Skull&Bones - FrodoUndead_17: -936730232
+      Skull&Bones - FrodoUndead_23: 1679250156
+      Skull&Bones - FrodoUndead_13: 100618642
+      Skull&Bones - FrodoUndead_20: 213663738
+      Skull&Bones - FrodoUndead_11: 594270949
+      Skull&Bones - FrodoUndead_10: 1754806331
+      Skull&Bones - FrodoUndead_7: -1267399171
+      Skull&Bones - FrodoUndead_21: 2093255434
+      Skull&Bones - FrodoUndead_8: 1252027307
+      Skull&Bones - FrodoUndead_19: -2035924443
+      Skull&Bones - FrodoUndead_18: -1434333850
+      Skull&Bones - FrodoUndead_24: -368252358
+      Skull&Bones - FrodoUndead_1: 1056735081
+      Skull&Bones - FrodoUndead_2: -465667264
+      Skull&Bones - FrodoUndead_4: -1580128828
+      Skull&Bones - FrodoUndead_9: 1418823859
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

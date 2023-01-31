@@ -31,16 +31,6 @@ public class MainMenuController : MonoBehaviour
         _isFullScreen = Screen.fullScreen;
     }
 
-    public void PlayNewGame()
-    {
-        SceneManager.LoadSceneAsync(1);
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
-
     public void SetVolume(float volume)
     {
         _volumeLevel = volume;

@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        if(SceneManager.GetActiveScene().buildIndex != 1){
+        if(SceneManager.GetActiveScene().buildIndex != 2){
             animator.Play("Idle");
         }
     }
