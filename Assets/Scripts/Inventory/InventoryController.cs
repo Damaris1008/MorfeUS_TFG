@@ -5,12 +5,6 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    [Header("Pause Menu")]
-    public GameObject pauseMenu;
-
-    [Header("Open/Close Inventory")]
-    public GameObject inventory;
-    public GameObject showInventoryButton;
 
     [Header("Add Items")]
     public InventorySlot[] inventorySlots;
@@ -47,18 +41,6 @@ public class InventoryController : MonoBehaviour
             if(isNumber && number > 0 && number < 10){
                 ChangeSelectedSlot(number - 1);
             }
-            
-            if(Input.GetKeyDown(KeyCode.Escape) && inventory.activeSelf){
-                CloseInventory();
-            }
-
-            if(Input.GetKeyDown(KeyCode.R) && !pauseMenu.activeSelf){
-                if(inventory.activeSelf){
-                    CloseInventory();
-                }else{
-                    OpenInventory();
-                }  
-            }
 
         } 
     }
@@ -71,17 +53,7 @@ public class InventoryController : MonoBehaviour
         selectedSlot = newValue;
     }
 
-    public void OpenInventory(){
-        inventory.SetActive(true);
-        showInventoryButton.SetActive(false);
-        GameManager.PauseGame();
-    }
 
-    public void CloseInventory(){
-        inventory.SetActive(false);
-        showInventoryButton.SetActive(true);
-        GameManager.ResumeGame();
-    }
 
     public bool AddItem(Item item){
 

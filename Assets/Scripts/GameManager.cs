@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
+    private void Awake(){
+        Time.timeScale = 1;
+        AudioListener.volume = PlayerPrefs.GetFloat("volumeLevel", 0.5f);
+    }
+
     public static void PlayNewGame()
     {
         SceneManager.LoadSceneAsync(2);
     }
 
+    //Close game
     public static void QuitGame()
     {
         Application.Quit();
+    }
+
+    //Go back to main menu
+    public static void LeaveGame()
+    {
+        SceneManager.LoadSceneAsync(0);
     }
 
     public static void PauseGame()
