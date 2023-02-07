@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b63628aa2a9ea344ae4b169e1473eb9, type: 3}
-  m_Name: Sword
+  m_Name: Sprite
   m_EditorClassIdentifier: 
-  tile: {fileID: 0}
+  stackable: 1
+  maxStack: 12
+  image: {fileID: 21300000, guid: 606cd91ac83ab614ea34c26a588af55a, type: 3}
   type: 1
-  actionType: 2
-  range: {x: 5, y: 4}
-  stackable: 0
-  maxStack: 1
-  image: {fileID: 21300000, guid: 06b392a95196d6d4592a4924aae4abba, type: 3}
+  name: SPRITE
+  description: 
+  health: 0
+  damage: 0

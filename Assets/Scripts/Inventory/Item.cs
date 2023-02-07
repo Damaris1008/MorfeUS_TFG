@@ -7,32 +7,21 @@ using UnityEngine.Tilemaps;
 public class Item : ScriptableObject
 {
 
-    [Header("Only gameplay")]
-    public TileBase tile;
-    public ItemType type;
-    public ActionType actionType;
-    public Vector2Int range = new Vector2Int(5,4);
-
-    [Header("Only UI")]
+    [Header("UI")]
     public bool stackable = true;
     public int maxStack = 12;
-
-    [Header("Both")]
-    public Sprite image;
+    public Sprite image; 
 
     [Header("Item Info")]
+    public ItemType type;
+    public string name;
     public string description;
-    public int health = 0;
+    public float health = 0;
+    public float damage = 0;
 
 }
 
 public enum ItemType{
-    Food,
-    Tool
-}
-
-public enum ActionType {
-    Buy,
-    Collect,
-    Find
+    TOOL,
+    CONSUMABLE
 }
