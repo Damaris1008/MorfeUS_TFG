@@ -18,5 +18,4 @@ MonoBehaviour:
   type: 0
   name: CHEESE BALLS
   description: 
-  health: 0
-  damage: 0
+  stats: 0.75

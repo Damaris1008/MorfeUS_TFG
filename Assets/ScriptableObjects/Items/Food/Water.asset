@@ -18,5 +18,4 @@ MonoBehaviour:
   type: 1
   name: WATER BOTTLE
   description: 
-  health: 0
-  damage: 0
+  stats: 0.25

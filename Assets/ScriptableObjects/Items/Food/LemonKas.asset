@@ -18,5 +18,4 @@ MonoBehaviour:
   type: 1
   name: LEMON KAS
   description: 
-  health: 0
-  damage: 0
+  stats: 0.75

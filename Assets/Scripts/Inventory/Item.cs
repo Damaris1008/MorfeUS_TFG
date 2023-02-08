@@ -16,8 +16,23 @@ public class Item : ScriptableObject
     public ItemType type;
     public string name;
     public string description;
-    public float health = 0;
-    public float damage = 0;
+    public float stats = 0; //If type is TOOL, stats will be the damage. If it is CONSUMABLE, stats will be the healing
+
+    public string GetItemName(){
+        return name;
+    }
+
+    public string GetItemDescription(){
+        return description;
+    }
+
+    public ItemType GetItemType(){
+        return type;
+    }
+
+    public float GetItemStats(){
+        return stats;
+    }
 
 }
 

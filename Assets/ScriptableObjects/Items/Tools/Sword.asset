@@ -12,12 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b63628aa2a9ea344ae4b169e1473eb9, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  tile: {fileID: 0}
-  type: 0
-  range: {x: 5, y: 4}
   stackable: 0
   maxStack: 1
   image: {fileID: 21300000, guid: 06b392a95196d6d4592a4924aae4abba, type: 3}
+  type: 0
+  name: IRON SWORD
   description: 
-  health: 0
-  damage: 1
+  stats: 1.5

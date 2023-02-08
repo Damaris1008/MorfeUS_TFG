@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PopUpsManager : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class PopUpsManager : MonoBehaviour
     [Header("Open/Close Inventory")]
     public GameObject inventory;
     public GameObject showInventoryButton;
+
+    [Header("Show/Hide Item Info")]
+    [SerializeField] GameObject itemInfo = null;
+    [SerializeField] Text itemInfoName = null;
+    [SerializeField] Image itemInfoImg = null;
+    [SerializeField] Text itemInfoStats = null;
 
 
     private void Update(){
@@ -75,5 +82,21 @@ public class PopUpsManager : MonoBehaviour
         inventory.SetActive(false);
         showInventoryButton.SetActive(true);
         GameManager.ResumeGame();
+    }
+
+    public void ShowItemInfo(Item item){
+        itemInfoName.text = item.name;
+        itemInfoImg.sprite = item.image;
+        if(item.type.ToString() == "TOOL"){
+            itemInfoStats.text = "AT. DAMAGE: " + item.stats.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+        }else if(item.type.ToString() =="CONSUMABLE"){
+            itemInfoStats.text = "HEALING: " + item.stats.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + " ❤️";
+        }
+        itemInfo.SetActive(true);
+        
+    }
+
+    public void HideItemInfo(){
+        itemInfo.SetActive(false);
     }
 }
