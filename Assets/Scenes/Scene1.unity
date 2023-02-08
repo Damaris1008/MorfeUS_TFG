@@ -20254,6 +20254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3799be0285b05564ebf4bc2fb095274e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorArrow: {fileID: 2800000, guid: 6b1aa03f7925769488cb3c87b935ea5c, type: 3}
 --- !u!4 &2034347842
 Transform:
   m_ObjectHideFlags: 0
