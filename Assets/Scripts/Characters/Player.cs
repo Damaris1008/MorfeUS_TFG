@@ -36,6 +36,9 @@ public class Player : MonoBehaviour
     bool isInvincible;
     float invincibleTimer;
 
+    [Header("Punch")]
+    public GameObject punchPrefab;
+
     void Awake(){
         currentHealth = maxHealth;
         healthIsFull = true;
@@ -88,7 +91,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            animator.SetTrigger("Punch");
+            Punch();
         }
 
         if (isInvincible)
@@ -164,5 +167,31 @@ public class Player : MonoBehaviour
             healthIsFull = true;
             healthHeartsManager.DrawHearts();
         }
+    }
+
+    public void Punch(){
+
+        GameObject punchHand = instantiatePunch();
+
+        Punch punch = punchHand.GetComponent<Punch>();
+
+        punch.Launch(lookDirection, 150);
+
+        //Play animation
+        animator.SetTrigger("Punch");
+
+    }
+
+    private GameObject instantiatePunch(){
+        
+        float angle = Vector2.SignedAngle(Vector2.up, lookDirection);
+
+        GameObject punchHand = Instantiate(punchPrefab, rigidbody2d.position + Vector2.up * (-0.2f), Quaternion.Euler(x:0, y:0, z:angle));
+
+        if(angle < 0 && angle > -180){
+            punchHand.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        
+        return punchHand;
     }
 }

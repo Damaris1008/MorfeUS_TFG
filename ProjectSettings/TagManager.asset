@@ -16,8 +16,8 @@ TagManager:
   - UI
   - CameraConfiner
   - Collisions
-  - 
-  - 
+  - PunchProjectile
+  - Enemies
   - 
   - 
   - 

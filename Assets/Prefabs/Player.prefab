@@ -105,6 +105,7 @@ MonoBehaviour:
   maxHealth: 24
   timeToColor: 0.25
   timeInvincible: 0.05
+  punchPrefab: {fileID: 578614543812736757, guid: e3b79b35fa85ce14389a8d96cea13313, type: 3}
 --- !u!50 &7686864095651271504
 Rigidbody2D:
   serializedVersion: 4
@@ -159,7 +160,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.089615345, y: -0.6690217}
+  m_Offset: {x: 0.034892365, y: -0.6690217}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -170,5 +171,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.96942496, y: 0.66195655}
+  m_Size: {x: 0.85997903, y: 0.66195655}
   m_EdgeRadius: 0
