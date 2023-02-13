@@ -87,10 +87,11 @@ public class PopUpsManager : MonoBehaviour
     public void ShowItemInfo(Item item){
         itemInfoName.text = item.name;
         itemInfoImg.sprite = item.image;
+        float stats = item.stats/4;
         if(item.type.ToString() == "TOOL"){
-            itemInfoStats.text = "AT. DAMAGE: " + item.stats.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+            itemInfoStats.text = "AT. DAMAGE: " + stats.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
         }else if(item.type.ToString() =="CONSUMABLE"){
-            itemInfoStats.text = "HEALING: " + item.stats.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + " ❤️";
+            itemInfoStats.text = "HEALING: " + stats.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + " ❤️";
         }
         itemInfo.SetActive(true);
         

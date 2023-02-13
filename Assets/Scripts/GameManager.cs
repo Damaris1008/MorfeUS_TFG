@@ -7,16 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    [Header("Cursor")]
-    public Texture2D cursorArrow;
-
     private void Awake(){
         Time.timeScale = 1;
         AudioListener.volume = PlayerPrefs.GetFloat("volumeLevel", 0.5f);
-    }
-
-    private void Start(){
-        Cursor.SetCursor(cursorArrow, Vector2.zero, CursorMode.ForceSoftware);
     }
 
     public static void PlayNewGame()

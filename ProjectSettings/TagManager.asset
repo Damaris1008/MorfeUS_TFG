@@ -7,6 +7,7 @@ TagManager:
   - MainMenu
   - OptionsMenu
   - PopUpsManager
+  - Punch
   layers:
   - Default
   - TransparentFX

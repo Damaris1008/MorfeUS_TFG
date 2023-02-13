@@ -27,7 +27,9 @@ public class Player : MonoBehaviour
     bool isDead = false;
 
     [Header("Sprite Color When Damaged")]
-    public float timeToColor;
+    public float timeToColor = 0.25f;
+    public Color hittedColor = new Color(1f, 0.30196078f, 0.30196078f);
+    public Color healedColor = new Color(0.1952441f, 1f, 0f);
     SpriteRenderer spriteRenderer;
     Color defaultColor;
 
@@ -37,7 +39,7 @@ public class Player : MonoBehaviour
     float invincibleTimer;
 
     [Header("Punch")]
-    public GameObject punchPrefab;
+    public GameObject punchHand;
 
     void Awake(){
         currentHealth = maxHealth;
@@ -146,12 +148,12 @@ public class Player : MonoBehaviour
 
     IEnumerator SwitchColor(){
         if(isHitted){
-            spriteRenderer.color = new Color(1f, 0.30196078f, 0.30196078f);
+            spriteRenderer.color = hittedColor;
             yield return new WaitForSeconds(timeToColor);
             spriteRenderer.color = defaultColor;
             isHitted = false;
         }else if(isHealing){
-            spriteRenderer.color = new Color(0.1952441f, 1f, 0f);
+            spriteRenderer.color = healedColor;
             yield return new WaitForSeconds(timeToColor);
             spriteRenderer.color = defaultColor;
             isHealing = false;
@@ -171,27 +173,18 @@ public class Player : MonoBehaviour
 
     public void Punch(){
 
-        GameObject punchHand = instantiatePunch();
+        float angle = Vector2.SignedAngle(Vector2.up, lookDirection);
+        punchHand.transform.position = rigidbody2d.position + Vector2.up * (-0.2f);
+        punchHand.transform.rotation = Quaternion.Euler(x:0, y:0, z:angle);
+        if(angle < 0 && angle > -180){
+            punchHand.GetComponent<SpriteRenderer>().flipX = true;
+        }
 
         Punch punch = punchHand.GetComponent<Punch>();
-
         punch.Launch(lookDirection, 150);
 
-        //Play animation
         animator.SetTrigger("Punch");
 
     }
 
-    private GameObject instantiatePunch(){
-        
-        float angle = Vector2.SignedAngle(Vector2.up, lookDirection);
-
-        GameObject punchHand = Instantiate(punchPrefab, rigidbody2d.position + Vector2.up * (-0.2f), Quaternion.Euler(x:0, y:0, z:angle));
-
-        if(angle < 0 && angle > -180){
-            punchHand.GetComponent<SpriteRenderer>().flipX = true;
-        }
-        
-        return punchHand;
-    }
 }
