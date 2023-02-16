@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     //AudioClip[] hitSounds = {zombieHitSound1, zombieHitSound2};
 
     [Header("Damage Attack")]
-    [SerializeField] public int damageAmount = 4;
+    [SerializeField] public int damageAmount = 4; //one heart
     
     [Header("Health")]
     [SerializeField] public float maxHealth = 12.0f;
@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
     }
 
     void Update(){
-        //Debug.Log(hitSounds.ToString());
+        
         timer -= Time.deltaTime;
         if(timer < 0)
         {
@@ -64,12 +64,12 @@ public class Enemy : MonoBehaviour
 
         if (vertical){
             position.y = position.y + Time.deltaTime * direction * speed;
-            animator.SetFloat("Move X", 0);
-            animator.SetFloat("Move Y", direction);
+            animator.SetFloat("MoveX", 0);
+            animator.SetFloat("MoveY", direction);
         }else{
             position.x = position.x + Time.deltaTime * direction * speed;
-            animator.SetFloat("Move X", direction);
-            animator.SetFloat("Move Y", 0);
+            animator.SetFloat("MoveX", direction);
+            animator.SetFloat("MoveY", 0);
         }
  
         rigidbody2d.position = position;
@@ -84,9 +84,6 @@ public class Enemy : MonoBehaviour
             isDead = true;
             //animator.SetTrigger("Dead");
             Debug.Log("Enemy Dead!");
-            if(maxHealth == 4){
-                GameManager.GameOver();
-            }
         }
         isHitted = true;
         audioSource.PlayOneShot(zombieHitSound1);
@@ -99,13 +96,21 @@ public class Enemy : MonoBehaviour
         spriteRenderer.color = defaultColor;
         isHitted = false;
     }
-
-    private void OnTriggerEnter2D(Collider2D collider) {
-        Player player = collider.GetComponent<Player>();
+    
+    void OnCollisionStay2D(Collision2D other)
+    {
+        Player player = other.gameObject.GetComponent<Player>();
         if (player != null) {            
             player.Damage(damageAmount);
         }
     }
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.GetComponent<Player>() == null && other.gameObject.GetComponent<Punch>() == null){
+            direction = -direction;
+            timer = changeTime;
+        }
+    }
     
 }

@@ -108,7 +108,7 @@ MonoBehaviour:
   timeToColor: 0.25
   hittedColor: {r: 1, g: 0.30196077, b: 0.30196077, a: 1}
   healedColor: {r: 0.1952441, g: 1, b: 0, a: 1}
-  timeInvincible: 0.05
+  timeInvincible: 1
   punchHand: {fileID: 7109667550414206562}
 --- !u!50 &7686864095651271504
 Rigidbody2D:

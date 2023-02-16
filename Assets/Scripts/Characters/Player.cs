@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     Color defaultColor;
 
     [Header("Invincibility")]
-    public float timeInvincible = 0.05f;
+    public float timeInvincible = 1.0f;
     bool isInvincible;
     float invincibleTimer;
 
