@@ -45,11 +45,13 @@ public class Punch : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Punch Collision with " + other.gameObject);
+        
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         punchHitEffect.gameObject.transform.position = transform.position;
         punchHitEffect.Play();
-        enemy.Damage(damageAttack);
+        if(enemy!=null){
+            enemy.Damage(damageAttack);
+        }
         
         audioSource.PlayOneShot(punchSound);
         gameObject.SetActive(false);

@@ -1950,6 +1950,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1326382626}
     m_Modifications:
+    - target: {fileID: 877548431, guid: c4790e08c7c13544d82738e9947103a4, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 732541829668815204, guid: c4790e08c7c13544d82738e9947103a4, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
@@ -2002,7 +2006,8 @@ PrefabInstance:
       propertyPath: vertical
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1698640166001474401, guid: c4790e08c7c13544d82738e9947103a4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c4790e08c7c13544d82738e9947103a4, type: 3}
 --- !u!1 &273058783
 GameObject:

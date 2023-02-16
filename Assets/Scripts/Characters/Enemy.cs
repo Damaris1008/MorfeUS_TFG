@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int damageAmount = 4; //one heart
     
     [Header("Health")]
+    [SerializeField] public HPBar healthBar;
     [SerializeField] public float maxHealth = 12.0f;
     private float currentHealth;
     public float health { get { return currentHealth; }}
@@ -78,6 +79,7 @@ public class Enemy : MonoBehaviour
     public void Damage(float amount){
         
         currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
+        healthBar.TakeDamageBar(amount);
         Debug.Log(currentHealth+"/"+maxHealth);
         if(currentHealth <= 0)
         {
