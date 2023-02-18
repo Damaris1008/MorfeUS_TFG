@@ -19,3 +19,4 @@ MonoBehaviour:
   name: LINDT CHOCOLATE
   description: 
   stats: 3
+  sound: {fileID: 8300000, guid: 64c95f3ee00e0254aa1ae8b829e0db1f, type: 3}

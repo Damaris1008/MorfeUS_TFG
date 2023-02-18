@@ -8,7 +8,7 @@ public class Punch : MonoBehaviour
     bool isLaunching;
 
     [Header("Damage Attack")]
-    public float damageAttack = 2.0f; //half heart
+    public int damageAttack = 2; //half heart
 
     [Header("Particles")]
     public ParticleSystem punchHitEffect;

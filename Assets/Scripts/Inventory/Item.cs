@@ -16,7 +16,10 @@ public class Item : ScriptableObject
     public ItemType type;
     public string name;
     public string description;
-    public float stats = 0; //If type is TOOL, stats will be the damage. If it is CONSUMABLE, stats will be the healing
+    public int stats = 0; //If type is TOOL, stats will be the damage. If it is CONSUMABLE, stats will be the healing
+
+    [Header("Sound")]
+    public AudioClip sound;
 
     public string GetItemName(){
         return name;

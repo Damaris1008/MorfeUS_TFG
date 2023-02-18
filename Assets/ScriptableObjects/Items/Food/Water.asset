@@ -19,3 +19,4 @@ MonoBehaviour:
   name: WATER BOTTLE
   description: 
   stats: 0.25
+  sound: {fileID: 8300000, guid: 66808d23637d5564ca057e51553292a8, type: 3}

@@ -28,9 +28,9 @@ public class Enemy : MonoBehaviour
     
     [Header("Health")]
     [SerializeField] public HPBar healthBar;
-    [SerializeField] public float maxHealth = 12.0f;
-    private float currentHealth;
-    public float health { get { return currentHealth; }}
+    [SerializeField] public int maxHealth = 12;
+    private int currentHealth;
+    public int health { get { return currentHealth; }}
     bool isHitted = false;
     bool isDead = false;
 
@@ -53,39 +53,39 @@ public class Enemy : MonoBehaviour
 
     void Update(){
         
-        timer -= Time.deltaTime;
-        if(timer < 0)
-        {
-            direction = -direction;
-            timer = changeTime;
-            audioSource.Play();
-        }
+        if(!isDead){
+            timer -= Time.deltaTime;
+            if(timer < 0)
+            {
+                direction = -direction;
+                timer = changeTime;
+                audioSource.Play();
+            }
 
-        Vector2 position = rigidbody2d.position;
+            Vector2 position = rigidbody2d.position;
 
-        if (vertical){
-            position.y = position.y + Time.deltaTime * direction * speed;
-            animator.SetFloat("MoveX", 0);
-            animator.SetFloat("MoveY", direction);
-        }else{
-            position.x = position.x + Time.deltaTime * direction * speed;
-            animator.SetFloat("MoveX", direction);
-            animator.SetFloat("MoveY", 0);
+            if (vertical){
+                position.y = position.y + Time.deltaTime * direction * speed;
+                animator.SetFloat("MoveX", 0);
+                animator.SetFloat("MoveY", direction);
+            }else{
+                position.x = position.x + Time.deltaTime * direction * speed;
+                animator.SetFloat("MoveX", direction);
+                animator.SetFloat("MoveY", 0);
+            }
+    
+            rigidbody2d.position = position;
         }
- 
-        rigidbody2d.position = position;
     }
 
-    public void Damage(float amount){
+    public void Damage(int amount){
         
         currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
         healthBar.TakeDamageBar(amount);
         Debug.Log(currentHealth+"/"+maxHealth);
         if(currentHealth <= 0)
         {
-            isDead = true;
-            //animator.SetTrigger("Dead");
-            Debug.Log("Enemy Dead!");
+            Die();
         }
         isHitted = true;
         audioSource.PlayOneShot(zombieHitSound1);
@@ -98,11 +98,28 @@ public class Enemy : MonoBehaviour
         spriteRenderer.color = defaultColor;
         isHitted = false;
     }
+
+    void Die(){
+        isDead = true;
+        animator.SetTrigger("Dead");
+        
+        GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
+        healthBar.SetActive(false);
+        gameObject.layer = LayerMask.NameToLayer("DeadEnemies");
+        
+        StartCoroutine("WaitToDestroy");
+    }
+
+    IEnumerator WaitToDestroy()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
+    }
     
     void OnCollisionStay2D(Collision2D other)
     {
         Player player = other.gameObject.GetComponent<Player>();
-        if (player != null) {            
+        if (player != null && !isDead) {            
             player.Damage(damageAmount);
         }
     }

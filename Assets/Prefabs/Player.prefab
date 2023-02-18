@@ -110,6 +110,9 @@ MonoBehaviour:
   healedColor: {r: 0.1952441, g: 1, b: 0, a: 1}
   timeInvincible: 1
   punchHand: {fileID: 7109667550414206562}
+  hurtSound: {fileID: 8300000, guid: 74a90193da6ad9f4ab795d3b7adf99df, type: 3}
+  deathSound: {fileID: 8300000, guid: c35aa47f7aaaead4fadee3a9a035cadf, type: 3}
+  popUpsManager: {fileID: 0}
 --- !u!50 &7686864095651271504
 Rigidbody2D:
   serializedVersion: 4

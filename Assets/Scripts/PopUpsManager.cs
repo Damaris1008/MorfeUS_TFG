@@ -24,6 +24,10 @@ public class PopUpsManager : MonoBehaviour
     [SerializeField] Image itemInfoImg = null;
     [SerializeField] Text itemInfoStats = null;
 
+    [Header("Open/Close Death Menu")]
+    [SerializeField] GameObject deathMenu = null;
+    [SerializeField] Text deathMenuLives = null;
+
 
     private void Update(){
 
@@ -99,5 +103,17 @@ public class PopUpsManager : MonoBehaviour
 
     public void HideItemInfo(){
         itemInfo.SetActive(false);
+    }
+
+    public void OpenDeathMenu(int lives){
+        GameManager.PauseGame();
+        deathMenu.SetActive(true);
+        deathMenuLives.text = "x "+(lives/4).ToString();
+
+    }
+
+    public void CloseDeathMenu(){
+        GameManager.ResumeGame();
+        deathMenu.SetActive(false);
     }
 }

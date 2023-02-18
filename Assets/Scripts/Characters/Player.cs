@@ -18,9 +18,9 @@ public class Player : MonoBehaviour
     
     [Header("Health")]
     public HealthHeartsManager healthHeartsManager;
-    public float maxHealth = 24;
-    float currentHealth;
-    public float health { get { return currentHealth; }}
+    public int maxHealth = 24;
+    int currentHealth;
+    public int health { get { return currentHealth; }}
     bool isHitted = false;
     bool isHealing = false;
     bool healthIsFull;
@@ -41,11 +41,20 @@ public class Player : MonoBehaviour
     [Header("Punch")]
     public GameObject punchHand;
 
+    [Header("Sounds")]
+    AudioSource audioSource;
+    public AudioClip hurtSound;
+    public AudioClip deathSound;
+
+    [Header("PopUpsManager")]
+    public PopUpsManager popUpsManager;
+
     void Awake(){
         currentHealth = maxHealth;
         healthIsFull = true;
         rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         defaultColor = spriteRenderer.color;
         animator = GetComponent<Animator>();
         isDead = false;
@@ -60,7 +69,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Awaking") || animator.GetCurrentAnimatorStateInfo(0).IsName("Punch"))
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Awaking") || 
+        animator.GetCurrentAnimatorStateInfo(0).IsName("Punch") ||
+        animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
         {
             return;
         }
@@ -110,10 +121,10 @@ public class Player : MonoBehaviour
     }
 
     public void Damage(int amount){
-        
         if (isInvincible || isDead)
             return;
         isInvincible = true;
+        isHitted = true;
         invincibleTimer = timeInvincible;
         healthIsFull = false;
 
@@ -122,18 +133,16 @@ public class Player : MonoBehaviour
         healthHeartsManager.DrawHearts();
         if(currentHealth <= 0)
         {
-            isDead = true;
-            animator.SetTrigger("Dead");
-            if(maxHealth == 4){
-                GameManager.GameOver();
-            }
+            Die();
+            return;
         } 
 
-        isHitted = true;
+
+        audioSource.PlayOneShot(hurtSound);
         StartCoroutine("SwitchColor");
     }
 
-    public void Heal(int amount){
+    public void Heal(int amount){ //Replace parameter with (Item item) and make the audio sound from here
         if(healthIsFull || isDead){
             return;
         }
@@ -160,9 +169,29 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Die(){
+        isDead = true;
+        animator.SetTrigger("Dead");
+        audioSource.PlayOneShot(deathSound);
+        StartCoroutine("WaitForDeathMenu");
+    }
+
+    IEnumerator WaitForDeathMenu(){
+        yield return new WaitForSeconds(2f);
+        if(maxHealth == 4){
+            GameManager.GameOver();
+        }else{
+            popUpsManager.OpenDeathMenu(maxHealth-4);
+        }
+    }
+
     public void Revive(){
         if(isDead){
+            popUpsManager.CloseDeathMenu();
             isDead = false;
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameObject startPoint = GameObject.FindWithTag("StartPoint");
+            rigidbody2d.position = startPoint.transform.position;
             animator.Play("Awaking");
             maxHealth = maxHealth - 4;
             currentHealth = maxHealth;

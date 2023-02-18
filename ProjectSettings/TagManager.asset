@@ -8,6 +8,7 @@ TagManager:
   - OptionsMenu
   - PopUpsManager
   - Punch
+  - StartPoint
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - Collisions
   - PunchProjectile
   - Enemies
-  - 
+  - DeadEnemies
   - 
   - 
   - 
