@@ -6,10 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
-    private void Awake(){
+    private void Start(){
         Time.timeScale = 1;
-        AudioListener.volume = PlayerPrefs.GetFloat("volumeLevel", 0.5f);
+        
+        //Apply audio settings
+        AudioListener.volume = PlayerPrefs.GetFloat("volumeLevel");
+        GameObject backgroundMusicSource = GameObject.FindWithTag("MusicSource");
+        if(backgroundMusicSource!=null){
+            AudioSource backgroundMusic = backgroundMusicSource.GetComponent<AudioSource>();
+            if(PlayerPrefs.GetInt("backgroundMusic")==1 || PlayerPrefs.GetInt("backgroundMusic")==null){
+                backgroundMusic.mute = false;
+            }else{
+                backgroundMusic.mute = true;
+            }
+        }
     }
 
     public static void PlayNewGame()

@@ -9,6 +9,7 @@ TagManager:
   - PopUpsManager
   - Punch
   - StartPoint
+  - MusicSource
   layers:
   - Default
   - TransparentFX

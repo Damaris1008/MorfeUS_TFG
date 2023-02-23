@@ -32,7 +32,7 @@ public class PopUpsManager : MonoBehaviour
     private void Update(){
 
         //Open and close inventory
-        if(Input.GetKeyDown(KeyCode.R) && !pauseMenu.activeSelf){
+        if(Input.GetKeyDown(KeyCode.I) && !pauseMenu.activeSelf){
             if(inventory.activeSelf){
                 CloseInventory();
             }else{

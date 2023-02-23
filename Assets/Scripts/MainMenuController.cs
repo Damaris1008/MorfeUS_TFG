@@ -16,16 +16,14 @@ public class MainMenuController : MonoBehaviour
     private float _volumeLevel = 0.5f;
 
     [Header("Graphics Settings")]
-    [SerializeField] private Dropdown qualityDropdown = null;
     [SerializeField] private GameObject enableFullScreenButton = null;
     [SerializeField] private GameObject disableFullScreenButton = null;
     private bool _isFullScreen;
-    private int _qualityLevel;
 
     [Header("Resolution Dropdowns")]
     public Dropdown resolutionDropdown;
     private Resolution[] resolutions;
-    
+
     public void Start()
     {
         _isFullScreen = Screen.fullScreen;
@@ -33,7 +31,7 @@ public class MainMenuController : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        _volumeLevel = volume;
+        _volumeLevel = volume/100;
         volumeLevelText.text = volume.ToString("0") + "%" ;
     }
 
@@ -51,11 +49,6 @@ public class MainMenuController : MonoBehaviour
     public void SetBackgroundMusic(bool backgroundMusic)
     {
         _backgroundMusic = backgroundMusic;
-    }
-
-    public void SetQuality(int qualityIndex)
-    {
-        _qualityLevel = qualityIndex;
     }
 
     public void LoadResolutions()
@@ -83,8 +76,6 @@ public class MainMenuController : MonoBehaviour
 
     public void GraphicsApply()
     {
-        PlayerPrefs.SetInt("qualityLevel", _qualityLevel);
-        QualitySettings.SetQualityLevel(_qualityLevel);
         PlayerPrefs.SetInt("fullscreen", (_isFullScreen ? 1:0));
         Screen.fullScreen = _isFullScreen;
     }
@@ -94,12 +85,13 @@ public class MainMenuController : MonoBehaviour
         PlayerPrefs.SetFloat("volumeLevel", _volumeLevel);
         AudioListener.volume = _volumeLevel;
         PlayerPrefs.SetInt("backgroundMusic", (_backgroundMusic ? 1:0));
+
     }
 
     public void GetAudioPrefs()
     {
-        volumeSlider.value = PlayerPrefs.GetFloat("volumeLevel", 50.0f);
-        volumeLevelText.text = PlayerPrefs.GetFloat("volumeLevel",50.0f).ToString("0") + "%" ;
+        volumeSlider.value = PlayerPrefs.GetFloat("volumeLevel", 0.5f) * 100;
+        volumeLevelText.text = (PlayerPrefs.GetFloat("volumeLevel",0.5f)*100).ToString("0") + "%" ;
 
         if(PlayerPrefs.GetInt("backgroundMusic") == 0)
         {
@@ -113,8 +105,6 @@ public class MainMenuController : MonoBehaviour
 
     public void GetGraphicsPrefs()
     {
-        qualityDropdown.value = PlayerPrefs.GetInt("qualityLevel");
-
         if(PlayerPrefs.GetInt("fullscreen") == 0)
         {
             disableFullScreenButton.SetActive(false);
