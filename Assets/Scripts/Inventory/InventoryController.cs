@@ -6,16 +6,19 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
 
+    private Player player;
+
     [Header("Add Items")]
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
     [Header("Select Items")]
     public GameObject toolbar;
-    int selectedSlot = -1;
+    int selectedSlot;
     private int toolbarNumOfSlots;
 
     private void Start(){
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
         ChangeSelectedSlot(0);
         toolbarNumOfSlots = toolbar.transform.childCount;
     }
@@ -41,12 +44,17 @@ public class InventoryController : MonoBehaviour
             if(isNumber && number > 0 && number < 10){
                 ChangeSelectedSlot(number - 1);
             }
-
         } 
+
+        if(Input.GetKey(KeyCode.R)){
+            if(selectedSlot>=0 && selectedSlot <= toolbarNumOfSlots-1){
+                UseSelectedItem();
+            }
+        }
     }
 
     public void ChangeSelectedSlot(int newValue){
-        if(selectedSlot >= 0) {
+        if(selectedSlot != null) {
             inventorySlots[selectedSlot].Deselect();
         }
         inventorySlots[newValue].Select();
@@ -106,11 +114,15 @@ public class InventoryController : MonoBehaviour
         InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
         if(itemInSlot != null){
             Item item = itemInSlot.item;
-            itemInSlot.count--;
-            if(itemInSlot.count <= 0){
-                Destroy(itemInSlot.gameObject);
-            }else{
-                itemInSlot.RefreshCount();
+            if(item.type == ItemType.CONSUMABLE){
+                itemInSlot.count--;
+                if(itemInSlot.count <= 0){
+                    Destroy(itemInSlot.gameObject);
+                }else{
+                    itemInSlot.RefreshCount();
+                }
+                player.Heal(item.stats);
+                Debug.Log("Healing of "+item.stats+"pieces of heart");
             }
             return item;
         }else{

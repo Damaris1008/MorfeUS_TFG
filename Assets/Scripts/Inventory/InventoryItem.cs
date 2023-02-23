@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     [Header("Cursor")]
     public Texture2D cursorArrow;
@@ -17,12 +17,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [HideInInspector] public Item item;
     [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
-
-    private PopUpsManager popUpsManager;
-
-    private void Start(){
-        popUpsManager = GameObject.FindWithTag("PopUpsManager").GetComponent<PopUpsManager>();
-    }
 
     public void InitialiseItem(Item newItem){
         item = newItem;
@@ -59,15 +53,6 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         Cursor.SetCursor(cursorArrow, Vector2.zero, CursorMode.ForceSoftware);
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
-    }
-
-    // Hover over an item
-    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData){
-        popUpsManager.ShowItemInfo(item);
-    }
-
-    void IPointerExitHandler.OnPointerExit(PointerEventData eventData){
-        popUpsManager.HideItemInfo();
     }
 
 }
