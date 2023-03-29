@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Cursor")]
     public Texture2D cursorArrow;
@@ -17,6 +17,16 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [HideInInspector] public Item item;
     [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
+    private bool onDrag;
+
+    private PopUpsManager popUpsManager;
+    private GameObject buttonToConsume;
+
+    private void Start(){
+        popUpsManager = GameObject.FindWithTag("PopUpsManager").GetComponent<PopUpsManager>();
+        InventoryController inventoryManager = GameObject.FindWithTag("InventoryManager").GetComponent<InventoryController>();
+        buttonToConsume = inventoryManager.buttonToConsume;
+    }
 
     public void InitialiseItem(Item newItem){
         item = newItem;
@@ -35,8 +45,39 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         
     }
 
+    // Hover and unhover
+
+    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData){
+
+        InventorySlot inventorySlot = transform.parent.gameObject.GetComponent<InventorySlot>();
+        // Hover over an item
+        popUpsManager.ShowItemInfo(item);
+        // Hover over an selected item
+        if(inventorySlot.isSelected && item.type==ItemType.CONSUMABLE && transform.parent.transform.parent.name=="Toolbar"
+        && Time.timeScale == 1.0f){
+            buttonToConsume.transform.position = eventData.position;
+            buttonToConsume.SetActive(true);
+        }
+        
+    }
+
+    void IPointerExitHandler.OnPointerExit(PointerEventData eventData){
+        if(!onDrag){
+            InventorySlot inventorySlot = transform.parent.gameObject.GetComponent<InventorySlot>();
+            // Unhover item
+            popUpsManager.HideItemInfo();
+            // Unhover selected item
+            if(inventorySlot.isSelected && item.type==ItemType.CONSUMABLE && transform.parent.transform.parent.name=="Toolbar"){
+                buttonToConsume.SetActive(false);
+            }
+        }
+
+    }
+
     // Drag and drop
     public void OnBeginDrag(PointerEventData eventData){
+        onDrag = true;
+        buttonToConsume.SetActive(false);
         Cursor.SetCursor(selectCursor, Vector2.zero, CursorMode.ForceSoftware);
         parentAfterDrag = transform.parent;
         transform.SetParent(transform.root);
@@ -50,6 +91,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
     public void OnEndDrag(PointerEventData eventData){
+        onDrag = false;
         Cursor.SetCursor(cursorArrow, Vector2.zero, CursorMode.ForceSoftware);
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;

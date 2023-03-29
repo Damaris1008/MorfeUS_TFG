@@ -17,6 +17,9 @@ public class InventoryController : MonoBehaviour
     int selectedSlot;
     private int toolbarNumOfSlots;
 
+    [Header("Pop Up Consume")]
+    public GameObject buttonToConsume;
+
     private void Start(){
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         ChangeSelectedSlot(0);
@@ -112,7 +115,7 @@ public class InventoryController : MonoBehaviour
     public Item UseSelectedItem(){
         InventorySlot slot = inventorySlots[selectedSlot];
         InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-        if(itemInSlot != null){
+        if(itemInSlot != null && Time.timeScale == 1.0f){
             Item item = itemInSlot.item;
             if(item.type == ItemType.CONSUMABLE){
                 itemInSlot.count--;
@@ -122,6 +125,7 @@ public class InventoryController : MonoBehaviour
                     itemInSlot.RefreshCount();
                 }
                 player.Heal(item.stats);
+                buttonToConsume.SetActive(false);
                 Debug.Log("Healing of "+item.stats+"pieces of heart");
             }
             return item;

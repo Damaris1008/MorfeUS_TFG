@@ -117,4 +117,4 @@ MonoBehaviour:
   image: {fileID: 7764201058875356740}
   selectedColor: {r: 0.99215686, g: 0.7490196, b: 0.59607846, a: 1}
   notSelectedColor: {r: 1, g: 1, b: 1, a: 1}
-  buttonToConsume: {fileID: 0}
+  isSelected: 0

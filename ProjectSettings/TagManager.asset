@@ -11,6 +11,8 @@ TagManager:
   - StartPoint
   - MusicSource
   - Enemy
+  - ButtonToConsume
+  - InventoryManager
   layers:
   - Default
   - TransparentFX
