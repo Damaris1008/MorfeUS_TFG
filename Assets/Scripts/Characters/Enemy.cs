@@ -82,7 +82,6 @@ public class Enemy : MonoBehaviour
         
         currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
         healthBar.TakeDamageBar(amount);
-        Debug.Log(currentHealth+"/"+maxHealth);
         if(currentHealth <= 0)
         {
             Die();
@@ -118,15 +117,20 @@ public class Enemy : MonoBehaviour
     
     void OnCollisionStay2D(Collision2D other)
     {
-        Player player = other.gameObject.GetComponent<Player>();
-        if (player != null && !isDead) {            
-            player.Damage(damageAmount);
+        SwordHitBox swordHitBox = other.gameObject.GetComponent<SwordHitBox>();
+        if(swordHitBox == null){
+            Player player = other.gameObject.GetComponent<Player>();
+            if (player != null && !isDead) {        
+                player.Damage(damageAmount);
+            }
         }
+
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.GetComponent<Player>() == null && other.gameObject.GetComponent<Punch>() == null){
+        if(other.gameObject.GetComponent<Player>() == null && other.gameObject.GetComponent<Punch>() == null
+        && other.gameObject.GetComponent<SwordHitBox>() == null){
             direction = -direction;
             timer = changeTime;
         }
