@@ -20,6 +20,9 @@ public class InventoryController : MonoBehaviour
     [Header("Pop Up Consume")]
     public GameObject buttonToConsume;
 
+    [Header("Scripts")]
+    public PopUpsManager popUpsManager;
+
     private void Start(){
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         ChangeSelectedSlot(0);
@@ -133,6 +136,7 @@ public class InventoryController : MonoBehaviour
                 }
                 player.Heal(item.stats);
                 buttonToConsume.SetActive(false);
+                popUpsManager.HideItemInfo();
                 Debug.Log("Healing of "+item.stats+"pieces of heart");
             }
             return item;
