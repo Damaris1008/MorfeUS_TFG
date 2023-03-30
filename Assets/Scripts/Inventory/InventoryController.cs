@@ -61,6 +61,13 @@ public class InventoryController : MonoBehaviour
             inventorySlots[selectedSlot].Deselect();
         }
         inventorySlots[newValue].Select();
+        InventoryItem inventoryItem = inventorySlots[newValue].GetComponentInChildren<InventoryItem>();
+        if(inventoryItem!=null && inventoryItem.item.name == "SWORD"){
+            player.isUsingSword = true;
+        }else {
+            player.isUsingSword = false;
+        }
+        
         selectedSlot = newValue;
     }
 

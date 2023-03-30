@@ -46,8 +46,13 @@ public class Player : MonoBehaviour
     public AudioClip hurtSound;
     public AudioClip deathSound;
 
-    [Header("PopUpsManager")]
+    [Header("Scripts")]
     public PopUpsManager popUpsManager;
+    public InventoryController inventoryManager;
+
+    [Header("Weapons")]
+    public bool isUsingSword;
+    public bool isUsingBow;
 
     void Awake(){
         currentHealth = maxHealth;
@@ -69,11 +74,30 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Awaking") || 
-        animator.GetCurrentAnimatorStateInfo(0).IsName("Punch") ||
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Punch") || 
+        animator.GetCurrentAnimatorStateInfo(0).IsName("HitSword") || 
+        animator.GetCurrentAnimatorStateInfo(0).IsName("Awaking") ||
         animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
         {
             return;
+        }
+
+        if(isUsingSword){
+            animator.SetBool("Sword", true);
+        }else{
+            animator.SetBool("Sword", false);
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if(isUsingSword){
+                animator.SetTrigger("Hit");
+            }else if(isUsingBow){
+
+            }else{
+                Punch();
+            }
+
         }
 
         horizontal = Input.GetAxis("Horizontal");
@@ -93,7 +117,8 @@ public class Player : MonoBehaviour
         animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", move.magnitude);
 
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Moving")){
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("Moving") || 
+            animator.GetCurrentAnimatorStateInfo(0).IsName("MovingSword")){
             Vector2 position = rigidbody2d.position;
             //Multiplying by Time.deltaTime makes the character movement be the same regardless of how many frames per second are used to play the game
             //Time.deltaTime is the time Unity takes to reproduce a frame
@@ -102,10 +127,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Punch();
-        }
+
 
         if (isInvincible)
         {

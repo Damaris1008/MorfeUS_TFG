@@ -10130,6 +10130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2040967049, guid: 8f3741da243b9ce45b62b4a92e64283c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7686864095651271505, guid: 8f3741da243b9ce45b62b4a92e64283c, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -10182,6 +10186,10 @@ PrefabInstance:
       propertyPath: popUpsManager
       value: 
       objectReference: {fileID: 1254821394}
+    - target: {fileID: 7686864095651271519, guid: 8f3741da243b9ce45b62b4a92e64283c, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 369807251}
     - target: {fileID: 7686864095651271519, guid: 8f3741da243b9ce45b62b4a92e64283c, type: 3}
       propertyPath: healthHeartsManager
       value: 

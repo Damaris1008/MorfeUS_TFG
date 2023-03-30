@@ -16,6 +16,7 @@ MonoBehaviour:
   maxStack: 1
   image: {fileID: 21300000, guid: 06b392a95196d6d4592a4924aae4abba, type: 3}
   type: 0
-  name: IRON SWORD
+  name: SWORD
   description: 
-  stats: 1.5
+  stats: 1
+  sound: {fileID: 0}
