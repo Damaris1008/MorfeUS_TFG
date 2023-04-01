@@ -129,7 +129,7 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.GetComponent<Player>() == null && other.gameObject.GetComponent<Punch>() == null
+        if(other.gameObject.GetComponent<Player>() == null && other.gameObject.GetComponent<LaunchObject>() == null
         && other.gameObject.GetComponent<SwordHitBox>() == null){
             direction = -direction;
             timer = changeTime;

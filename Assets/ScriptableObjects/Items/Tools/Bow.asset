@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stackable: 0
   maxStack: 1
-  image: {fileID: 21300000, guid: 8cd90bc265383cc48aea02e38923696c, type: 3}
+  image: {fileID: 21300000, guid: ac1e8e7d75d985c489a02690f367a06d, type: 3}
   type: 0
   name: BOW
   description: 
   stats: 0
+  sound: {fileID: 0}

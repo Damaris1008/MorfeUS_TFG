@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Cursor")]
-    public Texture2D cursorArrow;
+    public Texture2D arrowCursor;
     public Texture2D selectCursor;
 
     [Header("UI")]
@@ -86,13 +86,12 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
     public void OnDrag(PointerEventData eventData){
-        Cursor.SetCursor(selectCursor, Vector2.zero, CursorMode.ForceSoftware);
         transform.position = Input.mousePosition;
     }
 
     public void OnEndDrag(PointerEventData eventData){
         onDrag = false;
-        Cursor.SetCursor(cursorArrow, Vector2.zero, CursorMode.ForceSoftware);
+        Cursor.SetCursor(arrowCursor, Vector2.zero, CursorMode.ForceSoftware);
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
     }

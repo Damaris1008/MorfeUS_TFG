@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3d8caa3c0a9464eaa011701e096ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorArrow: {fileID: 2800000, guid: 6b1aa03f7925769488cb3c87b935ea5c, type: 3}
+  arrowCursor: {fileID: 2800000, guid: 6b1aa03f7925769488cb3c87b935ea5c, type: 3}
   selectCursor: {fileID: 2800000, guid: 34eb75184ee44944dadeac625d9b78b3, type: 3}
   image: {fileID: 7809861469195924426}
   countText: {fileID: 721203281}

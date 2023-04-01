@@ -38,8 +38,9 @@ public class Player : MonoBehaviour
     bool isInvincible;
     float invincibleTimer;
 
-    [Header("Punch")]
+    [Header("Launch")]
     public GameObject punchHand;
+    public GameObject arrow;
 
     [Header("Sounds")]
     AudioSource audioSource;
@@ -75,7 +76,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Punch") || 
-        animator.GetCurrentAnimatorStateInfo(0).IsName("HitSword") || 
+        animator.GetCurrentAnimatorStateInfo(0).IsName("HitSword") ||
+        animator.GetCurrentAnimatorStateInfo(0).IsName("AttackBow") ||  
         animator.GetCurrentAnimatorStateInfo(0).IsName("Awaking") ||
         animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
         {
@@ -84,8 +86,13 @@ public class Player : MonoBehaviour
 
         if(isUsingSword){
             animator.SetBool("Sword", true);
+            animator.SetBool("Bow", false);
+        }else if(isUsingBow){
+            animator.SetBool("Sword", false);
+            animator.SetBool("Bow", true);
         }else{
             animator.SetBool("Sword", false);
+            animator.SetBool("Bow", false);  
         }
 
         if (Input.GetKey(KeyCode.Space))
@@ -93,7 +100,7 @@ public class Player : MonoBehaviour
             if(isUsingSword){
                 animator.SetTrigger("Hit");
             }else if(isUsingBow){
-
+                LaunchArrow();
             }else{
                 Punch();
             }
@@ -111,6 +118,18 @@ public class Player : MonoBehaviour
             lookDirection.Set(move.x, move.y);
             lookDirection.Normalize();
         }
+        //If the main character is not moving, it will face the cursor
+        else{
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 difference = mousePosition - transform.position;
+            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+
+            if(rotationZ >= 45 && rotationZ < 135){             lookDirection.Set(0, 1);
+            }else if(rotationZ >= 135  || rotationZ < -135){    lookDirection.Set(-1, 0);
+            }else if(rotationZ >= -135 && rotationZ < -45){     lookDirection.Set(0, -1);
+            }else if(rotationZ >= -45 || rotationZ < 45){       lookDirection.Set(1, 0);
+            }             
+        }
                 
         //We are sending the variables to the animator
         animator.SetFloat("Look X", lookDirection.x);
@@ -118,7 +137,8 @@ public class Player : MonoBehaviour
         animator.SetFloat("Speed", move.magnitude);
 
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Moving") || 
-            animator.GetCurrentAnimatorStateInfo(0).IsName("MovingSword")){
+            animator.GetCurrentAnimatorStateInfo(0).IsName("MovingSword") ||
+            animator.GetCurrentAnimatorStateInfo(0).IsName("MovingBow")){
             Vector2 position = rigidbody2d.position;
             //Multiplying by Time.deltaTime makes the character movement be the same regardless of how many frames per second are used to play the game
             //Time.deltaTime is the time Unity takes to reproduce a frame
@@ -231,11 +251,33 @@ public class Player : MonoBehaviour
             punchHand.GetComponent<SpriteRenderer>().flipX = true;
         }
 
-        Punch punch = punchHand.GetComponent<Punch>();
+        LaunchObject punch = punchHand.GetComponent<LaunchObject>();
         punch.Launch(lookDirection, 150);
 
         animator.SetTrigger("Punch");
 
+    }
+
+    public void LaunchArrow(){
+        
+        //Launch arrow towards the cursor position
+        //TO DO
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        float angle = Vector2.SignedAngle(Vector2.up, lookDirection);
+        arrow.transform.position = rigidbody2d.position + Vector2.up * (-0.2f);
+        arrow.transform.rotation = Quaternion.Euler(x:0, y:0, z:angle);
+        if(angle < 0 && angle > -180){
+            arrow.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        
+        /*Vector3 difference = mousePosition - transform.position;
+        float distance = difference.magnitude;
+        Vector2 direction = difference/distance;*/
+
+        LaunchObject launch = arrow.GetComponent<LaunchObject>();
+        launch.Launch(mousePosition, 150);
+        animator.SetTrigger("LaunchArrow");
     }
 
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Punch : MonoBehaviour
+public class LaunchObject : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
     bool isLaunching;
@@ -11,11 +11,16 @@ public class Punch : MonoBehaviour
     public int damageAttack = 2; //half heart
 
     [Header("Particles")]
-    public ParticleSystem punchHitEffect;
+    public ParticleSystem hitEffect;
 
     [Header("Sound")]
     public AudioSource audioSource;
-    public AudioClip punchSound;
+    public AudioClip impactSound;
+
+    [Header("Punch/Arrow")]
+    public bool isPunch;
+    public bool isArrow;
+    public Item bow;
 
     void Awake()
     {
@@ -30,11 +35,11 @@ public class Punch : MonoBehaviour
             isLaunching = true;
             gameObject.SetActive(true);
             rigidbody2d.AddForce(direction * force);
-            StartCoroutine(DeactivatePunch(direction,force));
+            StartCoroutine(DeactivateLaunch(direction,force));
         }
     }
 
-    private IEnumerator DeactivatePunch(Vector2 direction, float force)
+    private IEnumerator DeactivateLaunch(Vector2 direction, float force)
     {        
         yield return new WaitForSeconds(0.4f);
         rigidbody2d.AddForce(-direction * force);
@@ -45,15 +50,18 @@ public class Punch : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        
-        Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        punchHitEffect.gameObject.transform.position = transform.position;
-        punchHitEffect.Play();
-        if(enemy!=null){
-            enemy.Damage(damageAttack);
+        Debug.Log(other.collider.ToString());
+        if(other.collider.gameObject.CompareTag("Enemy")){
+            if(isArrow){
+                other.collider.SendMessage("Damage", bow.stats);
+            }else if(isPunch){
+                other.collider.SendMessage("Damage", damageAttack);
+            }
+            
         }
-        
-        audioSource.PlayOneShot(punchSound);
+        hitEffect.gameObject.transform.position = transform.position;
+        hitEffect.Play();
+        audioSource.PlayOneShot(impactSound);
         gameObject.SetActive(false);
         isLaunching = false;
     }
