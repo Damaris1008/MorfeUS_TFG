@@ -8,20 +8,21 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rigidbody2d;
     Animator animator;
 
-    [Header("Movement")]
-    public float speed = 0.5f;
-    public bool vertical;
-    public float changeTime = 5.0f;
-    float timer;
-    int direction = 1;
-
     [Header("Enemy Sounds")]
     AudioSource audioSource;
-    public AudioClip zombieSound;
-    public AudioClip zombieHitSound1;
-    public AudioClip zombieHitSound2;
-    public AudioClip zombieDeathSound;
-    //AudioClip[] hitSounds = {zombieHitSound1, zombieHitSound2};
+    public AudioClip enemySound;
+    public AudioClip enemyHitSound;
+    public AudioClip enemyDeathSound;
+    public float soundTimer;
+
+    [Header("Movement")]
+    public float speed = 0.5f;
+    public Transform path;
+    public List<Transform> waypoints;
+    public bool loop;
+    private int currentPoint = 0;
+    private float reachDistance = 0.01f;
+    private string direction = "going";
 
     [Header("Damage Attack")]
     [SerializeField] public int damageAmount = 4; //one heart
@@ -45,48 +46,85 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         defaultColor = spriteRenderer.color;
-        timer = changeTime;
         currentHealth = maxHealth;
         isDead = false;
+        soundTimer = Random.Range(2.0f, 5.0f);
     }
 
-    void Update(){
-        
-        if(!isDead){
-            timer -= Time.deltaTime;
-            if(timer < 0)
-            {
-                direction = -direction;
-                timer = changeTime;
-                audioSource.Play();
-            }
+    void Start()
+    {
+        waypoints = new List<Transform>();
+        for(int i=0; i<path.childCount; i++)
+        {
+            waypoints.Add(path.GetChild(i));
+        }
+    }
 
-            Vector2 position = rigidbody2d.position;
+    void FixedUpdate()
+    {
+        soundTimer -= Time.deltaTime;
+        if(soundTimer <=0){
+            audioSource.PlayOneShot(enemySound);
+            soundTimer = Random.Range(2.0f, 5.0f);
+        }
 
-            if (vertical){
-                position.y = position.y + Time.deltaTime * direction * speed;
-                animator.SetFloat("MoveX", 0);
-                animator.SetFloat("MoveY", direction);
-            }else{
-                position.x = position.x + Time.deltaTime * direction * speed;
-                animator.SetFloat("MoveX", direction);
-                animator.SetFloat("MoveY", 0);
-            }
-    
-            rigidbody2d.position = position;
+        //Distance between the enemy and the waypoint he's going to
+        float distance = Vector2.Distance(waypoints[currentPoint].position, transform.position);
+
+        transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPoint].position, Time.deltaTime*speed);
+
+        Vector2 dir = waypoints[currentPoint].position - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x)*Mathf.Rad2Deg;
+        //Right
+        if(angle >= -45 && angle <= 45){
+            animator.SetFloat("MoveX", 0.5f);
+            animator.SetFloat("MoveY", 0f);
+        }//Up
+        else if(angle <= 135 && angle >=45){
+            animator.SetFloat("MoveX", 0f);
+            animator.SetFloat("MoveY", 0.5f);
+        }//Left
+        else if(angle <= 225 && angle >= 135){
+            animator.SetFloat("MoveX", -0.5f);
+            animator.SetFloat("MoveY", 0f);
+        }//Down
+        else{
+            animator.SetFloat("MoveX", 0f);
+            animator.SetFloat("MoveY", -0.5f);
+        }
+
+        if(currentPoint == 0){
+            direction = "going";
+        }
+
+        if(distance <= reachDistance)
+        {
+            if(direction=="going") currentPoint += 1;
+            else if(direction=="comingBack") currentPoint -= 1;
+        }
+
+        if(currentPoint == path.childCount)
+        {
+            if(loop) currentPoint = 0;
+            else{
+                direction = "comingBack";
+                currentPoint -= 1;
+            } 
         }
     }
 
     public void Damage(int amount){
-        
-        currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
-        healthBar.TakeDamageBar(amount);
-        if(currentHealth <= 0)
-        {
-            Die();
+        if(!isDead){
+            currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
+            healthBar.TakeDamageBar(amount);
+            if(currentHealth <= 0)
+            {
+                Die();
+            }else{
+                audioSource.PlayOneShot(enemyHitSound);
+                StartCoroutine("SwitchColor");
+            }
         }
-        audioSource.PlayOneShot(zombieHitSound1);
-        StartCoroutine("SwitchColor");
     }
 
     IEnumerator SwitchColor(){
@@ -97,7 +135,9 @@ public class Enemy : MonoBehaviour
 
     void Die(){
         isDead = true;
+        speed = 0;
         animator.SetTrigger("Dead");
+        audioSource.PlayOneShot(enemyDeathSound);
         
         GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
         healthBar.SetActive(false);
@@ -110,15 +150,6 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         gameObject.SetActive(false);
-    }
-
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if(other.gameObject.GetComponent<Player>() == null && other.gameObject.GetComponent<LaunchObject>() == null
-        && other.gameObject.GetComponent<SwordHitBox>() == null && other.gameObject.GetComponent<PunchHitBox>() == null){
-            direction = -direction;
-            timer = changeTime;
-        }
     }
     
 }

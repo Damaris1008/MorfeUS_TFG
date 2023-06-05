@@ -265,13 +265,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6af60d25abc63c4f8da01adb4f23634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySound: {fileID: 8300000, guid: ce8b6da98d319bf4faafd128a6efa990, type: 3}
+  enemyHitSound: {fileID: 8300000, guid: 3ded9f390c88b384a8817000a9752b5e, type: 3}
+  enemyDeathSound: {fileID: 8300000, guid: 08e2a87186c264149a964da08088b2b5, type: 3}
+  soundTimer: 0
   speed: 0.5
-  vertical: 0
-  changeTime: 5
-  zombieSound: {fileID: 8300000, guid: ce8b6da98d319bf4faafd128a6efa990, type: 3}
-  zombieHitSound1: {fileID: 8300000, guid: 3ded9f390c88b384a8817000a9752b5e, type: 3}
-  zombieHitSound2: {fileID: 8300000, guid: 763821097018ba04b8c38a81b854b77d, type: 3}
-  zombieDeathSound: {fileID: 8300000, guid: 08e2a87186c264149a964da08088b2b5, type: 3}
+  path: {fileID: 0}
+  waypoints: []
+  loop: 1
   damageAmount: 4
   healthBar: {fileID: 1018300865}
   maxHealth: 12

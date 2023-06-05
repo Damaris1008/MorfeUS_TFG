@@ -17,10 +17,6 @@ public class InventoryController : MonoBehaviour
     int selectedSlot;
     private int toolbarNumOfSlots;
 
-    [Header("Cursor")]
-    public Texture2D arrowCursor;
-    public Texture2D crosshairCursor;
-
     [Header("Pop Up Consume")]
     public GameObject buttonToConsume;
 
@@ -72,15 +68,12 @@ public class InventoryController : MonoBehaviour
         if(inventoryItem!=null && inventoryItem.item.name == "SWORD"){
             player.isUsingSword = true;
             player.isUsingBow = false;
-            Cursor.SetCursor(arrowCursor, Vector2.zero, CursorMode.ForceSoftware);
         }else if(inventoryItem!=null && inventoryItem.item.name == "BOW"){
             player.isUsingSword = false;
             player.isUsingBow = true;
-            Cursor.SetCursor(crosshairCursor, Vector2.zero, CursorMode.ForceSoftware);
         }else{
             player.isUsingSword = false;
             player.isUsingBow = false;
-            Cursor.SetCursor(arrowCursor, Vector2.zero, CursorMode.ForceSoftware);
         }
         
         selectedSlot = newValue;
