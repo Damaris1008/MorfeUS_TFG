@@ -22,11 +22,11 @@ TagManager:
   - UI
   - CameraConfiner
   - Collisions
-  - PunchProjectile
+  - Projectile
   - Enemies
   - DeadEnemies
-  - 
-  - 
+  - PlayerAttackHitbox
+  - Walls
   - 
   - 
   - 

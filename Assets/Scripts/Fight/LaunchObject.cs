@@ -8,7 +8,7 @@ public class LaunchObject : MonoBehaviour
     bool isLaunching;
 
     [Header("Damage Attack")]
-    public int damageAttack = 2; //half heart
+    public Item bow;
 
     [Header("Particles")]
     public ParticleSystem hitEffect;
@@ -16,11 +16,7 @@ public class LaunchObject : MonoBehaviour
     [Header("Sound")]
     public AudioSource audioSource;
     public AudioClip impactSound;
-
-    [Header("Punch/Arrow")]
-    public bool isPunch;
-    public bool isArrow;
-    public Item bow;
+   
 
     void Awake()
     {
@@ -41,7 +37,7 @@ public class LaunchObject : MonoBehaviour
 
     private IEnumerator DeactivateLaunch(Vector2 direction, float force)
     {        
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.6f);
         rigidbody2d.AddForce(-direction * force);
         gameObject.SetActive(false);
         isLaunching = false;
@@ -50,14 +46,8 @@ public class LaunchObject : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log(other.collider.ToString());
         if(other.collider.gameObject.CompareTag("Enemy")){
-            if(isArrow){
                 other.collider.SendMessage("Damage", bow.stats);
-            }else if(isPunch){
-                other.collider.SendMessage("Damage", damageAttack);
-            }
-            
         }
         hitEffect.gameObject.transform.position = transform.position;
         hitEffect.Play();

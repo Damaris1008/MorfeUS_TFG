@@ -34,18 +34,19 @@ public class Player : MonoBehaviour
     Color defaultColor;
 
     [Header("Invincibility")]
-    public float timeInvincible = 1.0f;
+    public float timeInvincible = 0.3f;
     bool isInvincible;
     float invincibleTimer;
 
     [Header("Launch")]
-    public GameObject punchHand;
+    //public GameObject punchHand;
     public GameObject arrow;
 
     [Header("Sounds")]
     AudioSource audioSource;
     public AudioClip hurtSound;
     public AudioClip deathSound;
+    public AudioClip arrowSound;
 
     [Header("Scripts")]
     public PopUpsManager popUpsManager;
@@ -75,6 +76,13 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (isInvincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+            if (invincibleTimer < 0)
+                isInvincible = false;
+        }
+
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Punch") || 
         animator.GetCurrentAnimatorStateInfo(0).IsName("HitSword") ||
         animator.GetCurrentAnimatorStateInfo(0).IsName("AttackBow") ||  
@@ -100,9 +108,10 @@ public class Player : MonoBehaviour
             if(isUsingSword){
                 animator.SetTrigger("Hit");
             }else if(isUsingBow){
-                LaunchArrow();
+                animator.SetTrigger("LaunchArrow");
+                StartCoroutine("LaunchArrow");
             }else{
-                Punch();
+                animator.SetTrigger("Punch");
             }
 
         }
@@ -145,17 +154,6 @@ public class Player : MonoBehaviour
             position = position + move * speed * Time.deltaTime;
             rigidbody2d.position = position;
         }
-
-
-
-
-        if (isInvincible)
-        {
-            invincibleTimer -= Time.deltaTime;
-            if (invincibleTimer < 0)
-                isInvincible = false;
-        }
-
     }
 
     public Vector3 GetPosition() {
@@ -242,6 +240,7 @@ public class Player : MonoBehaviour
         }
     }
 
+/*
     public void Punch(){
 
         float angle = Vector2.SignedAngle(Vector2.up, lookDirection);
@@ -257,27 +256,34 @@ public class Player : MonoBehaviour
         animator.SetTrigger("Punch");
 
     }
+*/
 
-    public void LaunchArrow(){
+    IEnumerator LaunchArrow(){
         
-        //Launch arrow towards the cursor position
-        //TO DO
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        yield return new WaitForSeconds(0.6f);
 
         float angle = Vector2.SignedAngle(Vector2.up, lookDirection);
-        arrow.transform.position = rigidbody2d.position + Vector2.up * (-0.2f);
+        Debug.Log(angle);
+        arrow.transform.position = rigidbody2d.position + Vector2.up * (0.1f);
         arrow.transform.rotation = Quaternion.Euler(x:0, y:0, z:angle);
+        //If the player is looking to the right
         if(angle < 0 && angle > -180){
             arrow.GetComponent<SpriteRenderer>().flipX = true;
         }
-        
-        /*Vector3 difference = mousePosition - transform.position;
-        float distance = difference.magnitude;
-        Vector2 direction = difference/distance;*/
+        //If the player is looking down
+        else if((angle>90 && angle<180) || (angle<-90 && angle > -180) || angle==180){
+            arrow.transform.position = rigidbody2d.position + Vector2.up * (-0.15f);
+        }
+        //If the player is looking up
+        else if(angle>-90 && angle<90){
+            arrow.transform.position = rigidbody2d.position + Vector2.up * (0.5f);
+        }
 
+        audioSource.PlayOneShot(arrowSound);
         LaunchObject launch = arrow.GetComponent<LaunchObject>();
-        launch.Launch(mousePosition, 150);
-        animator.SetTrigger("LaunchArrow");
+        launch.Launch(lookDirection, 250);
+        
+
     }
 
 }

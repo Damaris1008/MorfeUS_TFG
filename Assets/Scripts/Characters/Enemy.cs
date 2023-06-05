@@ -31,7 +31,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int maxHealth = 12;
     private int currentHealth;
     public int health { get { return currentHealth; }}
-    bool isHitted = false;
     bool isDead = false;
 
     [Header("Sprite Color When Damaged")]
@@ -86,7 +85,6 @@ public class Enemy : MonoBehaviour
         {
             Die();
         }
-        isHitted = true;
         audioSource.PlayOneShot(zombieHitSound1);
         StartCoroutine("SwitchColor");
     }
@@ -95,7 +93,6 @@ public class Enemy : MonoBehaviour
         spriteRenderer.color = hittedColor;
         yield return new WaitForSeconds(timeToColor);
         spriteRenderer.color = defaultColor;
-        isHitted = false;
     }
 
     void Die(){
@@ -112,25 +109,13 @@ public class Enemy : MonoBehaviour
     IEnumerator WaitToDestroy()
     {
         yield return new WaitForSeconds(2f);
-        Destroy(gameObject);
-    }
-    
-    void OnCollisionStay2D(Collision2D other)
-    {
-        SwordHitBox swordHitBox = other.gameObject.GetComponent<SwordHitBox>();
-        if(swordHitBox == null){
-            Player player = other.gameObject.GetComponent<Player>();
-            if (player != null && !isDead) {        
-                player.Damage(damageAmount);
-            }
-        }
-
+        gameObject.SetActive(false);
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.GetComponent<Player>() == null && other.gameObject.GetComponent<LaunchObject>() == null
-        && other.gameObject.GetComponent<SwordHitBox>() == null){
+        && other.gameObject.GetComponent<SwordHitBox>() == null && other.gameObject.GetComponent<PunchHitBox>() == null){
             direction = -direction;
             timer = changeTime;
         }
