@@ -28,8 +28,24 @@ public class PopUpsManager : MonoBehaviour
     [SerializeField] GameObject deathMenu = null;
     [SerializeField] Text deathMenuLives = null;
 
+    [Header("FPS Counter")]
+    float deltaTime = 0.0f;
+    [SerializeField] GameObject fpsCounter = null;
+
+
 
     private void Update(){
+
+        deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
+
+        //Show and hide FPS counter
+        if(Input.GetKeyDown(KeyCode.F1)){
+            if(fpsCounter.activeSelf){
+                fpsCounter.SetActive(false);
+            }else{
+                fpsCounter.SetActive(true);
+            }
+        }
 
         //Open and close inventory
         if(Input.GetKeyDown(KeyCode.I) && !pauseMenu.activeSelf){
@@ -56,6 +72,8 @@ public class PopUpsManager : MonoBehaviour
         }
     }
 
+    // PAUSE MENU
+
     public void OpenPauseMenu(){
         GameManager.PauseGame();
         pauseMenu.SetActive(true);
@@ -75,6 +93,8 @@ public class PopUpsManager : MonoBehaviour
         mainMenu.SetActive(true);
 
     }
+    
+    // INVENTORY
 
     public void OpenInventory(){
         inventory.SetActive(true);
@@ -87,6 +107,16 @@ public class PopUpsManager : MonoBehaviour
         showInventoryButton.SetActive(true);
         GameManager.ResumeGame();
     }
+
+    // FPS COUNTER
+
+    void OnGUI(){
+        float msec = deltaTime * 1000.0f;
+        float fps = 1.0f / deltaTime;
+        fpsCounter.GetComponent<Text>().text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
+    }
+
+    // ITEM INFO
 
     public void ShowItemInfo(Item item){
         itemInfoName.text = item.name + " (" + item.type.ToString() + ")";
@@ -104,6 +134,8 @@ public class PopUpsManager : MonoBehaviour
     public void HideItemInfo(){
         itemInfo.SetActive(false);
     }
+
+    // DEATH MENU
 
     public void OpenDeathMenu(int lives){
         GameManager.PauseGame();
