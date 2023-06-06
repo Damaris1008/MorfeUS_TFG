@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7089873554031428509}
   - component: {fileID: 7089873554031428511}
   - component: {fileID: 7089873554031428510}
+  - component: {fileID: 1392900732}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Enemy
@@ -273,11 +274,35 @@ MonoBehaviour:
   path: {fileID: 0}
   waypoints: []
   loop: 1
+  player: {fileID: 0}
+  followRange: 3
   damageAmount: 4
   healthBar: {fileID: 1018300865}
   maxHealth: 12
   timeToColor: 0.25
   hittedColor: {r: 1, g: 0.30196077, b: 0.30196077, a: 1}
+--- !u!195 &1392900732
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732541829668815204}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 0.75
+  m_Acceleration: 5
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.64
+  m_BaseOffset: 0.32
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 1
 --- !u!1001 &1412794088563162486
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -285,6 +310,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2943421112961867177}
     m_Modifications:
+    - target: {fileID: 1412794087549318344, guid: d3e4d1fd4050cdc4d82b976efddbeeec, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412794087695347449, guid: d3e4d1fd4050cdc4d82b976efddbeeec, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1412794087695347451, guid: d3e4d1fd4050cdc4d82b976efddbeeec, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2428982132809855439, guid: d3e4d1fd4050cdc4d82b976efddbeeec, type: 3}
       propertyPath: m_RootOrder
       value: 0

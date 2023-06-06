@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -21,8 +22,13 @@ public class Enemy : MonoBehaviour
     public List<Transform> waypoints;
     public bool loop;
     private int currentPoint = 0;
-    private float reachDistance = 0.01f;
+    private float reachDistance = 0.1f;
     private string direction = "going";
+
+    [Header("Follow Player")]
+    public Transform player;
+    private NavMeshAgent agent;
+    public float followRange = 3.0f;
 
     [Header("Damage Attack")]
     [SerializeField] public int damageAmount = 4; //one heart
@@ -45,6 +51,7 @@ public class Enemy : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
         defaultColor = spriteRenderer.color;
         currentHealth = maxHealth;
         isDead = false;
@@ -53,6 +60,10 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        //To make the agent appear on the screen
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        
         waypoints = new List<Transform>();
         for(int i=0; i<path.childCount; i++)
         {
@@ -62,54 +73,84 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        soundTimer -= Time.deltaTime;
-        if(soundTimer <=0){
-            audioSource.PlayOneShot(enemySound);
-            soundTimer = Random.Range(2.0f, 5.0f);
+        if(!isDead){
+
+            //Enemy sound
+            soundTimer -= Time.deltaTime;
+            if(soundTimer <=0){
+                audioSource.PlayOneShot(enemySound);
+                soundTimer = Random.Range(10.0f, 30.0f);
+            }
+
+            //Movement
+            Vector3 destination;
+            bool targetDetected;
+            float distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
+
+            if(distanceToPlayer <= followRange){
+                targetDetected = true;
+            }else{
+                targetDetected = false;
+            }
+
+            Move(targetDetected);
+        }        
+    }
+
+    public void Move(bool targetDetected){
+        Vector3 destination;
+        //Follow player
+        if(targetDetected){
+            destination = player.position;
+            agent.SetDestination(destination);
+        //Follow path
+        }else{
+            float distance = Vector2.Distance(waypoints[currentPoint].position, transform.position);
+            if(currentPoint == 0){
+                direction = "going";
+            }
+            if(distance <= reachDistance)
+            {
+                if(direction=="going") currentPoint += 1;
+                else if(direction=="comingBack") currentPoint -= 1;
+            }
+            if(currentPoint == path.childCount)
+            {
+                if(loop) currentPoint = 0;
+                else{
+                    direction = "comingBack";
+                    currentPoint -= 1;
+                } 
+            }
+            destination = waypoints[currentPoint].position;
+            agent.SetDestination(destination);
         }
+        
 
-        //Distance between the enemy and the waypoint he's going to
-        float distance = Vector2.Distance(waypoints[currentPoint].position, transform.position);
-
-        transform.position = Vector2.MoveTowards(transform.position, waypoints[currentPoint].position, Time.deltaTime*speed);
-
-        Vector2 dir = waypoints[currentPoint].position - transform.position;
+        //Animations
+        Vector2 dir = destination - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x)*Mathf.Rad2Deg;
+        string direccion;
         //Right
         if(angle >= -45 && angle <= 45){
             animator.SetFloat("MoveX", 0.5f);
             animator.SetFloat("MoveY", 0f);
+            direccion="right";
         }//Up
         else if(angle <= 135 && angle >=45){
             animator.SetFloat("MoveX", 0f);
             animator.SetFloat("MoveY", 0.5f);
+            direccion="up";
         }//Left
-        else if(angle <= 225 && angle >= 135){
+        else if((angle <= 225 && angle >= 135) || (angle>=-180 && angle <= -135)){
             animator.SetFloat("MoveX", -0.5f);
             animator.SetFloat("MoveY", 0f);
+            direccion="left";
         }//Down
         else{
             animator.SetFloat("MoveX", 0f);
             animator.SetFloat("MoveY", -0.5f);
-        }
-
-        if(currentPoint == 0){
-            direction = "going";
-        }
-
-        if(distance <= reachDistance)
-        {
-            if(direction=="going") currentPoint += 1;
-            else if(direction=="comingBack") currentPoint -= 1;
-        }
-
-        if(currentPoint == path.childCount)
-        {
-            if(loop) currentPoint = 0;
-            else{
-                direction = "comingBack";
-                currentPoint -= 1;
-            } 
+            direccion="down";
         }
     }
 
@@ -135,12 +176,13 @@ public class Enemy : MonoBehaviour
 
     void Die(){
         isDead = true;
-        speed = 0;
-        animator.SetTrigger("Dead");
-        audioSource.PlayOneShot(enemyDeathSound);
-        
+
+        agent.enabled = false;
         GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
         healthBar.SetActive(false);
+
+        animator.SetTrigger("Dead");
+        audioSource.PlayOneShot(enemyDeathSound);
         gameObject.layer = LayerMask.NameToLayer("DeadEnemies");
         
         StartCoroutine("WaitToDestroy");
