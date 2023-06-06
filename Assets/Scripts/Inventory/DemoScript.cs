@@ -25,7 +25,7 @@ public class DemoScript : MonoBehaviour
         }
     }
 
-    public void UseSelectedItem(){
+    public void DemoUseSelectedItem(){
         Item usedItem = inventoryManager.UseSelectedItem();
         if(usedItem != null){
             Debug.Log("Used Item: "+usedItem);

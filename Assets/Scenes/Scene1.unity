@@ -495,6 +495,7 @@ MonoBehaviour:
   - {fileID: 1509429885}
   - {fileID: 1791348253}
   inventoryItemPrefab: {fileID: 7809861469195924425, guid: 22f86324b5dc7b5438cef01a85acbb10, type: 3}
+  timeToConsume: 0.01
   toolbar: {fileID: 730457092}
   buttonToConsume: {fileID: 407837178}
   popUpsManager: {fileID: 1254821394}
@@ -9922,6 +9923,10 @@ PrefabInstance:
       propertyPath: inventoryManager
       value: 
       objectReference: {fileID: 369807251}
+    - target: {fileID: 2598524835982479496, guid: 8026b222748c81641988639c93449e84, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2598524836028704554, guid: 8026b222748c81641988639c93449e84, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -10046,6 +10051,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 369807251}
+    - target: {fileID: 2598524836593935969, guid: 8026b222748c81641988639c93449e84, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DemoUseSelectedItem
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598524836593935969, guid: 8026b222748c81641988639c93449e84, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DemoScript, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2598524836745197480, guid: 8026b222748c81641988639c93449e84, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

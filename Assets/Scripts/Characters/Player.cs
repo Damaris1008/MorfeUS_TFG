@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     [Header("Health")]
     public HealthHeartsManager healthHeartsManager;
     public int maxHealth = 24;
-    int currentHealth;
+    public int currentHealth;
     public int health { get { return currentHealth; }}
     bool isHitted = false;
     bool isHealing = false;
@@ -50,7 +50,6 @@ public class Player : MonoBehaviour
 
     [Header("Scripts")]
     public PopUpsManager popUpsManager;
-    public InventoryController inventoryManager;
 
     [Header("Weapons")]
     public bool isUsingSword;
@@ -103,7 +102,7 @@ public class Player : MonoBehaviour
             animator.SetBool("Bow", false);  
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if(isUsingSword){
                 animator.SetTrigger("Hit");
@@ -115,6 +114,7 @@ public class Player : MonoBehaviour
             }
 
         }
+
 
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");

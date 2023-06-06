@@ -31,8 +31,9 @@ public class InventoryController : MonoBehaviour
 
     void Update()
     {
+
         float mouseScrollWheelValue = Input.GetAxis("Mouse ScrollWheel");
-        if(mouseScrollWheelValue != null){
+        if(mouseScrollWheelValue != 0.0f){
             inventorySlots[selectedSlot].Deselect();
             if(mouseScrollWheelValue > 0.0){
                 selectedSlot = (selectedSlot + 1)%9;
@@ -52,17 +53,14 @@ public class InventoryController : MonoBehaviour
             }
         } 
 
-        if(Input.GetKey(KeyCode.R)){
-            if(selectedSlot>=0 && selectedSlot <= toolbarNumOfSlots-1){
-                UseSelectedItem();
-            }
+        if(Input.GetKeyDown(KeyCode.R)){
+            UseSelectedItem();
         }
+
     }
 
     public void ChangeSelectedSlot(int newValue){
-        if(selectedSlot != null) {
-            inventorySlots[selectedSlot].Deselect();
-        }
+        inventorySlots[selectedSlot].Deselect();
         inventorySlots[newValue].Select();
         InventoryItem inventoryItem = inventorySlots[newValue].GetComponentInChildren<InventoryItem>();
         if(inventoryItem!=null && inventoryItem.item.name == "SWORD"){
@@ -132,17 +130,17 @@ public class InventoryController : MonoBehaviour
         InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
         if(itemInSlot != null && Time.timeScale == 1.0f){
             Item item = itemInSlot.item;
-            if(item.type == ItemType.CONSUMABLE){
+            if(item.type == ItemType.CONSUMABLE && player.currentHealth != player.maxHealth){
+                Debug.Log("Used " + item.name + ". Healing "+ (item.stats > player.maxHealth - player.currentHealth ? player.maxHealth - player.currentHealth : item.stats) +" pieces of heart!");
                 itemInSlot.count--;
                 if(itemInSlot.count <= 0){
                     Destroy(itemInSlot.gameObject);
+                    popUpsManager.HideItemInfo();
                 }else{
                     itemInSlot.RefreshCount();
                 }
                 player.Heal(item.stats);
                 buttonToConsume.SetActive(false);
-                popUpsManager.HideItemInfo();
-                Debug.Log("Healing of "+item.stats+"pieces of heart");
             }
             return item;
         }else{

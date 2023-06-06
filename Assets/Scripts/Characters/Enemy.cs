@@ -83,7 +83,6 @@ public class Enemy : MonoBehaviour
             }
 
             //Movement
-            Vector3 destination;
             bool targetDetected;
             float distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
 
@@ -130,27 +129,22 @@ public class Enemy : MonoBehaviour
         //Animations
         Vector2 dir = destination - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x)*Mathf.Rad2Deg;
-        string direccion;
         //Right
         if(angle >= -45 && angle <= 45){
             animator.SetFloat("MoveX", 0.5f);
             animator.SetFloat("MoveY", 0f);
-            direccion="right";
         }//Up
         else if(angle <= 135 && angle >=45){
             animator.SetFloat("MoveX", 0f);
             animator.SetFloat("MoveY", 0.5f);
-            direccion="up";
         }//Left
         else if((angle <= 225 && angle >= 135) || (angle>=-180 && angle <= -135)){
             animator.SetFloat("MoveX", -0.5f);
             animator.SetFloat("MoveY", 0f);
-            direccion="left";
         }//Down
         else{
             animator.SetFloat("MoveX", 0f);
             animator.SetFloat("MoveY", -0.5f);
-            direccion="down";
         }
     }
 
