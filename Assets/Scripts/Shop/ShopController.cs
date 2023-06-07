@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class ShopController : MonoBehaviour
 {
 
+    public Player player;
+
     [Header("Shop Items")]
     public List<ShopSlot> shopSlots;
     public Transform content;
@@ -23,6 +25,10 @@ public class ShopController : MonoBehaviour
     [Header("Show/Hide Item Info")]
     public GameObject itemInfoContent;
     public GameObject itemCostContent;
+    public GameObject buyButton;
+
+    [Header("Scripts")]
+    public InventoryController inventoryController;
 
     // Start is called before the first frame update
     void Awake()
@@ -60,5 +66,31 @@ public class ShopController : MonoBehaviour
         double convertedStats = (double)item.stats/4.0;
         itemStats.text = convertedStats.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
         itemCost.text = item.cost.ToString();
+
+        RefreshCostPanel();
+    }
+
+    public void buyItem(){
+        Item item = shopSlots[selectedSlot].item;
+        if(item.cost <= player.coins){
+            player.SpendCoins(item.cost);
+            inventoryController.AddItem(item);
+            RefreshCostPanel();
+        }else{
+            Debug.Log("No coins to spend!");
+        }
+
+    }
+
+    public void RefreshCostPanel(){
+        Item item = shopSlots[selectedSlot].item;
+        //Can the player buy it
+        if(item.cost > player.coins){
+            itemCost.color = Color.red;
+            buyButton.SetActive(false);
+        }else{
+            itemCost.color = Color.black;
+            buyButton.SetActive(true);
+        }
     }
 }

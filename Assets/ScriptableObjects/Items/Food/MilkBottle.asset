@@ -16,7 +16,7 @@ MonoBehaviour:
   maxStack: 12
   image: {fileID: 21300000, guid: 75bbc1a4ae81e8644a84c427daa997a7, type: 3}
   type: 1
-  name: MILK BOTTLE
+  name: BOTELLA DE LECHE
   description: 
   stats: 1
   cost: 1

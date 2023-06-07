@@ -18,5 +18,6 @@ MonoBehaviour:
   type: 1
   name: COCA-COLA
   description: 
-  stats: 0.75
+  stats: 12
+  cost: 5
   sound: {fileID: 8300000, guid: 66808d23637d5564ca057e51553292a8, type: 3}

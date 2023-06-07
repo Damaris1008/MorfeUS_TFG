@@ -32,7 +32,10 @@ public class PopUpsManager : MonoBehaviour
     float deltaTime = 0.0f;
     [SerializeField] GameObject fpsCounter = null;
 
-
+    [Header("Coins/Keys Counters")]
+    [SerializeField] Text inventoryCoinsCounter = null;
+    [SerializeField] Text shopCoinsCounter = null;
+    [SerializeField] Text inventoryKeysCounter = null;
 
     private void Update(){
 
@@ -152,4 +155,15 @@ public class PopUpsManager : MonoBehaviour
     // SHOP MENU
 
     //When opening it, update selected slot to none (-1)
+
+    // COINS AND KEYS COUNTERS
+
+    public void RefreshCoinsCounters(int coins){
+        inventoryCoinsCounter.text = "x "+coins.ToString();
+        shopCoinsCounter.text = "x "+coins.ToString();
+    }
+
+    public void RefreshKeysCounters(int keys){
+        inventoryKeysCounter.text = "x "+keys.ToString();
+    }
 }

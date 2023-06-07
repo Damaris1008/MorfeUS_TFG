@@ -26,6 +26,10 @@ public class Player : MonoBehaviour
     bool healthIsFull;
     bool isDead = false;
 
+    [Header("Resources")]
+    public int coins;
+    public int keys;
+
     [Header("Sprite Color When Damaged")]
     public float timeToColor = 0.25f;
     public Color hittedColor = new Color(1f, 0.30196078f, 0.30196078f);
@@ -56,6 +60,8 @@ public class Player : MonoBehaviour
     public bool isUsingBow;
 
     void Awake(){
+        coins = 3;
+        keys = 1;
         currentHealth = maxHealth;
         healthIsFull = true;
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -71,6 +77,9 @@ public class Player : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex != 2){
             animator.Play("Idle");
         }
+        popUpsManager.RefreshCoinsCounters(coins);
+        popUpsManager.RefreshKeysCounters(keys);
+
     }
 
     void Update()
@@ -284,6 +293,26 @@ public class Player : MonoBehaviour
         launch.Launch(lookDirection, 250);
         
 
+    }
+
+    public void SpendCoins(int amount){
+        coins -= amount;
+        popUpsManager.RefreshCoinsCounters(coins);
+    }
+
+    public void WinCoins(int amount){
+        coins += amount;
+        popUpsManager.RefreshCoinsCounters(coins);
+    }
+
+    public void SpendKeys(int amount){
+        keys -= amount;
+        popUpsManager.RefreshKeysCounters(keys);
+    }
+
+    public void WinKeys(int amount){
+        keys += amount;
+        popUpsManager.RefreshKeysCounters(keys);
     }
 
 }
