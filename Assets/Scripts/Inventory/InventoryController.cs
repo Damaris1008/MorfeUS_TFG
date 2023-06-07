@@ -23,6 +23,9 @@ public class InventoryController : MonoBehaviour
     [Header("Scripts")]
     public PopUpsManager popUpsManager;
 
+    [Header("Shop Opened")]
+    public GameObject shopMenu;
+
     private void Start(){
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         ChangeSelectedSlot(0);
@@ -33,7 +36,7 @@ public class InventoryController : MonoBehaviour
     {
 
         float mouseScrollWheelValue = Input.GetAxis("Mouse ScrollWheel");
-        if(mouseScrollWheelValue != 0.0f){
+        if(mouseScrollWheelValue != 0.0f && shopMenu.activeSelf == false){
             inventorySlots[selectedSlot].Deselect();
             if(mouseScrollWheelValue > 0.0){
                 selectedSlot = (selectedSlot + 1)%9;

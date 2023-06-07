@@ -148,4 +148,8 @@ public class PopUpsManager : MonoBehaviour
         GameManager.ResumeGame();
         deathMenu.SetActive(false);
     }
+
+    // SHOP MENU
+
+    //When opening it, update selected slot to none (-1)
 }

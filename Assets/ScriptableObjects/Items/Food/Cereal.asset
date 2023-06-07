@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b63628aa2a9ea344ae4b169e1473eb9, type: 3}
-  m_Name: MilkBottle
+  m_Name: Cereal
   m_EditorClassIdentifier: 
   stackable: 1
   maxStack: 12
-  image: {fileID: 21300000, guid: 75bbc1a4ae81e8644a84c427daa997a7, type: 3}
+  image: {fileID: 21300000, guid: acb0d8ad1ddbab04da2a26726352be55, type: 3}
   type: 1
-  name: MILK BOTTLE
+  name: CEREALS
   description: 
-  stats: 1
+  stats: 2
   cost: 1
-  sound: {fileID: 8300000, guid: 66808d23637d5564ca057e51553292a8, type: 3}
+  sound: {fileID: 8300000, guid: 64c95f3ee00e0254aa1ae8b829e0db1f, type: 3}
