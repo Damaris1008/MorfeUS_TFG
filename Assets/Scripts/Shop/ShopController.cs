@@ -27,6 +27,11 @@ public class ShopController : MonoBehaviour
     public GameObject itemCostContent;
     public GameObject buyButton;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip buttonClickAudio;
+    public AudioClip buyAudio;
+
     [Header("Scripts")]
     public InventoryController inventoryController;
 
@@ -52,6 +57,10 @@ public class ShopController : MonoBehaviour
     }
 
     public void ChangeSelectedSlot(int newValue){
+
+        //Audio
+        audioSource.PlayOneShot(buttonClickAudio);
+
         //Change the selected slot
         if(selectedSlot!=-1){
             shopSlots[selectedSlot].Deselect();
@@ -73,6 +82,7 @@ public class ShopController : MonoBehaviour
     public void buyItem(){
         Item item = shopSlots[selectedSlot].item;
         if(item.cost <= player.coins){
+            audioSource.PlayOneShot(buyAudio);
             player.SpendCoins(item.cost);
             inventoryController.AddItem(item);
             RefreshCostPanel();

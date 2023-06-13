@@ -8,6 +8,7 @@ public class MainMenuController : MonoBehaviour
 {
 
     [Header("Audio Settings")]
+    [SerializeField] public AudioSource backgroundMusicSource = null;
     [SerializeField] private Text volumeLevelText = null;
     [SerializeField] private Slider volumeSlider = null;
     [SerializeField] private GameObject muteMusicButton = null;
@@ -23,10 +24,13 @@ public class MainMenuController : MonoBehaviour
     [Header("Resolution Dropdowns")]
     public Dropdown resolutionDropdown;
     private Resolution[] resolutions;
+    private List<Resolution> filteredResolutions;
+    private int currentResolutionIndex = 0;
+    private Resolution currentResolution;
 
-    public void Start()
-    {
-        _isFullScreen = Screen.fullScreen;
+    public void Start(){
+        GetAudioPrefs();
+        GetGraphicsPrefs();
     }
 
     public void SetVolume(float volume)
@@ -37,8 +41,9 @@ public class MainMenuController : MonoBehaviour
 
     public void SetResolution(int resolutionIndex)
     {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        currentResolution = filteredResolutions[resolutionIndex];
+        PlayerPrefs.SetInt("resolutionWidth", currentResolution.width);
+        PlayerPrefs.SetInt("resolutionHeight", currentResolution.height);
     }
 
     public void SetFullscreen(bool isFullScreen)
@@ -54,16 +59,23 @@ public class MainMenuController : MonoBehaviour
     public void LoadResolutions()
     {
         resolutions = Screen.resolutions;
+        filteredResolutions = new List<Resolution>();
         resolutionDropdown.ClearOptions();
-        List<string> options = new List<string>();
 
-        int currentResolutionIndex = 0;
-        for(int i=0; i < resolutions.Length ; i++)
+        for(int i = 4; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + "x" + resolutions[i].height;
-            options.Add(option);
+            if(!(resolutions[i].width==1280 && resolutions[i].height==600))
+            {
+                filteredResolutions.Add(resolutions[i]);
+            }
+        }
 
-            if(resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+        List<string> options = new List<string>();
+        for(int i = 0; i < filteredResolutions.Count; i++)
+        {
+            string option = filteredResolutions[i].width + "x" + filteredResolutions[i].height;
+            options.Add(option);
+            if(filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height)
             {
                 currentResolutionIndex = i;
             }
@@ -76,8 +88,14 @@ public class MainMenuController : MonoBehaviour
 
     public void GraphicsApply()
     {
-        PlayerPrefs.SetInt("fullscreen", (_isFullScreen ? 1:0));
+
+        Screen.SetResolution(PlayerPrefs.GetInt("resolutionWidth"), PlayerPrefs.GetInt("resolutionHeight"), Screen.fullScreen);
+
+        PlayerPrefs.SetInt("fullScreen", (_isFullScreen ? 1 : 0));
         Screen.fullScreen = _isFullScreen;
+
+        //Debug.Log("Preferencias del jugador sobre la fullscreen: "+ PlayerPrefs.GetInt("fullscreen"));
+        //Debug.Log("_isFullScreen: "+_isFullScreen);
     }
      
     public void AudioSettingsApply()
@@ -85,6 +103,11 @@ public class MainMenuController : MonoBehaviour
         PlayerPrefs.SetFloat("volumeLevel", _volumeLevel);
         AudioListener.volume = _volumeLevel;
         PlayerPrefs.SetInt("backgroundMusic", (_backgroundMusic ? 1:0));
+        if(PlayerPrefs.GetInt("backgroundMusic") == 0){
+            backgroundMusicSource.mute = true;
+        }else{
+            backgroundMusicSource.mute = false;
+        }
 
     }
 
@@ -105,13 +128,23 @@ public class MainMenuController : MonoBehaviour
 
     public void GetGraphicsPrefs()
     {
-        if(PlayerPrefs.GetInt("fullscreen") == 0)
+        if(PlayerPrefs.GetInt("fullScreen") == 0)
         {
+            _isFullScreen = false;
+            Screen.fullScreen = false;
             disableFullScreenButton.SetActive(false);
             enableFullScreenButton.SetActive(true);
         }else{
+            _isFullScreen = true;
+            Screen.fullScreen = true;
             disableFullScreenButton.SetActive(true);
             enableFullScreenButton.SetActive(false);
+        }
+
+        if(PlayerPrefs.HasKey("resolutionWidth")){
+            Screen.SetResolution(PlayerPrefs.GetInt("resolutionWidth"), PlayerPrefs.GetInt("resolutionHeight"), Screen.fullScreen);
+        }else{
+            Screen.SetResolution(1920, 1080, true);
         }
     }
 
