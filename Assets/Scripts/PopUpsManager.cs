@@ -18,6 +18,10 @@ public class PopUpsManager : MonoBehaviour
     public GameObject inventory;
     public GameObject showInventoryButton;
 
+    [Header("Open/Close Shop")]
+    public ShopController shopController;
+    public GameObject shopMenu;
+
     [Header("Show/Hide Item Info")]
     [SerializeField] GameObject itemInfo = null;
     [SerializeField] Text itemInfoName = null;
@@ -154,7 +158,14 @@ public class PopUpsManager : MonoBehaviour
 
     // SHOP MENU
 
-    //When opening it, update selected slot to none (-1)
+    public void OpenShop(){
+        shopMenu.SetActive(true);
+    }
+
+    public void CloseShop(){
+        shopController.ResetSelectedSlot();
+        shopMenu.SetActive(false); 
+    }
 
     // COINS AND KEYS COUNTERS
 

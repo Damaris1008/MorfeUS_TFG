@@ -79,6 +79,13 @@ public class ShopController : MonoBehaviour
         RefreshCostPanel();
     }
 
+    public void ResetSelectedSlot(){
+        if(selectedSlot!=-1){
+            shopSlots[selectedSlot].Deselect();
+        }
+        selectedSlot = -1;
+    }
+
     public void buyItem(){
         Item item = shopSlots[selectedSlot].item;
         if(item.cost <= player.coins){
