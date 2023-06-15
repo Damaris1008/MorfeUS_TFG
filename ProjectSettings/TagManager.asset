@@ -15,6 +15,7 @@ TagManager:
   - InventoryManager
   - VendingMachine
   - Door
+  - Chest
   layers:
   - Default
   - TransparentFX
