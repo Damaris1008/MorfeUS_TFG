@@ -7,57 +7,97 @@ public class Chest : MonoBehaviour
 {
     private Player player;
     private Animator animator;
+    private AudioSource audioSource;
     public Animator popUpAnimator;
+    
 
     [Header("Content")]
-    public bool isKeyChest; //True: keyChest, False: coinChest
+    public Item item;
+    public int typeOfChest; //0: coin, 1: key, 2: item, 3: power-up
     public int amount;
 
     [Header("Pop-Up")]
     public GameObject popUp;
     public Text amountText;
-    public GameObject coinImg;
-    public GameObject keyImg;
+    public GameObject rewardImg;
 
-    
     public bool opened = false;
 
     void Awake(){
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
     void Start(){
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     public void Open(){
-
         if(!opened){
-            animator.SetTrigger("Open");
-            StartCoroutine("ActivatePopUp");
+            opened=true;
+            player.SpendKeys(1);
+            audioSource.Play();
+            StartCoroutine("OpenChest");
         }
-        opened=true;
     }
 
-    IEnumerator ActivatePopUp(){
+    IEnumerator OpenChest(){
+        yield return new WaitForSeconds(0.08f);
+        animator.SetTrigger("Open");
+        StartCoroutine("PopUp");
+    }
+
+    IEnumerator PopUp(){
 
         //Activate
         yield return new WaitForSeconds(0.7f);
-        amountText.text = "+"+amount;
-        if(isKeyChest){
-            keyImg.SetActive(true);
-            player.WinKeys(amount);
-        }else{
-            coinImg.SetActive(true);
-            player.WinCoins(amount);
-        }
-        popUpAnimator.SetTrigger("RaiseText");
+        rewardImg.SetActive(true);
 
-        //Deactivate
-        yield return new WaitForSeconds(1.2f);
-        amountText.text = "";
-        coinImg.SetActive(false);
-        keyImg.SetActive(false);
+        // Reward
+        switch(typeOfChest)
+        {
+            case 0: //Coins
+                player.WinCoins(amount);
+                break;
+            case 1: //Keys
+                player.WinKeys(amount);
+                break;
+            case 2: //Item
+                player.WinItem(item);
+                break;
+            case 3: //Power-up
+                break;
+            default: 
+                Debug.Log("Incorrect type of chest! (0: coins, 1: keys, 2: item, 3: power-up)");
+                StopCoroutine("PopUp");
+                break;
+        }
+
+        // Animation
+        if(typeOfChest == 0 || typeOfChest == 1) // Resource Chest
+        {
+            amountText.text = "+"+amount;
+            popUpAnimator.SetTrigger("RaiseText");
+
+            //Deactivate
+            yield return new WaitForSeconds(1.2f);
+            amountText.text = "";
+        }
+        else // Special Chest
+        {
+            Debug.Log("Abriendo cofre especial!");
+            popUpAnimator.SetTrigger("RaiseText");
+            //Deactivate
+            yield return new WaitForSeconds(1.8f);
+
+        }
+
+
+
+        rewardImg.SetActive(false);
         popUp.SetActive(false);
+        
+
+        
 
     }
 

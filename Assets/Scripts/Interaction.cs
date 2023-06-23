@@ -5,6 +5,7 @@ using UnityEngine;
 public class Interaction : MonoBehaviour
 {
     public GameObject buttonPopUp;
+    public GameObject missingKey;
 
     public bool touchingVendingMachine;
     public bool touchingChest;
@@ -35,8 +36,12 @@ public class Interaction : MonoBehaviour
                 buttonPopUp.SetActive(true);
                 touchingVendingMachine = true;
             }else if(gameObject.CompareTag("Chest") && !chest.opened){
-                buttonPopUp.SetActive(true);
-                touchingChest = true;
+                if(player.keys>=1){
+                    buttonPopUp.SetActive(true);
+                    touchingChest = true;
+                }else{
+                    missingKey.SetActive(true);
+                }
             }else if(gameObject.CompareTag("Door")){
                 buttonPopUp.SetActive(true);
                 touchingDoor = true;
@@ -45,6 +50,7 @@ public class Interaction : MonoBehaviour
     }
 
     void OnCollisionStay2D(Collision2D col){
+        // If its a chest and it is already opened
         if(chest!=null && chest.opened){
             buttonPopUp.SetActive(false);
         }
@@ -57,6 +63,9 @@ public class Interaction : MonoBehaviour
             touchingVendingMachine = false;
             touchingChest = false;
             touchingDoor = false;
+            if(chest!=null){
+                missingKey.SetActive(false);
+            }
         }
     }
 

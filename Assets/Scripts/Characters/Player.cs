@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
 
     [Header("Scripts")]
     public PopUpsManager popUpsManager;
+    public InventoryController inventoryManager;
 
     [Header("Weapons")]
     public bool isUsingSword;
@@ -313,6 +314,10 @@ public class Player : MonoBehaviour
     public void WinKeys(int amount){
         keys += amount;
         popUpsManager.RefreshKeysCounters(keys);
+    }
+
+    public void WinItem(Item item){
+        inventoryManager.AddItem(item);
     }
 
 }
