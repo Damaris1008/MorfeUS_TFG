@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b63628aa2a9ea344ae4b169e1473eb9, type: 3}
+  m_Name: LemonKas
+  m_EditorClassIdentifier: 
+  stackable: 1
+  maxStack: 12
+  image: {fileID: 21300000, guid: 4490b5c37da9c3a4abafd0aed0a9ef28, type: 3}
+  type: 1
+  name: "KAS DE LIM\xD3N"
+  description: 
+  stats: 8
+  cost: 3
+  sound: {fileID: 8300000, guid: 66808d23637d5564ca057e51553292a8, type: 3}

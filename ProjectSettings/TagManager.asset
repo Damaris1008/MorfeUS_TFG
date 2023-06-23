@@ -3,7 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - MainMenu
+  - OptionsMenu
+  - PopUpsManager
+  - Punch
+  - StartPoint
+  - MusicSource
+  - Enemy
+  - ButtonToConsume
+  - InventoryManager
+  - VendingMachine
+  - Door
+  - Chest
   layers:
   - Default
   - TransparentFX
@@ -13,11 +25,11 @@ TagManager:
   - UI
   - CameraConfiner
   - Collisions
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Projectile
+  - Enemies
+  - DeadEnemies
+  - PlayerAttackHitbox
+  - Walls
   - 
   - 
   - 
