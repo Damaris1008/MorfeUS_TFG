@@ -63,8 +63,14 @@ public class PopUpsManager : MonoBehaviour
             } 
             return; 
         }
+
         if(Input.GetKeyDown(KeyCode.Escape) && inventory.activeSelf){
             CloseInventory();
+            return;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape) && shopMenu.activeSelf){
+            CloseShop();
             return;
         }
 

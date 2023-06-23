@@ -509,6 +509,7 @@ MonoBehaviour:
   buttonToConsume: {fileID: 407837178}
   popUpsManager: {fileID: 1254821394}
   shopMenu: {fileID: 88544118}
+  controlsMenu: {fileID: 771844076}
 --- !u!114 &388133637 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6525211579060733964, guid: 8026b222748c81641988639c93449e84, type: 3}
@@ -1150,6 +1151,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8920a932d81f9d744b6d3bd48c7cdda8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &771844076 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4345577817868201409, guid: 8026b222748c81641988639c93449e84, type: 3}
+  m_PrefabInstance: {fileID: 2598524835797471790}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &785450490 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6525211578330812042, guid: 8026b222748c81641988639c93449e84, type: 3}
@@ -14859,21 +14865,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 684555249, guid: 8026b222748c81641988639c93449e84, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 684555249, guid: 8026b222748c81641988639c93449e84, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1254821394}
-    - target: {fileID: 684555249, guid: 8026b222748c81641988639c93449e84, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseShop
-      objectReference: {fileID: 0}
-    - target: {fileID: 684555249, guid: 8026b222748c81641988639c93449e84, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PopUpsManager, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 731232066, guid: 8026b222748c81641988639c93449e84, type: 3}
       propertyPath: player
       value: 
@@ -14886,10 +14880,6 @@ PrefabInstance:
       propertyPath: inventoryManager
       value: 
       objectReference: {fileID: 369807251}
-    - target: {fileID: 2598524835982479496, guid: 8026b222748c81641988639c93449e84, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2598524836028704554, guid: 8026b222748c81641988639c93449e84, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -15223,21 +15213,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7319159253253482497, guid: 8026b222748c81641988639c93449e84, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7319159253253482497, guid: 8026b222748c81641988639c93449e84, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1254821394}
-    - target: {fileID: 7319159253253482497, guid: 8026b222748c81641988639c93449e84, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseShop
-      objectReference: {fileID: 0}
-    - target: {fileID: 7319159253253482497, guid: 8026b222748c81641988639c93449e84, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PopUpsManager, Assembly-CSharp
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8026b222748c81641988639c93449e84, type: 3}
 --- !u!1001 &2733318622506650962
