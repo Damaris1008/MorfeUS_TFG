@@ -65,7 +65,12 @@ public class InventoryController : MonoBehaviour
     public void ChangeSelectedSlot(int newValue){
         inventorySlots[selectedSlot].Deselect();
         inventorySlots[newValue].Select();
-        InventoryItem inventoryItem = inventorySlots[newValue].GetComponentInChildren<InventoryItem>();
+        selectedSlot = newValue;
+        RefreshItemSelected();
+    }
+
+    public void RefreshItemSelected(){
+        InventoryItem inventoryItem = inventorySlots[selectedSlot].GetComponentInChildren<InventoryItem>();
         if(inventoryItem!=null && inventoryItem.item.name == "SWORD"){
             player.isUsingSword = true;
             player.isUsingBow = false;
@@ -76,8 +81,6 @@ public class InventoryController : MonoBehaviour
             player.isUsingSword = false;
             player.isUsingBow = false;
         }
-        
-        selectedSlot = newValue;
     }
 
 
@@ -115,6 +118,7 @@ public class InventoryController : MonoBehaviour
         GameObject newItemGO = Instantiate(inventoryItemPrefab, slot.transform);
         InventoryItem inventoryItem = newItemGO.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem(item);
+        RefreshItemSelected();
     }
 
     public Item GetSelectedItem(){

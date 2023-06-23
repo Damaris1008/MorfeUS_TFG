@@ -43,6 +43,12 @@ public class Chest : MonoBehaviour
     IEnumerator OpenChest(){
         yield return new WaitForSeconds(0.08f);
         animator.SetTrigger("Open");
+
+        if(typeOfChest<0 || typeOfChest>5){
+            Debug.Log("Trying to open an incorrect type of chest! (0: coins, 1: keys, 2: item, 3: power-up)");
+            StopCoroutine("OpenChest");
+        }
+
         StartCoroutine("PopUp");
     }
 
@@ -50,7 +56,24 @@ public class Chest : MonoBehaviour
 
         //Activate
         yield return new WaitForSeconds(0.7f);
+
+        // Animation
         rewardImg.SetActive(true);
+        if(typeOfChest == 0 || typeOfChest == 1) // Resource Chest
+        {
+            amountText.text = "+"+amount;
+            popUpAnimator.SetTrigger("RaiseText");
+
+            //Deactivate
+            yield return new WaitForSeconds(1.2f);
+            amountText.text = "";
+        }
+        else // Special Chest
+        {
+            popUpAnimator.SetTrigger("RaiseText");
+            //Deactivate
+            yield return new WaitForSeconds(1.8f);
+        }
 
         // Reward
         switch(typeOfChest)
@@ -66,39 +89,11 @@ public class Chest : MonoBehaviour
                 break;
             case 3: //Power-up
                 break;
-            default: 
-                Debug.Log("Incorrect type of chest! (0: coins, 1: keys, 2: item, 3: power-up)");
-                StopCoroutine("PopUp");
-                break;
         }
-
-        // Animation
-        if(typeOfChest == 0 || typeOfChest == 1) // Resource Chest
-        {
-            amountText.text = "+"+amount;
-            popUpAnimator.SetTrigger("RaiseText");
-
-            //Deactivate
-            yield return new WaitForSeconds(1.2f);
-            amountText.text = "";
-        }
-        else // Special Chest
-        {
-            Debug.Log("Abriendo cofre especial!");
-            popUpAnimator.SetTrigger("RaiseText");
-            //Deactivate
-            yield return new WaitForSeconds(1.8f);
-
-        }
-
-
 
         rewardImg.SetActive(false);
         popUp.SetActive(false);
         
-
-        
-
     }
 
 }
