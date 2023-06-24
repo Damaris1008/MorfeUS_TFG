@@ -6,16 +6,14 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
 
+    [Header("Movement")]
     Rigidbody2D rigidbody2d;
+    Animator animator;
     float horizontal; 
     float vertical;
-
-    Animator animator;
+    private float speed;
     Vector2 lookDirection = new Vector2(0,-1);
 
-    [Header("Speed")]
-    public float speed = 1.80f;
-    
     [Header("Health")]
     public HealthHeartsManager healthHeartsManager;
     public int maxHealth = 24;
@@ -112,6 +110,7 @@ public class Player : MonoBehaviour
             animator.SetBool("Bow", false);  
         }
 
+        // Attack
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if(isUsingSword){
@@ -125,7 +124,15 @@ public class Player : MonoBehaviour
 
         }
 
+        // Run
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 2.5f;
+        }else{
+            speed = 1.5f;
+        }
 
+        // Movement
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
