@@ -14,6 +14,7 @@ public class Interaction : MonoBehaviour
     [Header("Scripts")]
     public PopUpsManager popUpsManager;
     public Chest chest;
+    public Door door;
 
     void Update(){
         if(Input.GetKeyDown(KeyCode.E)){
@@ -22,8 +23,7 @@ public class Interaction : MonoBehaviour
             }else if(touchingChest){
                 chest.Open();
             }else if(touchingDoor){
-                //Door audio
-                //Call method from GameManager to pass the next scene
+                door.OpenDoor();
             }
             
         }

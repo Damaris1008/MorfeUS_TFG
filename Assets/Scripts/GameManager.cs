@@ -65,6 +65,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadSceneAsync(1);
     }
 
+    public static void NextScene(){
+        int activeScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadSceneAsync(activeScene+1);
+    }
+
     public void RaiseFinalWall(){
         finalWall.SetActive(false);
     }
