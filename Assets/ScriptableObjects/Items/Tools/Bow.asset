@@ -18,5 +18,6 @@ MonoBehaviour:
   type: 0
   name: BOW
   description: 
-  stats: 3
+  stats: 8
+  cost: 1
   sound: {fileID: 0}

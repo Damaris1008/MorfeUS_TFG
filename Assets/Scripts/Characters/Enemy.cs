@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
@@ -8,6 +9,7 @@ public class Enemy : MonoBehaviour
 
     Rigidbody2D rigidbody2d;
     Animator animator;
+    private Player player;
 
     [Header("Enemy Sounds")]
     AudioSource audioSource;
@@ -26,7 +28,7 @@ public class Enemy : MonoBehaviour
     private string direction = "going";
 
     [Header("Follow Player")]
-    public Transform player;
+    public Transform playerTransform;
     private NavMeshAgent agent;
     public float followRange = 3.0f;
 
@@ -39,6 +41,14 @@ public class Enemy : MonoBehaviour
     private int currentHealth;
     public int health { get { return currentHealth; }}
     bool isDead = false;
+
+    [Header("Drops")]
+    public int dropPercentage;
+    public Animator popUpAnimator;
+    public Text amountText;
+    public GameObject coinImg;
+    public GameObject keyImg;
+    private GameObject rewardImg;
 
     [Header("Sprite Color When Damaged")]
     public float timeToColor = 0.25f;
@@ -60,6 +70,10 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        GameObject playerGo = GameObject.FindWithTag("Player");
+        player = playerGo.GetComponent<Player>();
+        playerTransform = playerGo.transform;
+
         //To make the agent appear on the screen
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -84,7 +98,7 @@ public class Enemy : MonoBehaviour
 
             //Movement
             bool targetDetected;
-            float distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
+            float distanceToPlayer = Vector2.Distance(playerTransform.transform.position, transform.position);
 
             if(distanceToPlayer <= followRange){
                 targetDetected = true;
@@ -100,7 +114,7 @@ public class Enemy : MonoBehaviour
         Vector3 destination;
         //Follow player
         if(targetDetected){
-            destination = player.position;
+            destination = playerTransform.position;
             agent.SetDestination(destination);
         //Follow path
         }else{
@@ -170,16 +184,74 @@ public class Enemy : MonoBehaviour
 
     void Die(){
         isDead = true;
-
         agent.enabled = false;
+
         GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
         healthBar.SetActive(false);
 
         animator.SetTrigger("Dead");
         audioSource.PlayOneShot(enemyDeathSound);
         gameObject.layer = LayerMask.NameToLayer("DeadEnemies");
+
+        // Drops
+        int randomNumber = Random.Range(0,101);
+        //Debug.Log("Primer dado: "+randomNumber);
+        if(randomNumber<=dropPercentage){
+            int keyOrCoin = Random.Range(0,2);
+            int randomNumber2 = Random.Range(0,101);
+            //Debug.Log("Segundo dado: "+randomNumber2);
+            int dropAmount;
+            bool isKey;
+            if(keyOrCoin==0){ //Coin
+                isKey=false;
+                if(randomNumber2<5){ 
+                    dropAmount = 5;
+                }else if(randomNumber2<10){ 
+                    dropAmount = 4;
+                }else if(randomNumber2<25){ 
+                    dropAmount = 3;
+                }else if(randomNumber2<50){ 
+                    dropAmount = 2;
+                }else{
+                    dropAmount = 1;
+                }
+            }else{ //Key
+                isKey=true;
+                if(randomNumber2<10){ 
+                    dropAmount = 3;
+                }else if(randomNumber2<25){ 
+                    dropAmount = 2;
+                }else{
+                    dropAmount = 1;
+                }
+            }
+
+            StartCoroutine(PopUp(isKey, dropAmount));
+        }
         
         StartCoroutine("WaitToDestroy");
+    }
+
+    IEnumerator PopUp(bool isKey, int dropAmount){
+
+        //Activate animation
+        yield return new WaitForSeconds(0.3f);
+        if(isKey){
+            keyImg.SetActive(true);
+            player.WinKeys(dropAmount);
+        }else{
+            coinImg.SetActive(true);
+            player.WinCoins(dropAmount);
+        }
+        amountText.text = "+"+dropAmount;
+        popUpAnimator.SetTrigger("RaiseText");
+
+        //Deactivate animation
+        yield return new WaitForSeconds(4f);
+        amountText.text = "";
+        keyImg.SetActive(false);
+        coinImg.SetActive(false);
+        
     }
 
     IEnumerator WaitToDestroy()

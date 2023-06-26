@@ -280,7 +280,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
 
         float angle = Vector2.SignedAngle(Vector2.up, lookDirection);
-        Debug.Log(angle);
         arrow.transform.position = rigidbody2d.position + Vector2.up * (0.1f);
         arrow.transform.rotation = Quaternion.Euler(x:0, y:0, z:angle);
         //If the player is looking to the right

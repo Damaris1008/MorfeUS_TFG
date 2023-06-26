@@ -18,5 +18,6 @@ MonoBehaviour:
   type: 0
   name: SWORD
   description: 
-  stats: 2
+  stats: 4
+  cost: 1
   sound: {fileID: 0}
