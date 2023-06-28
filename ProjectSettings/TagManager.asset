@@ -16,6 +16,7 @@ TagManager:
   - VendingMachine
   - Door
   - Chest
+  - EnemyHitBox
   layers:
   - Default
   - TransparentFX

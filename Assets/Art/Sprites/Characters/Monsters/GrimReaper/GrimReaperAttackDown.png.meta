@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6bdd6961f1d449a42a39fb86846c9897
+guid: 0e850dc59be473d44a1d7b37f3be38f3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -116,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hitRightSword_0
+      name: GrimReaperAttackDown_0
       rect:
         serializedVersion: 2
-        x: 51
-        y: 5
-        width: 88
-        height: 64
+        x: 81
+        y: 48
+        width: 44
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca91e9522b8ae2d46aba5811846f0b5c
-      internalID: -443211368
+      spriteID: 73ab156bf98d2d14abcf79a7e800b955
+      internalID: 2012331752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hitRightSword_1
+      name: GrimReaperAttackDown_1
       rect:
         serializedVersion: 2
-        x: 181
-        y: 5
-        width: 88
-        height: 64
+        x: 274
+        y: 48
+        width: 27
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,20 +151,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d723db3f3582214d94cc6feff683d7a
-      internalID: -1682054971
+      spriteID: f2717d63baa0fe94f8bb3804ab79c74a
+      internalID: -2135324479
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hitRightSword_2
+      name: GrimReaperAttackDown_2
       rect:
         serializedVersion: 2
-        x: 305
-        y: 5
-        width: 88.333336
-        height: 64
+        x: 457
+        y: 48
+        width: 36
+        height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,20 +172,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 241ab4a957e0cbd4fba9013b19ab9896
-      internalID: -377252035
+      spriteID: e244ae8cdc1c13c4ca1433633c36cf36
+      internalID: -16933868
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hitRightSword_3
+      name: GrimReaperAttackDown_3
       rect:
         serializedVersion: 2
-        x: 425
-        y: 5
-        width: 88.333336
-        height: 64
+        x: 655
+        y: 43
+        width: 35
+        height: 52
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,20 +193,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79ff4dfa23f763e4b9529837cd8e7d27
-      internalID: 964098586
+      spriteID: bd12632b1cd4c494a8cfd6031386e429
+      internalID: 638266349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hitRightSword_4
+      name: GrimReaperAttackDown_4
       rect:
         serializedVersion: 2
-        x: 545
-        y: 5
-        width: 88.333336
-        height: 64
+        x: 846
+        y: 48
+        width: 56
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -214,20 +214,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f1bc46dde147d9419e05dbfd9a483a2
-      internalID: 1160287485
+      spriteID: 499c1a66bf6005645a72a92a304478c5
+      internalID: -557255587
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hitRightSword_5
+      name: GrimReaperAttackDown_5
       rect:
         serializedVersion: 2
-        x: 665
-        y: 5
-        width: 88.333336
-        height: 64
+        x: 1043
+        y: 48
+        width: 54
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,8 +235,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87166ccf62514874bb69fac9ac318707
-      internalID: -2039862093
+      spriteID: 8bcb5ca500371504fb97856fb9bac0a3
+      internalID: -847540224
       vertices: []
       indices: 
       edges: []
@@ -252,12 +252,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      hitRightSword_3: 964098586
-      hitRightSword_1: -1682054971
-      hitRightSword_0: -443211368
-      hitRightSword_4: 1160287485
-      hitRightSword_5: -2039862093
-      hitRightSword_2: -377252035
+      GrimReaperAttackDown_3: 638266349
+      GrimReaperAttackDown_1: -2135324479
+      GrimReaperAttackDown_4: -557255587
+      GrimReaperAttackDown_0: 2012331752
+      GrimReaperAttackDown_2: -16933868
+      GrimReaperAttackDown_5: -847540224
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

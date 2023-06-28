@@ -24,4 +24,12 @@ public class PlayerHitBox : MonoBehaviour
             player.SendMessage("Damage", enemy.damageAmount);
         }
     }
+
+    // Grim reaper hitboxes 
+    void OnTriggerEnter2D(Collider2D col){
+        if(col.gameObject.CompareTag("EnemyHitBox")){
+            Enemy enemy = col.gameObject.transform.parent.gameObject.GetComponent<Enemy>();
+            player.SendMessage("Damage", enemy.damageAmount);
+        }
+    }
 }

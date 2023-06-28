@@ -11,6 +11,10 @@ public class Enemy : MonoBehaviour
     Animator animator;
     private Player player;
 
+    [Header("Enemy Type")]
+    public bool isGrimReaper;
+    public bool isSkeleton;
+
     [Header("Enemy Sounds")]
     AudioSource audioSource;
     public AudioClip enemySound;
@@ -19,7 +23,6 @@ public class Enemy : MonoBehaviour
     public float soundTimer;
 
     [Header("Movement")]
-    public float speed = 0.5f;
     public Transform path;
     public List<Transform> waypoints;
     public bool loop;
@@ -32,8 +35,11 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     public float followRange = 3.0f;
 
-    [Header("Damage Attack")]
+    [Header("Attack")]
     [SerializeField] public int damageAmount = 4; //one heart
+    public float timeToAttack;
+    private bool isAttacking;
+    private float attackTimer;
     
     [Header("Health")]
     [SerializeField] public HPBar healthBar;
@@ -66,6 +72,7 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
         isDead = false;
         soundTimer = Random.Range(2.0f, 5.0f);
+        timeToAttack = 2f;
     }
 
     void Start()
@@ -73,7 +80,7 @@ public class Enemy : MonoBehaviour
         GameObject playerGo = GameObject.FindWithTag("Player");
         player = playerGo.GetComponent<Player>();
         playerTransform = playerGo.transform;
-
+        
         //To make the agent appear on the screen
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -83,6 +90,7 @@ public class Enemy : MonoBehaviour
         {
             waypoints.Add(path.GetChild(i));
         }
+
     }
 
     void FixedUpdate()
@@ -96,18 +104,54 @@ public class Enemy : MonoBehaviour
                 soundTimer = Random.Range(10.0f, 30.0f);
             }
 
+            //Attack timer
+            if (isAttacking)
+            {
+                attackTimer -= Time.deltaTime;
+                if (attackTimer < 0){
+                    isAttacking = false;
+                }
+                
+            }
+
             //Movement
+
             bool targetDetected;
             float distanceToPlayer = Vector2.Distance(playerTransform.transform.position, transform.position);
 
             if(distanceToPlayer <= followRange){
+
                 targetDetected = true;
+                
+                //Attack
+                if(!isAttacking){
+                    if(isSkeleton && distanceToPlayer<=7){
+                        // Attack animation
+                        // Launch bone
+                    }else if(isGrimReaper && distanceToPlayer<=1){
+                        StartCoroutine("GrimReaperAttack");
+                    }else{
+                        Move(targetDetected);
+                    }
+                }
+
             }else{
                 targetDetected = false;
+                Move(targetDetected);
             }
 
-            Move(targetDetected);
         }        
+    }
+
+    IEnumerator GrimReaperAttack(){
+        isAttacking = true;
+        agent.Stop();
+        agent.enabled = false;
+        agent.enabled = true;
+        animator.SetTrigger("Attack");
+        attackTimer = timeToAttack;
+        yield return new WaitForSeconds(0.5f);
+        Move(true);
     }
 
     public void Move(bool targetDetected){
