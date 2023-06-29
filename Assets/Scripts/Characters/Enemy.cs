@@ -12,12 +12,14 @@ public class Enemy : MonoBehaviour
     private Player player;
 
     [Header("Enemy Type")]
+    public bool isZombie;
     public bool isGrimReaper;
     public bool isSkeleton;
 
     [Header("Enemy Sounds")]
-    AudioSource audioSource;
+    public AudioSource audioSource;
     public AudioClip enemySound;
+    public AudioClip enemyBiteSound;
     public AudioClip enemyHitSound;
     public AudioClip enemyDeathSound;
     public float soundTimer;
@@ -40,6 +42,7 @@ public class Enemy : MonoBehaviour
     public float timeToAttack;
     private bool isAttacking;
     private float attackTimer;
+    public GameObject bone;
     
     [Header("Health")]
     [SerializeField] public HPBar healthBar;
@@ -125,11 +128,11 @@ public class Enemy : MonoBehaviour
                 
                 //Attack
                 if(!isAttacking){
-                    if(isSkeleton && distanceToPlayer<=7){
-                        // Attack animation
-                        // Launch bone
-                    }else if(isGrimReaper && distanceToPlayer<=1){
+                    if(isGrimReaper && distanceToPlayer<=1){
                         StartCoroutine("GrimReaperAttack");
+                    }else if(isSkeleton && distanceToPlayer<=5){
+                        Move(targetDetected);
+                        SkeletonAttack();
                     }else{
                         Move(targetDetected);
                     }
@@ -152,6 +155,29 @@ public class Enemy : MonoBehaviour
         attackTimer = timeToAttack;
         yield return new WaitForSeconds(0.5f);
         Move(true);
+    }
+
+    void SkeletonAttack(){
+        isAttacking = true;
+        animator.SetTrigger("Attack");
+        if(isSkeleton){
+            LaunchBone();
+        }
+        attackTimer = timeToAttack;
+    }
+
+
+    void LaunchBone(){
+        bone.transform.position = rigidbody2d.position + Vector2.up * (0.1f);
+        Vector3 rotation = playerTransform.position - bone.transform.position;
+        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+        bone.transform.rotation = Quaternion.Euler(0,0,rotZ);
+
+        //audioSource.PlayOneShot(arrowSound);
+
+        Vector3 launchDirection = (playerTransform.position - transform.position).normalized;
+        LaunchObject launch = bone.GetComponent<LaunchObject>();
+        launch.Launch(launchDirection, 200);
     }
 
     public void Move(bool targetDetected){
@@ -241,12 +267,12 @@ public class Enemy : MonoBehaviour
         int randomNumber = Random.Range(0,101);
         //Debug.Log("Primer dado: "+randomNumber);
         if(randomNumber<=dropPercentage){
-            int keyOrCoin = Random.Range(0,2);
+            int randomNumber1 = Random.Range(0,101);
             int randomNumber2 = Random.Range(0,101);
-            //Debug.Log("Segundo dado: "+randomNumber2);
+            Debug.Log("Segundo dado: "+randomNumber2);
             int dropAmount;
             bool isKey;
-            if(keyOrCoin==0){ //Coin
+            if(randomNumber1>=20){ //Coin
                 isKey=false;
                 if(randomNumber2<5){ 
                     dropAmount = 5;
@@ -261,9 +287,9 @@ public class Enemy : MonoBehaviour
                 }
             }else{ //Key
                 isKey=true;
-                if(randomNumber2<10){ 
+                if(randomNumber2<5){ 
                     dropAmount = 3;
-                }else if(randomNumber2<25){ 
+                }else if(randomNumber2<10){ 
                     dropAmount = 2;
                 }else{
                     dropAmount = 1;

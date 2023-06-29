@@ -800,9 +800,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e19f662c26868499646aedd4c7cba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.8
   healthHeartsManager: {fileID: 0}
   maxHealth: 24
+  currentHealth: 0
+  coins: 0
+  keys: 0
   timeToColor: 0.25
   hittedColor: {r: 1, g: 0.30196077, b: 0.30196077, a: 1}
   healedColor: {r: 0.1952441, g: 1, b: 0, a: 1}
@@ -971,6 +973,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 78240b0d4edfdbc4e877cbbb015fa5c1, type: 3}
+    - target: {fileID: 1464027702931827702, guid: c09d2f817ea9b8f4793318e829e7050f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1464027702931827702, guid: c09d2f817ea9b8f4793318e829e7050f, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

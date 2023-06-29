@@ -704,9 +704,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6af60d25abc63c4f8da01adb4f23634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isZombie: 1
   isGrimReaper: 0
   isSkeleton: 0
+  audioSource: {fileID: 0}
   enemySound: {fileID: 8300000, guid: ce8b6da98d319bf4faafd128a6efa990, type: 3}
+  enemyBiteSound: {fileID: 8300000, guid: b327d1e6b30a4f04bb800368a55cb3ed, type: 3}
   enemyHitSound: {fileID: 8300000, guid: 3ded9f390c88b384a8817000a9752b5e, type: 3}
   enemyDeathSound: {fileID: 8300000, guid: 08e2a87186c264149a964da08088b2b5, type: 3}
   soundTimer: 0

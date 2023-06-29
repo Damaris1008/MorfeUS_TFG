@@ -7,8 +7,13 @@ public class LaunchObject : MonoBehaviour
     Rigidbody2D rigidbody2d;
     bool isLaunching;
 
+    [Header("Object Type")]
+    public bool isArrow;
+    public bool isBone;
+
     [Header("Damage Attack")]
     public Item bow;
+    public Enemy skeleton;
 
     [Header("Particles")]
     public ParticleSystem hitEffect;
@@ -31,23 +36,35 @@ public class LaunchObject : MonoBehaviour
             isLaunching = true;
             gameObject.SetActive(true);
             rigidbody2d.AddForce(direction * force);
-            StartCoroutine(DeactivateLaunch(direction,force));
+            StartCoroutine(ActivateAndDeactivateLaunch(direction,force));
         }
     }
 
-    private IEnumerator DeactivateLaunch(Vector2 direction, float force)
-    {        
-        yield return new WaitForSeconds(0.6f);
+    private IEnumerator ActivateAndDeactivateLaunch(Vector2 direction, float force){
+        
+        //Activate
+        if(isBone){
+            yield return new WaitForSeconds(0.2f);
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        }
+
+        //Deactivate
+        if(isBone){
+            yield return new WaitForSeconds(1.5f);
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        }else{
+            yield return new WaitForSeconds(0.6f);
+        }
         rigidbody2d.AddForce(-direction * force);
         gameObject.SetActive(false);
         isLaunching = false;
-    }
 
+    }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.collider.gameObject.CompareTag("Enemy")){
-                other.collider.SendMessage("Damage", bow.stats);
+        if(isArrow && other.collider.gameObject.CompareTag("Enemy")){
+            other.collider.SendMessage("Damage", bow.stats);
         }
         hitEffect.gameObject.transform.position = transform.position;
         hitEffect.Play();

@@ -17,6 +17,7 @@ TagManager:
   - Door
   - Chest
   - EnemyHitBox
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - DeadEnemies
   - PlayerAttackHitbox
   - Walls
-  - 
+  - EnemyProjectile
   - 
   - 
   - 

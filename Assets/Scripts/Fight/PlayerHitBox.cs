@@ -15,12 +15,15 @@ public class PlayerHitBox : MonoBehaviour
         if(col.collider.gameObject.CompareTag("Enemy")){
             Enemy enemy = col.collider.gameObject.GetComponent<Enemy>();
             player.SendMessage("Damage", enemy.damageAmount);
+            if(enemy.isZombie && !enemy.audioSource.isPlaying){
+                enemy.audioSource.PlayOneShot(enemy.enemyBiteSound);
+            }
         }
     }
 
     void OnCollisionEnter2D(Collision2D col){
-        if(col.collider.gameObject.CompareTag("Enemy")){
-            Enemy enemy = col.collider.gameObject.GetComponent<Enemy>();
+        if(col.collider.gameObject.CompareTag("EnemyProjectile")){
+            Enemy enemy = col.collider.gameObject.transform.parent.gameObject.GetComponent<Enemy>();
             player.SendMessage("Damage", enemy.damageAmount);
         }
     }
