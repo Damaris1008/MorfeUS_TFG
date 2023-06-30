@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
+    private float winTime;
+
     private void Start(){
         Time.timeScale = 1;
         
@@ -52,6 +54,11 @@ public class GameManager : MonoBehaviour
 
     public static void GameOver(){
         SceneManager.LoadSceneAsync(1);
+    }
+
+    public float WinGame(){
+        winTime = TimerHolder.timer;
+        return winTime;
     }
 
     public static void NextScene(){
