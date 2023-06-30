@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Audio")]
     public AudioClip continueSound;
+    public AudioClip typingSound;
     public AudioSource audioSource;
     
     [Header("UI Dialogue")]
@@ -28,6 +29,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     private void SkipTypingText(){
+        audioSource.Stop();
         audioSource.PlayOneShot(continueSound);
         if(textOnScreen.text != dialogueText.text){
             StopCoroutine("DisplayText");
@@ -38,11 +40,14 @@ public class DialogueManager : MonoBehaviour
     }
 
     public IEnumerator DisplayText(){
+        audioSource.clip = typingSound;
+        audioSource.Play();
         textOnScreen.text = "";
         foreach (char letter in dialogueText.text.ToCharArray()){
             textOnScreen.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
+        audioSource.Stop();
     }
 }
 

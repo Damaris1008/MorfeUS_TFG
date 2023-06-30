@@ -23,7 +23,8 @@ public class FinalDialogueManager : DialogueManager
     public GameObject mum;
     public GameObject sleptPlayer;
     public GameObject awakePlayer;
-    public GameObject lookingPlayer;
+    public GameObject playerLookingRight;
+    public GameObject playerLookingFront;
 
 
     void Awake(){
@@ -37,6 +38,7 @@ public class FinalDialogueManager : DialogueManager
     }
 
     private void SkipTypingText(){
+        audioSource.Stop();
         audioSource.PlayOneShot(continueSound);
         if(textOnScreen.text != dialogueText.text){
             StopCoroutine("DisplayText");
@@ -55,12 +57,17 @@ public class FinalDialogueManager : DialogueManager
 
         //Scene changes
         if(counter==1){
-                sleptPlayer.SetActive(false);
-                awakePlayer.SetActive(true);
+            sleptPlayer.SetActive(false);
+            awakePlayer.SetActive(true);
+        }else if(counter==2){
+            awakePlayer.GetComponent<Animator>().SetTrigger("StopShaking");
         }else if(counter==3){
-                awakePlayer.SetActive(false);
-                lookingPlayer.SetActive(true);
-                mum.transform.position = new Vector3(-7.853f, mum.transform.position.y, mum.transform.position.z);
+            awakePlayer.SetActive(false);
+            playerLookingRight.SetActive(true);
+            mum.transform.position = new Vector3(-7.853f, mum.transform.position.y, mum.transform.position.z);
+        }else if(counter==6){
+            playerLookingRight.SetActive(false);
+            playerLookingFront.SetActive(true);
         }
 
         dialogueText.text = interventions[counter];
