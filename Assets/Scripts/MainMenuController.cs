@@ -29,8 +29,8 @@ public class MainMenuController : MonoBehaviour
     private Resolution currentResolution;
 
     public void Start(){
-        GetAudioPrefs();
-        GetGraphicsPrefs();
+        //GetAudioPrefs();
+        //GetGraphicsPrefs();
     }
 
     public void SetVolume(float volume)
@@ -103,12 +103,13 @@ public class MainMenuController : MonoBehaviour
         PlayerPrefs.SetFloat("volumeLevel", _volumeLevel);
         AudioListener.volume = _volumeLevel;
         PlayerPrefs.SetInt("backgroundMusic", (_backgroundMusic ? 1:0));
-        if(PlayerPrefs.GetInt("backgroundMusic") == 0){
-            backgroundMusicSource.mute = true;
-        }else{
-            backgroundMusicSource.mute = false;
+        if(backgroundMusicSource!=null){
+            if(PlayerPrefs.GetInt("backgroundMusic") == 0){
+                backgroundMusicSource.mute = true;
+            }else{
+                backgroundMusicSource.mute = false;
+            }
         }
-
     }
 
     public void GetAudioPrefs()

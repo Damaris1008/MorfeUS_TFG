@@ -6,10 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    
-    [Header("Map")]
-    public GameObject finalWall;
-
 
     private void Start(){
         Time.timeScale = 1;
@@ -24,13 +20,6 @@ public class GameManager : MonoBehaviour
             }else{
                 backgroundMusic.mute = true;
             }
-        }
-    }
-
-    private void Update(){
-        //Final wall
-        if(GameObject.FindGameObjectsWithTag("Enemy").Length == 0){
-            RaiseFinalWall();
         }
     }
 
@@ -68,9 +57,5 @@ public class GameManager : MonoBehaviour
     public static void NextScene(){
         int activeScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadSceneAsync(activeScene+1);
-    }
-
-    public void RaiseFinalWall(){
-        finalWall.SetActive(false);
     }
 }

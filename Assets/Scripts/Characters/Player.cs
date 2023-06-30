@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        if(SceneManager.GetActiveScene().buildIndex != 2){
+        if(SceneManager.GetActiveScene().buildIndex != 3){
             animator.Play("Idle");
         }
         popUpsManager.RefreshCoinsCounters(coins);
