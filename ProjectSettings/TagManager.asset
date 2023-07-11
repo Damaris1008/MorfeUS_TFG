@@ -18,6 +18,7 @@ TagManager:
   - Chest
   - EnemyHitBox
   - EnemyProjectile
+  - LevelLoader
   layers:
   - Default
   - TransparentFX

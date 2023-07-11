@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
 {
 
     private float winTime;
+    public static LevelLoader levelLoader;
+
+    private void Awake(){
+        levelLoader = GameObject.FindWithTag("LevelLoader").GetComponent<LevelLoader>();
+    }
 
     private void Start(){
         Time.timeScale = 1;
@@ -62,7 +67,6 @@ public class GameManager : MonoBehaviour
     }
 
     public static void NextScene(){
-        int activeScene = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadSceneAsync(activeScene+1);
+        levelLoader.LoadNextLevel();
     }
 }
