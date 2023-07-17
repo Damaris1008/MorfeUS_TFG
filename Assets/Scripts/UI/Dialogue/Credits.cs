@@ -11,5 +11,9 @@ public class Credits : MonoBehaviour
         if(transform.position.y < 1725f){
             transform.Translate(Vector3.up * Time.deltaTime * speed);
         }
+
+        if(Input.GetKeyDown(KeyCode.Space)){
+            GameManager.LeaveGame();
+        }
     }
 }

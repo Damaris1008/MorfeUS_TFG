@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void Start(){
+        Debug.Log("musica on: "+PlayerPrefs.GetInt("backgroundMusic"));
         Time.timeScale = 1;
         
         //Apply audio settings

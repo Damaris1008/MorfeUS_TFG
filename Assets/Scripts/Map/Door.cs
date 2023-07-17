@@ -17,6 +17,7 @@ public class Door : MonoBehaviour
     }
 
     IEnumerator WaitToLoadScene(){
+        Debug.Log("entrando");
         yield return new WaitForSeconds(1f);
         GameManager.NextScene();
     }

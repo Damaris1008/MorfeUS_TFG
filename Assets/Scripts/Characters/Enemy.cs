@@ -7,8 +7,8 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
 
-    Rigidbody2D rigidbody2d;
-    Animator animator;
+    protected Rigidbody2D rigidbody2d;
+    protected Animator animator;
     private Player player;
 
     [Header("Enemy Type")]
@@ -28,28 +28,28 @@ public class Enemy : MonoBehaviour
     public Transform path;
     public List<Transform> waypoints;
     public bool loop;
-    private int currentPoint = 0;
-    private float reachDistance = 0.1f;
-    private string direction = "going";
+    protected int currentPoint;
+    protected float reachDistance = 0.1f;
+    protected string direction = "going";
 
     [Header("Follow Player")]
     public Transform playerTransform;
-    private NavMeshAgent agent;
+    public NavMeshAgent agent;
     public float followRange = 3.0f;
 
     [Header("Attack")]
     [SerializeField] public int damageAmount = 4; //one heart
     public float timeToAttack;
-    private bool isAttacking;
-    private float attackTimer;
+    protected bool isAttacking;
+    protected float attackTimer;
     public GameObject bone;
     
     [Header("Health")]
     [SerializeField] public HPBar healthBar;
     [SerializeField] public int maxHealth = 12;
-    private int currentHealth;
+    protected int currentHealth;
     public int health { get { return currentHealth; }}
-    bool isDead = false;
+    protected bool isDead = false;
 
     [Header("Drops")]
     public int dropPercentage;
@@ -70,12 +70,15 @@ public class Enemy : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        agent = GetComponent<NavMeshAgent>();
+        if(!agent){
+            agent = GetComponent<NavMeshAgent>();
+        }
         defaultColor = spriteRenderer.color;
         currentHealth = maxHealth;
         isDead = false;
         soundTimer = Random.Range(2.0f, 5.0f);
         timeToAttack = 2f;
+        currentPoint = 0;
     }
 
     void Start()
@@ -83,12 +86,13 @@ public class Enemy : MonoBehaviour
         GameObject playerGo = GameObject.FindWithTag("Player");
         player = playerGo.GetComponent<Player>();
         playerTransform = playerGo.transform;
-        
+
         //To make the agent appear on the screen
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         
         waypoints = new List<Transform>();
+        
         for(int i=0; i<path.childCount; i++)
         {
             waypoints.Add(path.GetChild(i));
@@ -209,7 +213,6 @@ public class Enemy : MonoBehaviour
             agent.SetDestination(destination);
         }
         
-
         //Animations
         Vector2 dir = destination - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x)*Mathf.Rad2Deg;
@@ -299,7 +302,7 @@ public class Enemy : MonoBehaviour
             StartCoroutine(PopUp(isKey, dropAmount));
         }
         
-        StartCoroutine("WaitToDestroy");
+        StartCoroutine(WaitToDestroy(2f));
     }
 
     IEnumerator PopUp(bool isKey, int dropAmount){
@@ -324,9 +327,9 @@ public class Enemy : MonoBehaviour
         
     }
 
-    IEnumerator WaitToDestroy()
+    protected IEnumerator WaitToDestroy(float timeToDestroy)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(timeToDestroy);
         gameObject.SetActive(false);
     }
     

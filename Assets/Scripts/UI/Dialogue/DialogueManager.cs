@@ -28,6 +28,12 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine("DisplayText");
     }
 
+    void Update(){
+        if(Input.GetKeyDown(KeyCode.Space)){
+            SkipTypingText();
+        }
+    }
+
     private void SkipTypingText(){
         audioSource.Stop();
         audioSource.PlayOneShot(continueSound);
