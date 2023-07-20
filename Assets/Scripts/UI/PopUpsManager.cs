@@ -32,6 +32,9 @@ public class PopUpsManager : MonoBehaviour
     [SerializeField] GameObject deathMenu = null;
     [SerializeField] Text deathMenuLives = null;
 
+    [Header("Show/Hide Hacked Screen")]
+    [SerializeField] GameObject hackedScreen = null;
+
     [Header("FPS Counter")]
     float deltaTime = 0.0f;
     [SerializeField] GameObject fpsCounter = null;
@@ -160,6 +163,13 @@ public class PopUpsManager : MonoBehaviour
     public void CloseDeathMenu(){
         GameManager.ResumeGame();
         deathMenu.SetActive(false);
+    }
+
+    // HACKED SCREEN
+    public IEnumerator HackScreen(){
+        hackedScreen.SetActive(true);
+        yield return new WaitForSeconds(5f);
+        hackedScreen.SetActive(false);
     }
 
     // SHOP MENU

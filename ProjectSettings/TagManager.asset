@@ -19,6 +19,8 @@ TagManager:
   - EnemyHitBox
   - EnemyProjectile
   - LevelLoader
+  - EvolutionedVirus
+  - Virus
   layers:
   - Default
   - TransparentFX

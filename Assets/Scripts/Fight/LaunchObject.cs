@@ -66,8 +66,11 @@ public class LaunchObject : MonoBehaviour
         if(isArrow && other.collider.gameObject.CompareTag("Enemy")){
             other.collider.SendMessage("Damage", bow.stats);
         }
-        hitEffect.gameObject.transform.position = transform.position;
-        hitEffect.Play();
+        if(hitEffect!=null){
+            hitEffect.gameObject.transform.position = transform.position;
+            hitEffect.Play();
+        }
+
         //audioSource.PlayOneShot(impactSound);
         gameObject.SetActive(false);
         isLaunching = false;

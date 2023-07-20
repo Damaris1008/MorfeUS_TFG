@@ -22,31 +22,34 @@ public class Boss : Enemy
             //Attack timer
             if (isAttacking)
             {
-                attackTimer -= Time.deltaTime;
+                /*attackTimer -= Time.deltaTime;
                 if (attackTimer < 0){
                     isAttacking = false;
-                }
+                }*/
                 
-            }
-
-            //Movement
-
-            bool targetDetected;
-            float distanceToPlayer = Vector2.Distance(playerTransform.transform.position, transform.position);
-
-            if(distanceToPlayer <= followRange){
-
-                targetDetected = true;
+            }else{
                 
-                //Attack
-                if(!isAttacking){
+                //Movement
+
+                bool targetDetected;
+                float distanceToPlayer = Vector2.Distance(playerTransform.transform.position, transform.position);
+
+                if(distanceToPlayer <= followRange){
+
+                    targetDetected = true;
+                    
+                    //Attack
+                    if(!isAttacking){
+                        Move(targetDetected);
+                    }
+
+                }else{
+                    targetDetected = false;
                     Move(targetDetected);
                 }
-
-            }else{
-                targetDetected = false;
-                Move(targetDetected);
             }
+
+            
 
         }        
     }
@@ -134,6 +137,20 @@ public class Boss : Enemy
 
         bed.transform.position = transform.position;
         bed.SetActive(true);
+    }
+
+    public IEnumerator LaunchAnimation(){
+        isAttacking = true;
+        animator.SetTrigger("Cast");
+        agent.Stop();
+        agent.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        StopLaunchAnimation();
+    }
+
+    public void StopLaunchAnimation(){
+        agent.enabled=true;
+        isAttacking = false;
     }
 
 }
