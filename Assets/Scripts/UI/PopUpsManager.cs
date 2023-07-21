@@ -168,7 +168,7 @@ public class PopUpsManager : MonoBehaviour
     // HACKED SCREEN
     public IEnumerator HackScreen(){
         hackedScreen.SetActive(true);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         hackedScreen.SetActive(false);
     }
 

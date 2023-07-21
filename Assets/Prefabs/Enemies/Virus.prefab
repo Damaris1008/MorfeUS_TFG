@@ -136,3 +136,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ae7a6ea2b859e84faee76af47948031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  virusSprite: {fileID: 21300000, guid: 7e6e6da4ea5cdc04c95edf2374fc5295, type: 3}
+  evolutionedVirusSprite: {fileID: 21300000, guid: 499ed55df212c7848ace612faa525814, type: 3}

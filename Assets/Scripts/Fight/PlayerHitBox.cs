@@ -23,7 +23,7 @@ public class PlayerHitBox : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col){
         if(col.collider.gameObject.CompareTag("EnemyProjectile") && (col.collider.gameObject.name == "Virus" || col.collider.gameObject.name == "EvolutionedVirus")){
-            Boss boss = col.collider.gameObject.transform.parent.transform.parent.gameObject.GetComponent<Boss>();
+            Boss boss = GameObject.Find("Boss").GetComponent<Boss>();
             player.SendMessage("Damage", boss.damageAmount);
         }else if(col.collider.gameObject.CompareTag("EnemyProjectile")){
             Enemy enemy = col.collider.gameObject.transform.parent.gameObject.GetComponent<Enemy>();
