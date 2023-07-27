@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-public class DialogueManager : MonoBehaviour
+public class IntroductionDialogueManager : MonoBehaviour
 {
 
     [Header("Params")]
@@ -41,7 +42,7 @@ public class DialogueManager : MonoBehaviour
             StopCoroutine("DisplayText");
             textOnScreen.text = dialogueText.text;
         }else{
-            GameManager.NextScene();
+            GameManager.NextScene(); 
         }
     }
 

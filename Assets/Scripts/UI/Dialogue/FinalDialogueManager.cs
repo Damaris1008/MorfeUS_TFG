@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FinalDialogueManager : DialogueManager
+public class FinalDialogueManager : IntroductionDialogueManager
 {
 
     public enum Talker{

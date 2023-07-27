@@ -43,8 +43,10 @@ public class BossPhases : MonoBehaviour
     int numOfRadialProjectiles = 12;
 
     [Header("Boss Phases")]
+    public BossDialogueManager dialogueManager;
     int phase;
     float attackTimer;
+    
 
     [Header("Spawn of Enemies")]
     public GameObject spawn1;
@@ -193,6 +195,7 @@ public class BossPhases : MonoBehaviour
                 break;
             case 2:
                 phase=2;
+                dialogueManager.ShowDialogue();
                 SpawnEnemies(); // Invoke 2 grim reapers
                 angleStep = 5f;
                 numOfSpirals = 3;   
@@ -201,7 +204,8 @@ public class BossPhases : MonoBehaviour
                 numOfRadialProjectiles = 11;
                 break;
             case 3:
-                phase=3;                
+                phase=3;   
+                dialogueManager.ShowDialogue();             
                 SpawnEnemies(); // Invoke 2 skeletons
                 angleStep = 5f;
                 numOfSpirals = 4;

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Boss : Enemy
 {
-
+    [Header("Boss")]
     public GameObject bed;
     public BossPhases bossPhasesScript;
+    public BossDialogueManager dialogueManager;
 
     void FixedUpdate()
     {
@@ -111,6 +112,8 @@ public class Boss : Enemy
 
         GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
         healthBar.SetActive(false);
+
+        dialogueManager.ShowDialogue();
 
         animator.SetTrigger("Dead");
         audioSource.PlayOneShot(enemyDeathSound);
