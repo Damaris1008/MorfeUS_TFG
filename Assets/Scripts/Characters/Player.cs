@@ -144,18 +144,6 @@ public class Player : MonoBehaviour
             lookDirection.Set(move.x, move.y);
             lookDirection.Normalize();
         }
-        //If the main character is not moving, it will face the cursor
-        else{
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 difference = mousePosition - transform.position;
-            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-
-            if(rotationZ >= 45 && rotationZ < 135){             lookDirection.Set(0, 1);
-            }else if(rotationZ >= 135  || rotationZ < -135){    lookDirection.Set(-1, 0);
-            }else if(rotationZ >= -135 && rotationZ < -45){     lookDirection.Set(0, -1);
-            }else if(rotationZ >= -45 || rotationZ < 45){       lookDirection.Set(1, 0);
-            }             
-        }
                 
         //We are sending the variables to the animator
         animator.SetFloat("Look X", lookDirection.x);

@@ -477,9 +477,11 @@ MonoBehaviour:
   waypoints: []
   loop: 0
   playerTransform: {fileID: 0}
+  agent: {fileID: 2815193603606168145}
   followRange: 7
   damageAmount: 4
   timeToAttack: 0
+  attackTimer: 0
   bone: {fileID: 1185063165}
   healthBar: {fileID: 2778905826368487913}
   maxHealth: 12

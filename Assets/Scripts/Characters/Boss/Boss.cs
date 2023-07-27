@@ -6,6 +6,7 @@ public class Boss : Enemy
 {
 
     public GameObject bed;
+    public BossPhases bossPhasesScript;
 
     void FixedUpdate()
     {
@@ -19,18 +20,8 @@ public class Boss : Enemy
                 soundTimer = Random.Range(10.0f, 30.0f);
             }
 
-            //Attack timer
-            if (isAttacking)
-            {
-                /*attackTimer -= Time.deltaTime;
-                if (attackTimer < 0){
-                    isAttacking = false;
-                }*/
-                
-            }else{
-                
-                //Movement
-
+            //Movement
+            if(agent.enabled){
                 bool targetDetected;
                 float distanceToPlayer = Vector2.Distance(playerTransform.transform.position, transform.position);
 
@@ -49,13 +40,10 @@ public class Boss : Enemy
                 }
             }
 
-            
-
         }        
     }
 
-
-    public void Move(bool targetDetected){
+    public new void Move(bool targetDetected){
         Vector3 destination;
         //Follow player
         if(targetDetected){
@@ -102,7 +90,7 @@ public class Boss : Enemy
         }
     }
 
-    public void Damage(int amount){
+    public new void Damage(int amount){
         if(!isDead){
             currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
             healthBar.TakeDamageBar(amount);
@@ -119,6 +107,7 @@ public class Boss : Enemy
     void Die(){
         isDead = true;
         agent.enabled = false;
+        bossPhasesScript.CancelInvoke();
 
         GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
         healthBar.SetActive(false);
@@ -130,9 +119,16 @@ public class Boss : Enemy
         StartCoroutine(WaitToDestroy(3.5f));
     }
 
-    IEnumerator WaitToDestroy(float timeToDestroy)
+    new IEnumerator WaitToDestroy(float timeToDestroy)
     {
-        yield return new WaitForSeconds(timeToDestroy);
+        yield return new WaitForSeconds(timeToDestroy/3);
+        bossPhasesScript.LaunchRadialProjectiles();
+        yield return new WaitForSeconds(timeToDestroy/6);
+        bossPhasesScript.LaunchRadialProjectiles();
+        yield return new WaitForSeconds(timeToDestroy/6);
+        bossPhasesScript.LaunchRadialProjectiles();
+        yield return new WaitForSeconds(timeToDestroy/3);
+        
         gameObject.SetActive(false);
 
         bed.transform.position = transform.position;
@@ -142,7 +138,7 @@ public class Boss : Enemy
     public IEnumerator LaunchAnimation(){
         isAttacking = true;
         animator.SetTrigger("Cast");
-        agent.Stop();
+        agent.isStopped = true;
         agent.enabled = false;
         yield return new WaitForSeconds(0.5f);
         StopLaunchAnimation();

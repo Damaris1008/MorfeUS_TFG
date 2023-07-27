@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public int damageAmount = 4; //one heart
     public float timeToAttack;
     protected bool isAttacking;
-    protected float attackTimer;
+    public float attackTimer;
     public GameObject bone;
     
     [Header("Health")]
@@ -123,36 +123,37 @@ public class Enemy : MonoBehaviour
 
             //Movement
 
-            bool targetDetected;
-            float distanceToPlayer = Vector2.Distance(playerTransform.transform.position, transform.position);
+            if(agent.enabled){
+                bool targetDetected;
+                float distanceToPlayer = Vector2.Distance(playerTransform.transform.position, transform.position);
 
-            if(distanceToPlayer <= followRange){
+                if(distanceToPlayer <= followRange){
 
-                targetDetected = true;
-                
-                //Attack
-                if(!isAttacking){
-                    if(isGrimReaper && distanceToPlayer<=1){
-                        StartCoroutine("GrimReaperAttack");
-                    }else if(isSkeleton && distanceToPlayer<=5){
-                        Move(targetDetected);
-                        SkeletonAttack();
-                    }else{
-                        Move(targetDetected);
+                    targetDetected = true;
+                    
+                    //Attack
+                    if(!isAttacking){
+                        if(isGrimReaper && distanceToPlayer<=1){
+                            StartCoroutine("GrimReaperAttack");
+                        }else if(isSkeleton && distanceToPlayer<=5){
+                            Move(targetDetected);
+                            SkeletonAttack();
+                        }else{
+                            Move(targetDetected);
+                        }
                     }
+
+                }else{
+                    targetDetected = false;
+                    Move(targetDetected);
                 }
-
-            }else{
-                targetDetected = false;
-                Move(targetDetected);
             }
-
         }        
     }
 
     IEnumerator GrimReaperAttack(){
         isAttacking = true;
-        agent.Stop();
+        agent.isStopped = true;
         agent.enabled = false;
         agent.enabled = true;
         animator.SetTrigger("Attack");
@@ -268,11 +269,9 @@ public class Enemy : MonoBehaviour
 
         // Drops
         int randomNumber = Random.Range(0,101);
-        //Debug.Log("Primer dado: "+randomNumber);
         if(randomNumber<=dropPercentage){
             int randomNumber1 = Random.Range(0,101);
             int randomNumber2 = Random.Range(0,101);
-            Debug.Log("Segundo dado: "+randomNumber2);
             int dropAmount;
             bool isKey;
             if(randomNumber1>=20){ //Coin

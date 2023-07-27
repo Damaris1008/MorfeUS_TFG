@@ -18,6 +18,18 @@ public class Virus : MonoBehaviour
     void Start(){
         popUpsManager = GameObject.FindWithTag("PopUpsManager").GetComponent<PopUpsManager>();
         moveSpeed=10f;
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        CancelInvoke();
+        Destroy();
+        if(gameObject.name == "EvolutionedVirus" && other.collider.tag=="Player"){
+            popUpsManager.StartCoroutine("HackScreen");
+        }
+    }
+
+    private void OnEnable(){
 
         //Random virus
         int randomInt = Random.Range(0,10); //0-9
@@ -29,17 +41,7 @@ public class Virus : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = virusSprite;
             gameObject.name = "Virus";
         }
-    }
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        Destroy();
-        if(gameObject.name == "EvolutionedVirus" && other.collider.tag=="Player"){
-            popUpsManager.StartCoroutine("HackScreen");
-        }
-    }
-
-    private void OnEnable(){
         Invoke("Destroy", 5f);
     }
 

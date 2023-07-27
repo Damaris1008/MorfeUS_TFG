@@ -30,8 +30,8 @@ public class Interaction : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D col){
-        Player player = col.collider.GetComponent<PlayerHitBox>().player;
-        if(player!=null){
+        if(col.collider.tag == "Player"){
+            Player player = col.collider.GetComponent<PlayerHitBox>().player;
             if(gameObject.CompareTag("VendingMachine")){
                 buttonPopUp.SetActive(true);
                 touchingVendingMachine = true;
@@ -51,14 +51,14 @@ public class Interaction : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D col){
         // If its a chest and it is already opened
-        if(chest!=null && chest.opened){
+        if(col.collider.tag == "Player" && chest!=null && chest.opened){
             buttonPopUp.SetActive(false);
         }
     }
 
     void OnCollisionExit2D(Collision2D col){
-        Player player = col.collider.GetComponent<PlayerHitBox>().player;
-        if(player!=null){
+        if(col.collider.tag == "Player"){
+            Player player = col.collider.GetComponent<PlayerHitBox>().player;
             buttonPopUp.SetActive(false);
             touchingVendingMachine = false;
             touchingChest = false;
