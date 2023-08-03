@@ -44,6 +44,9 @@ public class PopUpsManager : MonoBehaviour
     [SerializeField] Text shopCoinsCounter = null;
     [SerializeField] Text inventoryKeysCounter = null;
 
+    [Header("Power-Up Info")]
+    [SerializeField] GameObject powerUpInfo = null;
+
     private void Update(){
 
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
@@ -193,5 +196,18 @@ public class PopUpsManager : MonoBehaviour
 
     public void RefreshKeysCounters(int keys){
         inventoryKeysCounter.text = "x "+keys.ToString();
+    }
+
+    // POWER UP INFO
+
+    public void ShowPowerUpInfo(float speedIncrease, float damageMultiplier){
+        powerUpInfo.GetComponent<Text>().text = "DAÑO DE ATAQUE x "+damageMultiplier.ToString()+" ↑\nVELOCIDAD + "+speedIncrease.ToString()+" ↑";
+        powerUpInfo.SetActive(true);
+        StartCoroutine("HidePowerUpInfo");
+    }
+
+    public IEnumerator HidePowerUpInfo(){
+        yield return new WaitForSeconds(5.0f);
+        powerUpInfo.SetActive(false);
     }
 }

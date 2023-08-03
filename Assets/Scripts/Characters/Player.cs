@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     Animator animator;
     float horizontal; 
     float vertical;
-    private float speed;
+    public float speed;
     Vector2 lookDirection = new Vector2(0,-1);
 
     [Header("Health")]
@@ -41,8 +41,11 @@ public class Player : MonoBehaviour
     float invincibleTimer;
 
     [Header("Launch")]
-    //public GameObject punchHand;
     public GameObject arrow;
+
+    [Header("Power-Up")]
+    public float speedIncrease;
+    public float damageMultiplier;
 
     [Header("Sounds")]
     AudioSource audioSource;
@@ -59,6 +62,10 @@ public class Player : MonoBehaviour
     public bool isUsingBow;
 
     void Awake(){
+        //Power-up initialization
+        speedIncrease = 0f;
+        damageMultiplier = 1f;
+
         coins = 3;
         keys = 1;
         currentHealth = maxHealth;
@@ -127,9 +134,9 @@ public class Player : MonoBehaviour
         // Run
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            speed = 2.5f;
+            speed = 2.5f + speedIncrease;
         }else{
-            speed = 1.5f;
+            speed = 1.5f + speedIncrease;
         }
 
         // Movement
@@ -245,24 +252,6 @@ public class Player : MonoBehaviour
         }
     }
 
-/*
-    public void Punch(){
-
-        float angle = Vector2.SignedAngle(Vector2.up, lookDirection);
-        punchHand.transform.position = rigidbody2d.position + Vector2.up * (-0.2f);
-        punchHand.transform.rotation = Quaternion.Euler(x:0, y:0, z:angle);
-        if(angle < 0 && angle > -180){
-            punchHand.GetComponent<SpriteRenderer>().flipX = true;
-        }
-
-        LaunchObject punch = punchHand.GetComponent<LaunchObject>();
-        punch.Launch(lookDirection, 150);
-
-        animator.SetTrigger("Punch");
-
-    }
-*/
-
     IEnumerator LaunchArrow(){
         
         yield return new WaitForSeconds(0.6f);
@@ -312,6 +301,12 @@ public class Player : MonoBehaviour
 
     public void WinItem(Item item){
         inventoryManager.AddItem(item);
+    }
+
+    public void WinPowerUp(){
+        speedIncrease = 1.25f;
+        damageMultiplier = 1.5f;
+        popUpsManager.ShowPowerUpInfo(speedIncrease, damageMultiplier);
     }
 
 }

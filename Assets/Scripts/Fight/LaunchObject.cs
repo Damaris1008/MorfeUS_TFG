@@ -6,6 +6,7 @@ public class LaunchObject : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
     bool isLaunching;
+    private Player player;
 
     [Header("Object Type")]
     public bool isArrow;
@@ -28,6 +29,10 @@ public class LaunchObject : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         gameObject.SetActive(false);
         isLaunching = false;
+    }
+    
+    void Start(){
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     public void Launch(Vector2 direction, float force)
@@ -64,7 +69,7 @@ public class LaunchObject : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         if(isArrow && other.collider.gameObject.CompareTag("Enemy")){
-            other.collider.SendMessage("Damage", bow.stats);
+            other.collider.SendMessage("Damage", bow.stats * player.damageMultiplier);
         }
         if(hitEffect!=null){
             hitEffect.gameObject.transform.position = transform.position;

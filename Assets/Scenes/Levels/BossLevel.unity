@@ -10369,7 +10369,7 @@ PrefabInstance:
       objectReference: {fileID: 88328315}
     - target: {fileID: 8608099865535991537, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: maxHealth
-      value: 20
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 8608099865535991537, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: hackedPanel

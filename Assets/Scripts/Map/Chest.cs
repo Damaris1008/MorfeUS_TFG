@@ -10,7 +10,6 @@ public class Chest : MonoBehaviour
     private AudioSource audioSource;
     public Animator popUpAnimator;
     
-
     [Header("Content")]
     public Item item;
     public int typeOfChest; //0: coin, 1: key, 2: item, 3: power-up
@@ -88,6 +87,7 @@ public class Chest : MonoBehaviour
                 player.WinItem(item);
                 break;
             case 3: //Power-up
+                player.WinPowerUp();
                 break;
         }
 
