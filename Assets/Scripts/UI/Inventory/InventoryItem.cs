@@ -21,10 +21,11 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     private PopUpsManager popUpsManager;
     private GameObject buttonToConsume;
+    private InventoryController inventoryManager;
 
     private void Start(){
         popUpsManager = GameObject.FindWithTag("PopUpsManager").GetComponent<PopUpsManager>();
-        InventoryController inventoryManager = GameObject.FindWithTag("InventoryManager").GetComponent<InventoryController>();
+        inventoryManager = GameObject.FindWithTag("InventoryManager").GetComponent<InventoryController>();
         buttonToConsume = inventoryManager.buttonToConsume;
     }
 
@@ -94,6 +95,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         Cursor.SetCursor(arrowCursor, Vector2.zero, CursorMode.ForceSoftware);
         transform.SetParent(parentAfterDrag);
         image.raycastTarget = true;
+        inventoryManager.RefreshItemSelected();
     }
 
 }

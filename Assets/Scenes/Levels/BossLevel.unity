@@ -10372,6 +10372,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8608099865535991537, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
+      propertyPath: hackedPanel
+      value: 
+      objectReference: {fileID: 5914136180918225597}
+    - target: {fileID: 8608099865535991537, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: dialogueManager
       value: 
       objectReference: {fileID: 2017205532}

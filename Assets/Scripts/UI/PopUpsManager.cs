@@ -120,6 +120,7 @@ public class PopUpsManager : MonoBehaviour
 
     public void CloseInventory(){
         inventory.SetActive(false);
+        HideItemInfo();
         showInventoryButton.SetActive(true);
         GameManager.ResumeGame();
     }
@@ -139,9 +140,9 @@ public class PopUpsManager : MonoBehaviour
         itemInfoImg.sprite = item.image;
         double stats = item.stats/4.0;
         if(item.type.ToString() == "TOOL"){
-            itemInfoStats.text = "AT. DAMAGE: \n" + stats.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + " ❤️";
+            itemInfoStats.text = "DAÑO: \n" + stats.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + " ❤️";
         }else if(item.type.ToString() =="CONSUMABLE"){
-            itemInfoStats.text = "HEALING: \n" + stats.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + " ❤️";
+            itemInfoStats.text = "CURACIÓN: \n" + stats.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + " ❤️";
         }
         itemInfo.SetActive(true);
         

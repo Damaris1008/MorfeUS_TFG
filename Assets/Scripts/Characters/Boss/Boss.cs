@@ -6,6 +6,7 @@ public class Boss : Enemy
 {
     [Header("Boss")]
     public GameObject bed;
+    public GameObject hackedPanel;
     public BossPhases bossPhasesScript;
     public BossDialogueManager dialogueManager;
 
@@ -105,21 +106,28 @@ public class Boss : Enemy
         }
     }
 
-    void Die(){
+    new void Die(){
         isDead = true;
         agent.enabled = false;
         bossPhasesScript.CancelInvoke();
 
+        hackedPanel.SetActive(false);
         GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
         healthBar.SetActive(false);
 
         dialogueManager.ShowDialogue();
 
         animator.SetTrigger("Dead");
-        audioSource.PlayOneShot(enemyDeathSound);
-        gameObject.layer = LayerMask.NameToLayer("DeadEnemies");
-        
-        StartCoroutine(WaitToDestroy(3.5f));
+
+        //All the enemies spawned by the boss also die
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies){
+            if(enemy.name!="Boss"){
+                Enemy enemyScript = enemy.GetComponent<Enemy>();
+                enemyScript.Die(false);
+            }
+        }
+
     }
 
     new IEnumerator WaitToDestroy(float timeToDestroy)

@@ -242,7 +242,7 @@ public class Enemy : MonoBehaviour
             healthBar.TakeDamageBar(amount);
             if(currentHealth <= 0)
             {
-                Die();
+                Die(true);
             }else{
                 audioSource.PlayOneShot(enemyHitSound);
                 StartCoroutine("SwitchColor");
@@ -256,7 +256,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer.color = defaultColor;
     }
 
-    void Die(){
+    public void Die(bool withDrop){
         isDead = true;
         agent.enabled = false;
 
@@ -268,37 +268,38 @@ public class Enemy : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("DeadEnemies");
 
         // Drops
-        int randomNumber = Random.Range(0,101);
-        if(randomNumber<=dropPercentage){
-            int randomNumber1 = Random.Range(0,101);
-            int randomNumber2 = Random.Range(0,101);
-            int dropAmount;
-            bool isKey;
-            if(randomNumber1>=20){ //Coin
-                isKey=false;
-                if(randomNumber2<5){ 
-                    dropAmount = 5;
-                }else if(randomNumber2<10){ 
-                    dropAmount = 4;
-                }else if(randomNumber2<25){ 
-                    dropAmount = 3;
-                }else if(randomNumber2<50){ 
-                    dropAmount = 2;
-                }else{
-                    dropAmount = 1;
+        if(withDrop){
+            int randomNumber = Random.Range(0,101);
+            if(randomNumber<=dropPercentage){
+                int randomNumber1 = Random.Range(0,101);
+                int randomNumber2 = Random.Range(0,101);
+                int dropAmount;
+                bool isKey;
+                if(randomNumber1>=20){ //Coin
+                    isKey=false;
+                    if(randomNumber2<5){ 
+                        dropAmount = 5;
+                    }else if(randomNumber2<10){ 
+                        dropAmount = 4;
+                    }else if(randomNumber2<25){ 
+                        dropAmount = 3;
+                    }else if(randomNumber2<50){ 
+                        dropAmount = 2;
+                    }else{
+                        dropAmount = 1;
+                    }
+                }else{ //Key
+                    isKey=true;
+                    if(randomNumber2<5){ 
+                        dropAmount = 3;
+                    }else if(randomNumber2<10){ 
+                        dropAmount = 2;
+                    }else{
+                        dropAmount = 1;
+                    }
                 }
-            }else{ //Key
-                isKey=true;
-                if(randomNumber2<5){ 
-                    dropAmount = 3;
-                }else if(randomNumber2<10){ 
-                    dropAmount = 2;
-                }else{
-                    dropAmount = 1;
-                }
-            }
-
             StartCoroutine(PopUp(isKey, dropAmount));
+            }
         }
         
         StartCoroutine(WaitToDestroy(2f));
