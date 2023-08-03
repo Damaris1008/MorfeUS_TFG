@@ -13,9 +13,9 @@ public class Item : ScriptableObject
     public Sprite image; 
 
     [Header("Item Info")]
+    public int id;
     public ItemType type;
     public string name;
-    public string description;
     public int stats = 0; //If type is TOOL, stats will be the damage. If it is CONSUMABLE, stats will be the healing
     public int cost = 1;
 
@@ -24,10 +24,6 @@ public class Item : ScriptableObject
 
     public string GetItemName(){
         return name;
-    }
-
-    public string GetItemDescription(){
-        return description;
     }
 
     public ItemType GetItemType(){

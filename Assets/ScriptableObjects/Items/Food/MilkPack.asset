@@ -15,9 +15,9 @@ MonoBehaviour:
   stackable: 1
   maxStack: 12
   image: {fileID: 21300000, guid: a2c748d46fc2c604dbb5eb0cb91309d2, type: 3}
+  id: 15
   type: 1
   name: BRICK DE LECHE
-  description: 
   stats: 6
   cost: 2
   sound: {fileID: 8300000, guid: 66808d23637d5564ca057e51553292a8, type: 3}

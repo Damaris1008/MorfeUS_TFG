@@ -31,6 +31,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update(){
+        if(Input.GetKeyDown(KeyCode.O)){
+            Save();
+        }
+    }
+
     public static void PlayNewGame()
     {
         SceneManager.LoadSceneAsync(2);
@@ -68,6 +74,15 @@ public class GameManager : MonoBehaviour
     }
 
     public static void NextScene(){
+        int scene = SceneManager.GetActiveScene().buildIndex;
+        if(scene==3 || scene==4 || scene==5) //Only save on levels
+        {
+            Save();
+        }
         levelLoader.LoadNextLevel();
+    }
+
+    public static void Save(){
+        GameEvents.OnSaveInitiated();
     }
 }

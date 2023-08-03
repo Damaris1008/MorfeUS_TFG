@@ -29,6 +29,7 @@ public class MainMenuController : MonoBehaviour
     private Resolution currentResolution;
 
     public void Start(){
+        SaveLoad.SeriouslyDeleteAllSaveFiles();
         //GetAudioPrefs();
         //GetGraphicsPrefs();
     }

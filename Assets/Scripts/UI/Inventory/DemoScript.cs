@@ -33,4 +33,9 @@ public class DemoScript : MonoBehaviour
             Debug.Log("No item used!");
         }
     }
+
+    public void AddAmountOfLays(int itemId){
+        Item item = itemsToPickup[itemId];
+        inventoryManager.SpawnAmountOfItemInSlot(item, 7, 10);
+    }
 }

@@ -15,9 +15,9 @@ MonoBehaviour:
   stackable: 1
   maxStack: 12
   image: {fileID: 21300000, guid: c560cdbf47440754a9101dcbff78adaf, type: 3}
+  id: 7
   type: 1
   name: COCA-COLA
-  description: 
   stats: 12
   cost: 5
   sound: {fileID: 8300000, guid: 66808d23637d5564ca057e51553292a8, type: 3}

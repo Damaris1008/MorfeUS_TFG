@@ -1078,6 +1078,28 @@ MonoBehaviour:
   - {fileID: 1791348253}
   inventoryItemPrefab: {fileID: 7809861469195924425, guid: 22f86324b5dc7b5438cef01a85acbb10, type: 3}
   toolbar: {fileID: 730457092}
+  itemsList:
+  - {fileID: 11400000, guid: b0bfdc6acf764754a869a1618f7c92e4, type: 2}
+  - {fileID: 11400000, guid: c4c7e5f5a1323cf4a8958e9e69a9f1aa, type: 2}
+  - {fileID: 11400000, guid: 1148dfdacbf115440bc16c346033efb5, type: 2}
+  - {fileID: 11400000, guid: 0cd057055c5ac6d49bf9ad547415695d, type: 2}
+  - {fileID: 11400000, guid: df6695c5170617644b5e514a6ea222e2, type: 2}
+  - {fileID: 11400000, guid: 461f02df0838ee746b64a973f5ffdec2, type: 2}
+  - {fileID: 11400000, guid: 4d46b0939063b114c840e9eaabb2ac75, type: 2}
+  - {fileID: 11400000, guid: 169fa952ff73135458568993820af597, type: 2}
+  - {fileID: 11400000, guid: 6821099ee0dfd2e4094d5c9fe59bbb61, type: 2}
+  - {fileID: 11400000, guid: e965d52063487634fb8a96cccf51123e, type: 2}
+  - {fileID: 11400000, guid: a7c80c5618441c742af93b9432ae9a06, type: 2}
+  - {fileID: 11400000, guid: 3a71b4e942cc58e46b2c707dbae0f7b3, type: 2}
+  - {fileID: 11400000, guid: a1ca7eac26c65054ab79ebb1ac062c19, type: 2}
+  - {fileID: 11400000, guid: 3703e0324bae81843a84ea9d75fd70b8, type: 2}
+  - {fileID: 11400000, guid: 14e81f202293eb14b8c4e5e25835eec0, type: 2}
+  - {fileID: 11400000, guid: 628b14a26fd23ee4ea0afbc08a9cabd7, type: 2}
+  - {fileID: 11400000, guid: 04b096301d51afd4498acc2c0c09e587, type: 2}
+  - {fileID: 11400000, guid: 918733bd1f1444348958dd2d3049d29c, type: 2}
+  - {fileID: 11400000, guid: 7f10da096848b9f4fb80687892ffc307, type: 2}
+  - {fileID: 11400000, guid: 892727238ab4e8d4b8ca0e2682b1eb59, type: 2}
+  - {fileID: 11400000, guid: 20084c7a2a973e14ab5d42933c261d27, type: 2}
   buttonToConsume: {fileID: 4912836979369694634}
   popUpsManager: {fileID: 1254821394}
   shopMenu: {fileID: 3631083481289071776}
@@ -9492,7 +9514,7 @@ PrefabInstance:
       objectReference: {fileID: 369807251}
     - target: {fileID: 2598524835982479496, guid: 8026b222748c81641988639c93449e84, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2598524836028704554, guid: 8026b222748c81641988639c93449e84, type: 3}
       propertyPath: m_Pivot.x
@@ -9590,6 +9612,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1254821394}
+    - target: {fileID: 2598524836090524365, guid: 8026b222748c81641988639c93449e84, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddAmountOfLays
+      objectReference: {fileID: 0}
     - target: {fileID: 2598524836212779962, guid: 8026b222748c81641988639c93449e84, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -10343,7 +10369,7 @@ PrefabInstance:
       objectReference: {fileID: 88328315}
     - target: {fileID: 8608099865535991537, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: maxHealth
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8608099865535991537, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: dialogueManager
@@ -10356,6 +10382,10 @@ PrefabInstance:
     - target: {fileID: 9033270674983941880, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: m_Name
       value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033270674983941880, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}

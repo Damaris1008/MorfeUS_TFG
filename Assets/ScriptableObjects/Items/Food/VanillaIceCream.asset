@@ -15,9 +15,9 @@ MonoBehaviour:
   stackable: 1
   maxStack: 12
   image: {fileID: 21300000, guid: dd346d08e2501f9429ba677b23aaebf9, type: 3}
+  id: 18
   type: 1
   name: HELADO DE VAINILLA
-  description: 
   stats: 12
   cost: 5
   sound: {fileID: 8300000, guid: 64c95f3ee00e0254aa1ae8b829e0db1f, type: 3}
