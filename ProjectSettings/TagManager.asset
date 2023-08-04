@@ -21,6 +21,7 @@ TagManager:
   - LevelLoader
   - EvolutionedVirus
   - Virus
+  - EnemiesSet
   layers:
   - Default
   - TransparentFX

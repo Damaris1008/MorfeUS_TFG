@@ -118,6 +118,10 @@ public class Boss : Enemy
         dialogueManager.ShowDialogue();
 
         animator.SetTrigger("Dead");
+        audioSource.PlayOneShot(enemyDeathSound);
+        gameObject.layer = LayerMask.NameToLayer("DeadEnemies");
+        
+        StartCoroutine(WaitToDestroy(3.5f));
 
         //All the enemies spawned by the boss also die
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -128,6 +132,20 @@ public class Boss : Enemy
             }
         }
 
+    }
+
+    public new void Revive(){
+        bed.SetActive(false);
+        gameObject.SetActive(true);
+        Debug.Log("Enemy has revived!" + gameObject.activeSelf);
+        isDead = false;
+        agent.enabled = true;
+        currentHealth = maxHealth;
+        GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
+        healthBar.SetActive(true);
+        healthBar.GetComponentInChildren<HPBar>().Start();
+        gameObject.layer = LayerMask.NameToLayer("Enemies");
+        bossPhasesScript.RestartPhases();
     }
 
     new IEnumerator WaitToDestroy(float timeToDestroy)

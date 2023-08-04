@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     }
 
     public static void GameOver(){
+        SaveLoad.SeriouslyDeleteAllSaveFiles();
         SceneManager.LoadSceneAsync(1);
     }
 

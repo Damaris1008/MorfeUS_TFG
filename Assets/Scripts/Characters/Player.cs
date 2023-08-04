@@ -253,6 +253,25 @@ public class Player : MonoBehaviour
             currentHealth = maxHealth;
             healthIsFull = true;
             healthHeartsManager.DrawHearts();
+
+            if(SceneManager.GetActiveScene().name == "BossLevel"){
+                //All enemies: revive and make inactive
+                Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>(true);
+                for(int i=0; i<enemies.Length;i++){
+                    enemies[i].Revive();
+                    enemies[i].gameObject.SetActive(false);
+                }
+                //Boss: revive
+                Boss boss = GameObject.FindObjectOfType<Boss>(true);
+                boss.Revive();
+            }else{
+                //All enemies: revive
+                Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>(true);
+                for(int i=0; i<enemies.Length;i++){
+                    enemies[i].Revive();
+                }
+            }
+
         }
     }
 

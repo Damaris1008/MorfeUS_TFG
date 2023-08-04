@@ -9,7 +9,8 @@ public class HPBar : MonoBehaviour
     float maxHealthBarScaleX;
     float maxHealthEnemy;
 
-    void Start(){
+    public void Start(){
+        transform.localScale = new Vector3(0.05562201f, 0.004407142f, 0.425349f);
         maxHealthBarScaleX = transform.localScale.x;
         maxHealthEnemy = enemy.maxHealth;
     }

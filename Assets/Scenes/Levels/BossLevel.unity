@@ -2734,6 +2734,7 @@ MonoBehaviour:
   inventoryCoinsCounter: {fileID: 5644514901785697251}
   shopCoinsCounter: {fileID: 3539765061725815159}
   inventoryKeysCounter: {fileID: 7964133500653604248}
+  powerUpInfo: {fileID: 0}
 --- !u!4 &1254821395
 Transform:
   m_ObjectHideFlags: 0
@@ -6917,7 +6918,7 @@ Transform:
   - {fileID: 425343304}
   - {fileID: 771626122}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1922829039 stripped
 MonoBehaviour:
@@ -10289,11 +10290,11 @@ PrefabInstance:
       objectReference: {fileID: 1254821394}
     - target: {fileID: 6894796420669418037, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6894796420669418037, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.02
+      value: -1.0200005
       objectReference: {fileID: 0}
     - target: {fileID: 6894796420669418037, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10309,15 +10310,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6894796420669418037, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6894796420669418037, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6894796420669418037, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6894796420669418037, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10369,7 +10370,7 @@ PrefabInstance:
       objectReference: {fileID: 88328315}
     - target: {fileID: 8608099865535991537, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: maxHealth
-      value: 150
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8608099865535991537, guid: 8f96a42272c84ad43a6fc17eb2e75594, type: 3}
       propertyPath: hackedPanel

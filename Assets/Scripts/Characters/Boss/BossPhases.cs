@@ -243,5 +243,13 @@ public class BossPhases : MonoBehaviour
             skeleton2.SetActive(true);
         }
     }
+
+    public void RestartPhases(){
+        StartPhase(1);
+        CancelInvoke();
+        isLaunching=false;
+        attackTimer = Random.Range(1,6);
+        dialogueManager.counter = 0;
+    }
     
 }

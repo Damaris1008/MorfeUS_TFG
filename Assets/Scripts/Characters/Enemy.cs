@@ -305,6 +305,18 @@ public class Enemy : MonoBehaviour
         StartCoroutine(WaitToDestroy(2f));
     }
 
+    public void Revive(){
+        gameObject.SetActive(true);
+        Debug.Log("Enemy has revived!" + gameObject.activeSelf);
+        isDead = false;
+        agent.enabled = true;
+        currentHealth = maxHealth;
+        GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
+        healthBar.SetActive(true);
+        healthBar.GetComponentInChildren<HPBar>().Start();
+        gameObject.layer = LayerMask.NameToLayer("Enemies");
+    }
+
     IEnumerator PopUp(bool isKey, int dropAmount){
 
         //Activate animation
@@ -320,7 +332,7 @@ public class Enemy : MonoBehaviour
         popUpAnimator.SetTrigger("RaiseText");
 
         //Deactivate animation
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(1.5f);
         amountText.text = "";
         keyImg.SetActive(false);
         coinImg.SetActive(false);
