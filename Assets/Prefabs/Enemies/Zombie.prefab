@@ -713,15 +713,20 @@ MonoBehaviour:
   enemyHitSound: {fileID: 8300000, guid: 3ded9f390c88b384a8817000a9752b5e, type: 3}
   enemyDeathSound: {fileID: 8300000, guid: 08e2a87186c264149a964da08088b2b5, type: 3}
   soundTimer: 0
+  minSoundTimer: 5
+  maxSoundTimer: 20
   path: {fileID: 0}
   waypoints: []
   loop: 1
   playerTransform: {fileID: 0}
+  agent: {fileID: 0}
   followRange: 0
   damageAmount: 4
   timeToAttack: 1
+  attackTimer: 0
+  bone: {fileID: 0}
   healthBar: {fileID: 1018300865}
-  maxHealth: 12
+  maxHealth: 10
   dropPercentage: 50
   popUpAnimator: {fileID: 1677407302}
   amountText: {fileID: 434586828}

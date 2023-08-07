@@ -320,7 +320,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -468,11 +468,13 @@ MonoBehaviour:
   isGrimReaper: 0
   isSkeleton: 1
   audioSource: {fileID: 7034788686019239107}
-  enemySound: {fileID: 8300000, guid: cba098f266f9a8e43b4b16fd6c618112, type: 3}
+  enemySound: {fileID: 8300000, guid: 53a8ab91757d5214085d5f5b47b331f0, type: 3}
   enemyBiteSound: {fileID: 0}
-  enemyHitSound: {fileID: 8300000, guid: 3ded9f390c88b384a8817000a9752b5e, type: 3}
-  enemyDeathSound: {fileID: 8300000, guid: 08e2a87186c264149a964da08088b2b5, type: 3}
+  enemyHitSound: {fileID: 8300000, guid: ee848887e1b91b2468c43745ff7efc85, type: 3}
+  enemyDeathSound: {fileID: 8300000, guid: 1e6b260de383d2246bf51e58c0ce0d0c, type: 3}
   soundTimer: 0
+  minSoundTimer: 5
+  maxSoundTimer: 20
   path: {fileID: 0}
   waypoints: []
   loop: 0

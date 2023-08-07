@@ -5,10 +5,11 @@ using UnityEngine;
 public class PunchHitBox : MonoBehaviour
 {
     public Collider2D hitBoxCollider;
-    public float damageAttack;
+    private float damageAttack;
     private Player player;
 
     void Start(){
+        damageAttack = 2f;
         hitBoxCollider.GetComponent<Collider2D>();
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }

@@ -107,9 +107,9 @@ public class Boss : Enemy
     }
 
     new void Die(){
+        bossPhasesScript.CancelInvoke();
         isDead = true;
         agent.enabled = false;
-        bossPhasesScript.CancelInvoke();
 
         hackedPanel.SetActive(false);
         GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
@@ -150,6 +150,8 @@ public class Boss : Enemy
 
     new IEnumerator WaitToDestroy(float timeToDestroy)
     {
+        bossPhasesScript.CancelInvoke();
+
         yield return new WaitForSeconds(timeToDestroy/3);
         bossPhasesScript.LaunchRadialProjectiles();
         yield return new WaitForSeconds(timeToDestroy/6);

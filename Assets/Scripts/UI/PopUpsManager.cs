@@ -12,6 +12,7 @@ public class PopUpsManager : MonoBehaviour
     [SerializeField] GameObject mainMenu = null;
     [SerializeField] GameObject optionsMenu = null;
     [SerializeField] GameObject graphicsSettingsMenu = null;
+    [SerializeField] GameObject controlsMenu = null;
     [SerializeField] GameObject soundSettingsMenu = null;
 
     [Header("Open/Close Inventory")]
@@ -108,6 +109,7 @@ public class PopUpsManager : MonoBehaviour
         optionsMenu.SetActive(false);
         graphicsSettingsMenu.SetActive(false);
         soundSettingsMenu.SetActive(false);
+        controlsMenu.SetActive(false);
         //Leave the main menu active
         mainMenu.SetActive(true);
 

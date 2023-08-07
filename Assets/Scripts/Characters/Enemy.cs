@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     public AudioClip enemyHitSound;
     public AudioClip enemyDeathSound;
     public float soundTimer;
+    public float minSoundTimer;
+    public float maxSoundTimer;
 
     [Header("Movement")]
     public Transform path;
@@ -76,7 +78,7 @@ public class Enemy : MonoBehaviour
         defaultColor = spriteRenderer.color;
         currentHealth = maxHealth;
         isDead = false;
-        soundTimer = Random.Range(2.0f, 5.0f);
+        soundTimer = Random.Range(minSoundTimer, maxSoundTimer);
         timeToAttack = 2f;
         currentPoint = 0;
     }
@@ -108,7 +110,7 @@ public class Enemy : MonoBehaviour
             soundTimer -= Time.deltaTime;
             if(soundTimer <=0){
                 audioSource.PlayOneShot(enemySound);
-                soundTimer = Random.Range(10.0f, 30.0f);
+                soundTimer = Random.Range(minSoundTimer, maxSoundTimer);
             }
 
             //Attack timer
