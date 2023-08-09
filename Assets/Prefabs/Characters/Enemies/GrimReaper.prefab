@@ -402,7 +402,7 @@ MonoBehaviour:
   bone: {fileID: 0}
   healthBar: {fileID: 8781827061016915655}
   maxHealth: 12
-  dropPercentage: 100
+  dropPercentage: 40
   popUpAnimator: {fileID: 8781827062165629142}
   amountText: {fileID: 8781827061822368769}
   coinImg: {fileID: 8781827062382607451}

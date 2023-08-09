@@ -22,6 +22,7 @@ TagManager:
   - EvolutionedVirus
   - Virus
   - EnemiesSet
+  - DeadRandomPerson
   layers:
   - Default
   - TransparentFX
@@ -37,7 +38,7 @@ TagManager:
   - PlayerAttackHitbox
   - Walls
   - EnemyProjectile
-  - 
+  - DeadPlayer
   - 
   - 
   - 

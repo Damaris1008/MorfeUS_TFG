@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
 
     [Header("Movement")]
+    public bool canMove;
     Rigidbody2D rigidbody2d;
     Animator animator;
     float horizontal; 
@@ -21,7 +22,6 @@ public class Player : MonoBehaviour
     public int health { get { return currentHealth; }}
     bool isHitted = false;
     bool isHealing = false;
-    bool healthIsFull;
     bool isDead = false;
 
     [Header("Resources")]
@@ -69,13 +69,13 @@ public class Player : MonoBehaviour
         coins = 3;
         keys = 1;
         currentHealth = maxHealth;
-        healthIsFull = true;
         rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         defaultColor = spriteRenderer.color;
         animator = GetComponent<Animator>();
         isDead = false;
+        canMove = true;
 
         //Save and load
         GameEvents.SaveInitiated += Save;
@@ -94,6 +94,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if(!canMove){
+            return;
+        }
+
         if (isInvincible)
         {
             invincibleTimer -= Time.deltaTime;
@@ -182,7 +186,6 @@ public class Player : MonoBehaviour
         isInvincible = true;
         isHitted = true;
         invincibleTimer = timeInvincible;
-        healthIsFull = false;
 
         //This assures that the currentHealth will never be less than 0 or greater than maxHealth
         currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
@@ -199,15 +202,12 @@ public class Player : MonoBehaviour
     }
 
     public void Heal(int amount){ //Replace parameter with (Item item) and make the audio sound from here
-        if(healthIsFull || isDead){
+        if(currentHealth == maxHealth || isDead){
             return;
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         healthHeartsManager.DrawHearts();
         isHealing = true;
-        if(currentHealth == maxHealth){
-            healthIsFull = true;
-        }
         StartCoroutine("SwitchColor");
     }
 
@@ -228,6 +228,7 @@ public class Player : MonoBehaviour
     public void Die(){
         isDead = true;
         animator.SetTrigger("Dead");
+        gameObject.layer = LayerMask.NameToLayer("DeadPlayer");
         audioSource.PlayOneShot(deathSound);
         StartCoroutine("WaitForDeathMenu");
     }
@@ -243,6 +244,7 @@ public class Player : MonoBehaviour
 
     public void Revive(){
         if(isDead){
+            gameObject.layer = LayerMask.NameToLayer("Player");
             popUpsManager.CloseDeathMenu();
             isDead = false;
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -251,7 +253,6 @@ public class Player : MonoBehaviour
             animator.Play("Awaking");
             maxHealth = maxHealth - 4;
             currentHealth = maxHealth;
-            healthIsFull = true;
             healthHeartsManager.DrawHearts();
 
             if(SceneManager.GetActiveScene().name == "BossLevel"){

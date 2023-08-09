@@ -10,6 +10,7 @@ public class Interaction : MonoBehaviour
     public bool touchingVendingMachine;
     public bool touchingChest;
     public bool touchingDoor;
+    public bool touchingDeadRandomPerson;
 
     [Header("Scripts")]
     public PopUpsManager popUpsManager;
@@ -18,7 +19,9 @@ public class Interaction : MonoBehaviour
 
     void Update(){
         if(Input.GetKeyDown(KeyCode.E)){
-            if(touchingVendingMachine){
+            if(touchingDeadRandomPerson){
+                popUpsManager.OpenDeadRandomPersonDialogue();
+            }else if(touchingVendingMachine){
                 popUpsManager.OpenShop();
             }else if(touchingChest){
                 chest.Open();
@@ -32,7 +35,10 @@ public class Interaction : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col){
         if(col.collider.tag == "Player"){
             Player player = col.collider.GetComponent<PlayerHitBox>().player;
-            if(gameObject.CompareTag("VendingMachine")){
+            if(gameObject.CompareTag("DeadRandomPerson")){
+                buttonPopUp.SetActive(true);
+                touchingDeadRandomPerson = true;
+            }else if(gameObject.CompareTag("VendingMachine")){
                 buttonPopUp.SetActive(true);
                 touchingVendingMachine = true;
             }else if(gameObject.CompareTag("Chest") && !chest.opened){
@@ -63,6 +69,7 @@ public class Interaction : MonoBehaviour
             touchingVendingMachine = false;
             touchingChest = false;
             touchingDoor = false;
+            touchingDeadRandomPerson = false;
             if(chest!=null){
                 missingKey.SetActive(false);
             }

@@ -48,6 +48,9 @@ public class PopUpsManager : MonoBehaviour
     [Header("Power-Up Info")]
     [SerializeField] GameObject powerUpInfo = null;
 
+    [Header("Dead Random Person Dialogue")]
+    [SerializeField] GameObject deadRandomPersonDialogue = null;
+
     private void Update(){
 
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
@@ -211,5 +214,16 @@ public class PopUpsManager : MonoBehaviour
     public IEnumerator HidePowerUpInfo(){
         yield return new WaitForSeconds(5.0f);
         powerUpInfo.SetActive(false);
+    }
+
+    // RANDOM DEAD PERSON DIALOGUE
+    public void OpenDeadRandomPersonDialogue(){
+        GameManager.PauseGame();
+        deadRandomPersonDialogue.SetActive(true);
+    }
+
+    public void CloseDeadRandomPersonDialogue(){
+        deadRandomPersonDialogue.SetActive(false);
+        GameManager.ResumeGame();
     }
 }

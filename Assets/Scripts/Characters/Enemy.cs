@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
     protected string direction = "going";
 
     [Header("Follow Player")]
-    public Transform playerTransform;
+    protected Transform playerTransform;
     public NavMeshAgent agent;
     public float followRange = 3.0f;
 
@@ -277,7 +277,7 @@ public class Enemy : MonoBehaviour
                 int randomNumber2 = Random.Range(0,101);
                 int dropAmount;
                 bool isKey;
-                if(randomNumber1>=20){ //Coin
+                if(randomNumber1>=25){ //Coin: 75%
                     isKey=false;
                     if(randomNumber2<5){ 
                         dropAmount = 5;
@@ -290,11 +290,11 @@ public class Enemy : MonoBehaviour
                     }else{
                         dropAmount = 1;
                     }
-                }else{ //Key
+                }else{ //Key: 25%
                     isKey=true;
-                    if(randomNumber2<5){ 
+                    if(randomNumber2<10){ 
                         dropAmount = 3;
-                    }else if(randomNumber2<10){ 
+                    }else if(randomNumber2<15){ 
                         dropAmount = 2;
                     }else{
                         dropAmount = 1;
