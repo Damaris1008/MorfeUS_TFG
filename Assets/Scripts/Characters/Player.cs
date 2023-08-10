@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     float vertical;
     public float speed;
     Vector2 lookDirection = new Vector2(0,-1);
+    public Sprite idleUp;
 
     [Header("Health")]
     public HealthHeartsManager healthHeartsManager;
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
 
     [Header("Invincibility")]
     public float timeInvincible = 0.3f;
-    bool isInvincible;
+    public bool isInvincible;
     float invincibleTimer;
 
     [Header("Launch")]
@@ -67,7 +68,7 @@ public class Player : MonoBehaviour
         damageMultiplier = 1f;
 
         coins = 3;
-        keys = 1;
+        keys = 2;
         currentHealth = maxHealth;
         rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -84,9 +85,15 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+
+        if(SceneManager.GetActiveScene().buildIndex == 4){
+            animator.SetFloat("Look X", 0f);
+            animator.SetFloat("Look Y", 1f);
+        }
         if(SceneManager.GetActiveScene().buildIndex != 3){
             animator.Play("Idle");
         }
+
         popUpsManager.RefreshCoinsCounters(coins);
         popUpsManager.RefreshKeysCounters(keys);
 
@@ -158,11 +165,12 @@ public class Player : MonoBehaviour
         {
             lookDirection.Set(move.x, move.y);
             lookDirection.Normalize();
+
+            //We are sending the variables to the animator
+            animator.SetFloat("Look X", lookDirection.x);
+            animator.SetFloat("Look Y", lookDirection.y);
         }
                 
-        //We are sending the variables to the animator
-        animator.SetFloat("Look X", lookDirection.x);
-        animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", move.magnitude);
 
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Moving") || 

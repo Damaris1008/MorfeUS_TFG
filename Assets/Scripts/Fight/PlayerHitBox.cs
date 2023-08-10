@@ -14,10 +14,10 @@ public class PlayerHitBox : MonoBehaviour
     void OnCollisionStay2D(Collision2D col){
         if(col.collider.gameObject.CompareTag("Enemy")){
             Enemy enemy = col.collider.gameObject.GetComponent<Enemy>();
-            player.SendMessage("Damage", enemy.damageAmount);
-            if(enemy.isZombie && !enemy.audioSource.isPlaying){
+            if(enemy.isZombie && !enemy.audioSource.isPlaying && !player.isInvincible){
                 enemy.audioSource.PlayOneShot(enemy.enemyBiteSound);
             }
+            player.SendMessage("Damage", enemy.damageAmount);
         }
     }
 

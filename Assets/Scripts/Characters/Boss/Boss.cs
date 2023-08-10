@@ -110,6 +110,7 @@ public class Boss : Enemy
         bossPhasesScript.CancelInvoke();
         isDead = true;
         agent.enabled = false;
+        spriteRenderer.sortingOrder = 3;
 
         hackedPanel.SetActive(false);
         GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
@@ -140,6 +141,7 @@ public class Boss : Enemy
         Debug.Log("Enemy has revived!" + gameObject.activeSelf);
         isDead = false;
         agent.enabled = true;
+        spriteRenderer.sortingOrder = 4;
         currentHealth = maxHealth;
         GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
         healthBar.SetActive(true);

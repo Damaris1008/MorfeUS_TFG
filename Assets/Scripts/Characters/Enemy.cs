@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
     [Header("Sprite Color When Damaged")]
     public float timeToColor = 0.25f;
     public Color hittedColor = new Color(1f, 0.30196078f, 0.30196078f);
-    SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
     Color defaultColor;
 
     void Awake(){
@@ -261,6 +261,7 @@ public class Enemy : MonoBehaviour
     public void Die(bool withDrop){
         isDead = true;
         agent.enabled = false;
+        spriteRenderer.sortingOrder = 3;
 
         GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
         healthBar.SetActive(false);
@@ -312,6 +313,7 @@ public class Enemy : MonoBehaviour
         Debug.Log("Enemy has revived!" + gameObject.activeSelf);
         isDead = false;
         agent.enabled = true;
+        spriteRenderer.sortingOrder = 4;
         currentHealth = maxHealth;
         GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
         healthBar.SetActive(true);

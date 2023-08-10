@@ -42,7 +42,7 @@ public class Interaction : MonoBehaviour
                 buttonPopUp.SetActive(true);
                 touchingVendingMachine = true;
             }else if(gameObject.CompareTag("Chest") && !chest.opened){
-                if(player.keys>=1){
+                if(player.keys>=1 || chest.typeOfChest == 2 || chest.typeOfChest == 3){
                     buttonPopUp.SetActive(true);
                     touchingChest = true;
                 }else{

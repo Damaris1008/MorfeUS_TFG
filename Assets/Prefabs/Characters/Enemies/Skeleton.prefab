@@ -417,7 +417,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000029802322, y: -0.16548498}
+  m_Offset: {x: -0.000000029802322, y: -0.16348365}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -428,7 +428,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.24283722, y: 0.30903003}
+  m_Size: {x: 0.24283722, y: 0.3130327}
   m_EdgeRadius: 0
 --- !u!195 &2815193603606168145
 NavMeshAgent:
@@ -478,7 +478,6 @@ MonoBehaviour:
   path: {fileID: 0}
   waypoints: []
   loop: 0
-  playerTransform: {fileID: 0}
   agent: {fileID: 2815193603606168145}
   followRange: 6
   damageAmount: 4

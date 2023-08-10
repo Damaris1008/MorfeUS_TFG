@@ -383,17 +383,16 @@ MonoBehaviour:
   isGrimReaper: 1
   isSkeleton: 0
   audioSource: {fileID: 0}
-  enemySound: {fileID: 8300000, guid: ce8b6da98d319bf4faafd128a6efa990, type: 3}
+  enemySound: {fileID: 8300000, guid: 3e8a7cbdc9eaa3241bef6307cd36ebb7, type: 3}
   enemyBiteSound: {fileID: 0}
-  enemyHitSound: {fileID: 8300000, guid: 763821097018ba04b8c38a81b854b77d, type: 3}
-  enemyDeathSound: {fileID: 8300000, guid: 08e2a87186c264149a964da08088b2b5, type: 3}
+  enemyHitSound: {fileID: 8300000, guid: 5a30153164ec831409c926eb0c1e33a0, type: 3}
+  enemyDeathSound: {fileID: 8300000, guid: 29179a6fa1d830141aeb4760404621de, type: 3}
   soundTimer: 3
   minSoundTimer: 5
   maxSoundTimer: 20
   path: {fileID: 0}
   waypoints: []
   loop: 1
-  playerTransform: {fileID: 0}
   agent: {fileID: 8781827060782706244}
   followRange: 3
   damageAmount: 6
@@ -540,7 +539,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.007092312, y: -0.1977385}
+  m_Offset: {x: 0.00008800626, y: -0.15571405}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -551,7 +550,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.17422345, y: 0.1742629}
+  m_Size: {x: 0.22825325, y: 0.2863271}
   m_EdgeRadius: 0
 --- !u!50 &1689342833
 Rigidbody2D:

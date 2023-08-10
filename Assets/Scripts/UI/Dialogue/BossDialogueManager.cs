@@ -27,7 +27,7 @@ public class BossDialogueManager : IntroductionDialogueManager
     void Update(){
 
         //Pause at start
-        if(sceneStarting && levelLoader.gameObject.GetComponent<CanvasGroup>().alpha <= 0.2f){
+        if(sceneStarting && levelLoader.gameObject.GetComponent<CanvasGroup>().alpha <= 0f){
             GameManager.PauseGame();
             transform.GetChild(0).gameObject.SetActive(true);
             sceneStarting = false;
