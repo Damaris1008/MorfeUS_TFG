@@ -30,8 +30,6 @@ public class MainMenuController : MonoBehaviour
 
     public void Start(){
         SaveLoad.SeriouslyDeleteAllSaveFiles();
-        //GetAudioPrefs();
-        //GetGraphicsPrefs();
     }
 
     public void SetVolume(float volume)
@@ -89,14 +87,9 @@ public class MainMenuController : MonoBehaviour
 
     public void GraphicsApply()
     {
-
         Screen.SetResolution(PlayerPrefs.GetInt("resolutionWidth"), PlayerPrefs.GetInt("resolutionHeight"), Screen.fullScreen);
-
         PlayerPrefs.SetInt("fullScreen", (_isFullScreen ? 1 : 0));
         Screen.fullScreen = _isFullScreen;
-
-        //Debug.Log("Preferencias del jugador sobre la fullscreen: "+ PlayerPrefs.GetInt("fullscreen"));
-        //Debug.Log("_isFullScreen: "+_isFullScreen);
     }
      
     public void AudioSettingsApply()

@@ -163,7 +163,6 @@ public class InventoryController : MonoBehaviour
         if(itemInSlot != null && Time.timeScale == 1.0f){
             Item item = itemInSlot.item;
             if(item.type == ItemType.CONSUMABLE && player.currentHealth != player.maxHealth){
-                Debug.Log("Used " + item.name + ". Healing "+ (item.stats > player.maxHealth - player.currentHealth ? player.maxHealth - player.currentHealth : item.stats) +" pieces of heart!");
                 itemInSlot.count--;
                 if(itemInSlot.count <= 0){
                     Destroy(itemInSlot.gameObject);
@@ -171,7 +170,9 @@ public class InventoryController : MonoBehaviour
                 }else{
                     itemInSlot.RefreshCount();
                 }
+                player.GetComponent<AudioSource>().PlayOneShot(item.sound);
                 player.Heal(item.stats);
+
                 buttonToConsume.SetActive(false);
             }
             return item;
@@ -226,7 +227,6 @@ public class InventoryController : MonoBehaviour
 
     void Load(){
         if(SaveLoad.SaveExists("Inventory")){
-            Debug.Log("Loading Inventory!");
             List<Tuple<int,int>> dataList = SaveLoad.Load<List<Tuple<int,int>>>("Inventory");
             FillWithDataList(dataList);
         }

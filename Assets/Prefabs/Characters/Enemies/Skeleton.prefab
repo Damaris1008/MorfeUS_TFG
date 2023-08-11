@@ -153,7 +153,7 @@ MonoBehaviour:
   skeleton: {fileID: 6455929975378278127}
   hitEffect: {fileID: 0}
   audioSource: {fileID: 7034788686019239107}
-  impactSound: {fileID: 0}
+  impactSound: {fileID: 8300000, guid: 8f7c8a281206fbd4c9c4e6fe8c0d89b5, type: 3}
 --- !u!95 &1185063171
 Animator:
   serializedVersion: 4

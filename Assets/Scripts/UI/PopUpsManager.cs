@@ -144,16 +144,16 @@ public class PopUpsManager : MonoBehaviour
     // ITEM INFO
 
     public void ShowItemInfo(Item item){
-        itemInfoName.text = item.name + " (" + item.type.ToString() + ")";
         itemInfoImg.sprite = item.image;
         double stats = item.stats/4.0;
         if(item.type.ToString() == "TOOL"){
-            itemInfoStats.text = "DAÑO: \n" + stats.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + " ❤️";
+            itemInfoName.text = item.name + " (ARMA)";
+            itemInfoStats.text = "DAÑO DE ATAQUE: \n" + stats.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + " ❤️";
         }else if(item.type.ToString() =="CONSUMABLE"){
+            itemInfoName.text = item.name + " (CONSUMIBLE)";
             itemInfoStats.text = "CURACIÓN: \n" + stats.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + " ❤️";
         }
         itemInfo.SetActive(true);
-        
     }
 
     public void HideItemInfo(){

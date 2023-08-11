@@ -86,17 +86,14 @@ public class ShopController : MonoBehaviour
         selectedSlot = -1;
     }
 
-    public void buyItem(){
+    public void BuyItem(){
         Item item = shopSlots[selectedSlot].item;
         if(item.cost <= player.coins){
             audioSource.PlayOneShot(buyAudio);
             player.SpendCoins(item.cost);
             inventoryController.AddItem(item);
             RefreshCostPanel();
-        }else{
-            Debug.Log("No coins to spend!");
         }
-
     }
 
     public void RefreshCostPanel(){

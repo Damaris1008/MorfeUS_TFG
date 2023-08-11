@@ -180,8 +180,6 @@ public class Enemy : MonoBehaviour
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
         bone.transform.rotation = Quaternion.Euler(0,0,rotZ);
 
-        //audioSource.PlayOneShot(arrowSound);
-
         Vector3 launchDirection = (playerTransform.position - transform.position).normalized;
         LaunchObject launch = bone.GetComponent<LaunchObject>();
         launch.Launch(launchDirection, 200);
@@ -310,7 +308,6 @@ public class Enemy : MonoBehaviour
 
     public void Revive(){
         gameObject.SetActive(true);
-        Debug.Log("Enemy has revived!" + gameObject.activeSelf);
         isDead = false;
         agent.enabled = true;
         spriteRenderer.sortingOrder = 4;

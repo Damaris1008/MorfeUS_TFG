@@ -4,31 +4,6 @@ using UnityEngine;
 
 public class BossPhases : MonoBehaviour
 {
-    // First phase:
-
-    // angleStep = 10f;
-    // numOfSpirals = 2;
-    // rateOfSpiralProjectiles = 0.3f;
-    // rateOfRadialProjectiles = 0.8f;
-    // numOfRadialProjectiles = 10;
-
-    // Second phase (half of the health):
-
-    // Invoke 2 grim reapers
-    // angleStep = 5f;
-    // numOfSpirals = 3;
-    // rateOfSpiralProjectiles = 0.2f;
-    // rateOfRadialProjectiles = 0.6f;
-    // numOfRadialProjectiles = 11;
-    
-    // Third phase (1/4 health):
-
-    // Invoke 2 skeletons
-    // angleStep = 5f;
-    // numOfSpirals = 4;
-    // rateOfSpiralProjectiles = 0.2f;
-    // rateOfRadialProjectiles = 0.3f;
-    // numOfRadialProjectiles = 14;
 
     bool isSpiralPattern;
 
@@ -82,7 +57,7 @@ public class BossPhases : MonoBehaviour
 
     void Update()
     {
-        if(bossScript.health>0){ //if its not dead
+        if(bossScript.health>0){ //If its not dead
 
             
             if(isLaunching){ //Cancel or not the launching

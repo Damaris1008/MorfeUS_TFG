@@ -138,7 +138,6 @@ public class Boss : Enemy
     public new void Revive(){
         bed.SetActive(false);
         gameObject.SetActive(true);
-        Debug.Log("Enemy has revived!" + gameObject.activeSelf);
         isDead = false;
         agent.enabled = true;
         spriteRenderer.sortingOrder = 4;

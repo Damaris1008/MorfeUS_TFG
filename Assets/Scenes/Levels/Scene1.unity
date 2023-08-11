@@ -18135,6 +18135,16 @@ PrefabInstance:
       propertyPath: m_Text
       value: AJUSTES DE SONIDO
       objectReference: {fileID: 0}
+    - target: {fileID: 2598524835706932572, guid: 8026b222748c81641988639c93449e84, type: 3}
+      propertyPath: m_Text
+      value: 'BOTELLA DE AGUA
+
+        (CONSUMIBLE)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598524835816426799, guid: 8026b222748c81641988639c93449e84, type: 3}
+      propertyPath: m_Text
+      value: "CURACI\xD3N: \n2.00 \u2764\uFE0F\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 2598524835945556143, guid: 8026b222748c81641988639c93449e84, type: 3}
       propertyPath: m_Text
       value: "M\xDASICA:"
@@ -18265,6 +18275,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2598524836083816349, guid: 8026b222748c81641988639c93449e84, type: 3}
       propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2598524836122571103, guid: 8026b222748c81641988639c93449e84, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2598524836151024032, guid: 8026b222748c81641988639c93449e84, type: 3}

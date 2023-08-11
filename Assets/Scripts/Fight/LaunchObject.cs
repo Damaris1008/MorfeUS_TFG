@@ -75,8 +75,10 @@ public class LaunchObject : MonoBehaviour
             hitEffect.gameObject.transform.position = transform.position;
             hitEffect.Play();
         }
+        if(isBone){
+            audioSource.PlayOneShot(impactSound);
+        }
 
-        //audioSource.PlayOneShot(impactSound);
         gameObject.SetActive(false);
         isLaunching = false;
     }

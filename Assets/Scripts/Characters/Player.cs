@@ -255,7 +255,6 @@ public class Player : MonoBehaviour
             gameObject.layer = LayerMask.NameToLayer("Player");
             popUpsManager.CloseDeathMenu();
             isDead = false;
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             GameObject startPoint = GameObject.FindWithTag("StartPoint");
             rigidbody2d.position = startPoint.transform.position;
             animator.Play("Awaking");
@@ -375,7 +374,6 @@ public class Player : MonoBehaviour
 
     void Load(){
         if(SaveLoad.SaveExists("PlayerStatus_part1") && SaveLoad.SaveExists("PlayerStatus_part2")){
-            Debug.Log("Loading Player Status!");
             List<int> dataList1 = SaveLoad.Load<List<int>>("PlayerStatus_part1");
             List<float> dataList2 = SaveLoad.Load<List<float>>("PlayerStatus_part2");
             FillWithDataList(dataList1, dataList2);
