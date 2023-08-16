@@ -18,6 +18,6 @@ MonoBehaviour:
   id: 0
   type: 0
   name: ARCO
-  stats: 8
+  stats: 4
   cost: 1
   sound: {fileID: 0}

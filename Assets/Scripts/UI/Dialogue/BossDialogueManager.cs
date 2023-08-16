@@ -7,7 +7,6 @@ public class BossDialogueManager : IntroductionDialogueManager
 {
     [Header("Dialogue Interventions")]
     public string[] interventions = new string[4];
-    public int counter;
 
     bool sceneStarting;
     GameObject levelLoader;
@@ -15,42 +14,32 @@ public class BossDialogueManager : IntroductionDialogueManager
     new void Awake(){
         continueButton.onClick.AddListener(CloseDialogue);
         audioSource = GetComponent<AudioSource>();
-        counter=0;
         levelLoader = GameObject.FindWithTag("LevelLoader");
         textOnScreen.text = interventions[0];
     }
 
-    void Start(){
+    public void Start(){
         sceneStarting = true;
     }
 
     void Update(){
-
         //Pause at start
         if(sceneStarting && levelLoader.gameObject.GetComponent<CanvasGroup>().alpha <= 0f){
-            GameManager.PauseGame();
-            transform.GetChild(0).gameObject.SetActive(true);
+            ShowDialogue(0);
             sceneStarting = false;
         }
     }
 
-    private void  CloseDialogue(){
+    private void CloseDialogue(){
         audioSource.PlayOneShot(continueSound);
         transform.GetChild(0).gameObject.SetActive(false);
-
         //Resume game
         GameManager.ResumeGame();
     }
 
-    public void ShowDialogue(){
+    public void ShowDialogue(int intervention){
         GameManager.PauseGame();
-        
-        //Next intervention
-        if(counter<interventions.Length-1){
-            counter = counter+1;
-            textOnScreen.text = interventions[counter];
-        }
-
+        textOnScreen.text = interventions[intervention];
         transform.GetChild(0).gameObject.SetActive(true);
     }
 }

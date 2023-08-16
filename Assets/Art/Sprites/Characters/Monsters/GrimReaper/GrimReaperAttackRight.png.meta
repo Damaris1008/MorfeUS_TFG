@@ -119,12 +119,12 @@ TextureImporter:
       name: GrimReaperAttackRight_0
       rect:
         serializedVersion: 2
-        x: 84
+        x: 75
         y: 46
-        width: 37
-        height: 47
+        width: 46
+        height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -143,9 +143,9 @@ TextureImporter:
         x: 278
         y: 46
         width: 28
-        height: 45
+        height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -164,9 +164,9 @@ TextureImporter:
         x: 463
         y: 46
         width: 38
-        height: 47
+        height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,12 +182,12 @@ TextureImporter:
       name: GrimReaperAttackRight_3
       rect:
         serializedVersion: 2
-        x: 659
-        y: 46
-        width: 43
-        height: 47
+        x: 635
+        y: 47
+        width: 68
+        height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -203,12 +203,12 @@ TextureImporter:
       name: GrimReaperAttackRight_4
       rect:
         serializedVersion: 2
-        x: 852
+        x: 841
         y: 46
-        width: 64
-        height: 47
+        width: 75
+        height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -224,12 +224,12 @@ TextureImporter:
       name: GrimReaperAttackRight_5
       rect:
         serializedVersion: 2
-        x: 1044
+        x: 1024
         y: 46
-        width: 55
-        height: 47
+        width: 75
+        height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

@@ -23,6 +23,8 @@ TagManager:
   - Virus
   - EnemiesSet
   - DeadRandomPerson
+  - BossStartPoint
+  - BrightnessPanel
   layers:
   - Default
   - TransparentFX

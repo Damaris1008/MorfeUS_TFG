@@ -798,6 +798,7 @@ MonoBehaviour:
   canMove: 0
   speed: 0
   idleUp: {fileID: 0}
+  punchDamageAttack: 2
   healthHeartsManager: {fileID: 0}
   maxHealth: 24
   currentHealth: 0

@@ -16,17 +16,26 @@ public class MainMenuController : MonoBehaviour
     private bool _backgroundMusic = true;
     private float _volumeLevel = 0.5f;
 
-    [Header("Graphics Settings")]
+    [Header("Graphics Settings: FullScreen")]
     [SerializeField] private GameObject enableFullScreenButton = null;
     [SerializeField] private GameObject disableFullScreenButton = null;
     private bool _isFullScreen;
 
-    [Header("Resolution Dropdowns")]
+    [Header("Graphics Settings: Brightness")]
+    [SerializeField] private Slider brightnessSlider;
+    [SerializeField] private Text brightnessLevelText = null;
+    [SerializeField] private Image brightnessPanel;
+    [SerializeField] private Image brightnessPanelTest;
+    public float brightnessSliderValue;
+    //private float brightnessBlackValue;
+    //private float brightnessWhiteValue;
+
+    /*[Header("Resolution Dropdowns")]
     public Dropdown resolutionDropdown;
     private Resolution[] resolutions;
     private List<Resolution> filteredResolutions;
     private int currentResolutionIndex = 0;
-    private Resolution currentResolution;
+    private Resolution currentResolution;*/
 
     public void Start(){
         SaveLoad.SeriouslyDeleteAllSaveFiles();
@@ -38,12 +47,12 @@ public class MainMenuController : MonoBehaviour
         volumeLevelText.text = volume.ToString("0") + "%" ;
     }
 
-    public void SetResolution(int resolutionIndex)
+    /*public void SetResolution(int resolutionIndex)
     {
         currentResolution = filteredResolutions[resolutionIndex];
         PlayerPrefs.SetInt("resolutionWidth", currentResolution.width);
         PlayerPrefs.SetInt("resolutionHeight", currentResolution.height);
-    }
+    }*/
 
     public void SetFullscreen(bool isFullScreen)
     {
@@ -55,7 +64,7 @@ public class MainMenuController : MonoBehaviour
         _backgroundMusic = backgroundMusic;
     }
 
-    public void LoadResolutions()
+    /*public void LoadResolutions()
     {
         resolutions = Screen.resolutions;
         filteredResolutions = new List<Resolution>();
@@ -83,13 +92,17 @@ public class MainMenuController : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-    }
+    }*/
 
     public void GraphicsApply()
     {
-        Screen.SetResolution(PlayerPrefs.GetInt("resolutionWidth"), PlayerPrefs.GetInt("resolutionHeight"), Screen.fullScreen);
+        /*Screen.SetResolution(PlayerPrefs.GetInt("resolutionWidth"), PlayerPrefs.GetInt("resolutionHeight"), Screen.fullScreen);*/
         PlayerPrefs.SetInt("fullScreen", (_isFullScreen ? 1 : 0));
         Screen.fullScreen = _isFullScreen;
+
+        //Brightness
+        PlayerPrefs.SetFloat("Brightness", brightnessSlider.value);
+        brightnessPanel.color = new Color(brightnessPanel.color.r, brightnessPanel.color.g, brightnessPanel.color.b, (100-brightnessSlider.value)*180/100/255);
     }
      
     public void AudioSettingsApply()
@@ -136,11 +149,40 @@ public class MainMenuController : MonoBehaviour
             enableFullScreenButton.SetActive(false);
         }
 
-        if(PlayerPrefs.HasKey("resolutionWidth")){
+        /*if(PlayerPrefs.HasKey("resolutionWidth")){
             Screen.SetResolution(PlayerPrefs.GetInt("resolutionWidth"), PlayerPrefs.GetInt("resolutionHeight"), Screen.fullScreen);
         }else{
             Screen.SetResolution(1920, 1080, true);
-        }
+        }*/
+
+        brightnessSlider.value = PlayerPrefs.GetFloat("Brightness", 1f);
+        brightnessPanelTest.color = new Color(brightnessPanel.color.r, brightnessPanel.color.g, brightnessPanel.color.b, (100-brightnessSlider.value)*180/100/255);
     }
+
+    public void ChangeSlider(float value)
+    {
+        Debug.Log("valor del slider:"+value);
+        Debug.Log("valor del slider brillo:"+brightnessSlider.value);
+        brightnessSliderValue = value;
+        brightnessLevelText.text = value.ToString("0") + "%" ;
+
+        //Formula explanation:
+        //100-brightnessSlider.value -> more slider value, less alpha (more brightness)
+        //Multiplied by 180 -> 180 will be max value on alpha
+        //Divided by 100 and 255 -> in order to make alpha be between 0 and 1
+        brightnessPanelTest.color = new Color(brightnessPanel.color.r, brightnessPanel.color.g, brightnessPanel.color.b, (100-brightnessSlider.value)*180/100/255);
+    }
+
+    public void EnableBrightnessPanelTest(){
+        brightnessPanelTest.gameObject.SetActive(true);
+        brightnessPanel.gameObject.SetActive(false);
+    }
+
+    public void DisableBrightnessPanelTest(){
+        brightnessPanelTest.gameObject.SetActive(false);
+        brightnessPanel.gameObject.SetActive(true);
+    }
+
+
 
 }

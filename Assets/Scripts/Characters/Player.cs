@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     Vector2 lookDirection = new Vector2(0,-1);
     public Sprite idleUp;
 
+    [Header("Fight")]
+    public float punchDamageAttack;
+
     [Header("Health")]
     public HealthHeartsManager healthHeartsManager;
     public int maxHealth = 24;
@@ -85,12 +88,18 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-
+        Debug.Log("width:"+PlayerPrefs.GetInt("resolutionWidth"));
+        Debug.Log("height:"+PlayerPrefs.GetInt("resolutionHeight"));
         if(SceneManager.GetActiveScene().buildIndex == 4){
             animator.SetFloat("Look X", 0f);
             animator.SetFloat("Look Y", 1f);
+        }else{
+            animator.SetFloat("Look X", 0f);
+            animator.SetFloat("Look Y", -1f);
         }
+
         if(SceneManager.GetActiveScene().buildIndex != 3){
+
             animator.Play("Idle");
         }
 
@@ -237,6 +246,11 @@ public class Player : MonoBehaviour
         isDead = true;
         animator.SetTrigger("Dead");
         gameObject.layer = LayerMask.NameToLayer("DeadPlayer");
+        //If its boss level
+        if(SceneManager.GetActiveScene().buildIndex == 6){
+            GameObject hackedPanel = GameObject.Find("Boss").GetComponent<Boss>().hackedPanel;
+            hackedPanel.SetActive(false);
+        }
         audioSource.PlayOneShot(deathSound);
         StartCoroutine("WaitForDeathMenu");
     }
@@ -252,12 +266,12 @@ public class Player : MonoBehaviour
 
     public void Revive(){
         if(isDead){
+            Start();
             gameObject.layer = LayerMask.NameToLayer("Player");
             popUpsManager.CloseDeathMenu();
             isDead = false;
             GameObject startPoint = GameObject.FindWithTag("StartPoint");
             rigidbody2d.position = startPoint.transform.position;
-            animator.Play("Awaking");
             maxHealth = maxHealth - 4;
             currentHealth = maxHealth;
             healthHeartsManager.DrawHearts();
@@ -311,7 +325,12 @@ public class Player : MonoBehaviour
     }
 
     public void SpendCoins(int amount){
-        coins -= amount;
+        int result = coins - amount;
+        if(result >= 0){
+            coins = result;
+        }else{
+            coins = 0;
+        }
         popUpsManager.RefreshCoinsCounters(coins);
     }
 
@@ -321,7 +340,12 @@ public class Player : MonoBehaviour
     }
 
     public void SpendKeys(int amount){
-        keys -= amount;
+        int result = keys - amount;
+        if(result >= 0){
+            keys = result;
+        }else{
+            keys = 0;
+        }
         popUpsManager.RefreshKeysCounters(keys);
     }
 

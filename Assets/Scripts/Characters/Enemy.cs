@@ -53,6 +53,11 @@ public class Enemy : MonoBehaviour
     public int health { get { return currentHealth; }}
     protected bool isDead = false;
 
+    [Header("Invincibility")]
+    public float timeInvincible = 0.2f;
+    public bool isInvincible;
+    protected float invincibleTimer;
+
     [Header("Drops")]
     public int dropPercentage;
     public Animator popUpAnimator;
@@ -106,6 +111,14 @@ public class Enemy : MonoBehaviour
     {
         if(!isDead){
 
+            //Invincibility
+            if (isInvincible)
+            {
+                invincibleTimer -= Time.deltaTime;
+                if (invincibleTimer < 0)
+                    isInvincible = false;
+            }
+
             //Enemy sound
             soundTimer -= Time.deltaTime;
             if(soundTimer <=0){
@@ -155,9 +168,6 @@ public class Enemy : MonoBehaviour
 
     IEnumerator GrimReaperAttack(){
         isAttacking = true;
-        agent.isStopped = true;
-        agent.enabled = false;
-        agent.enabled = true;
         animator.SetTrigger("Attack");
         attackTimer = timeToAttack;
         yield return new WaitForSeconds(0.5f);
@@ -238,6 +248,12 @@ public class Enemy : MonoBehaviour
 
     public void Damage(int amount){
         if(!isDead){
+
+            //Invincibility
+            if (isInvincible) return;
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+
             currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
             healthBar.TakeDamageBar(amount);
             if(currentHealth <= 0)

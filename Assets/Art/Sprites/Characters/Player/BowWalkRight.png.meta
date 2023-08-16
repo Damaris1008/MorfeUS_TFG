@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1bc5a04fa535ae44b9c09ed6789283ee
+guid: 5a7c6d8fcc01a8c4fb1db7c82cbe7b51
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,190 +116,190 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BowWalkUp_0
+      name: BowWalkRight_0
       rect:
         serializedVersion: 2
-        x: 49
-        y: 30
-        width: 54
-        height: 48
+        x: 40
+        y: 23
+        width: 52
+        height: 50
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 193b41e2a0a16c0489b042785bb56c9c
-      internalID: 840821346
+      spriteID: 70d0cbe095aecfc44a3acbf5a87d7719
+      internalID: 1212890796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BowWalkUp_1
+      name: BowWalkRight_1
       rect:
         serializedVersion: 2
-        x: 177
-        y: 30
-        width: 54
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ce8c29e07e8ef4e4c96aa18807c85a62
-      internalID: 1467824023
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BowWalkUp_2
-      rect:
-        serializedVersion: 2
-        x: 305
-        y: 29
-        width: 54
+        x: 168
+        y: 23
+        width: 49
         height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd9ff46dbcc302a4aaf8ec33d8dc82cc
-      internalID: 170580891
+      spriteID: 7ccfff7aa4245f5488988ceabc679721
+      internalID: 34399450
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BowWalkUp_3
+      name: BowWalkRight_2
       rect:
         serializedVersion: 2
-        x: 433
-        y: 28
-        width: 53
+        x: 299
+        y: 24
+        width: 45
         height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a33b44a9fa07ee04ca55860c5724ac7a
-      internalID: 8890980
+      spriteID: 400877db2980fa944ba1b714a927e7b5
+      internalID: -18781816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BowWalkUp_4
+      name: BowWalkRight_3
       rect:
         serializedVersion: 2
-        x: 561
-        y: 29
-        width: 54
+        x: 423
+        y: 24
+        width: 43
         height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6078f73bd8a3594698aaa09369a7152
-      internalID: -34318123
+      spriteID: 82751748db96f9d409af5e960ee2516b
+      internalID: 389825485
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BowWalkUp_5
+      name: BowWalkRight_4
       rect:
         serializedVersion: 2
-        x: 689
-        y: 30
-        width: 54
-        height: 48
+        x: 555
+        y: 23
+        width: 40
+        height: 50
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da46743ec57ba3f41ac4c2d578f9c2d4
-      internalID: 890419959
+      spriteID: 374e0545f496e0e4e9adbc4c3bb9958f
+      internalID: 1448423645
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BowWalkUp_6
+      name: BowWalkRight_5
       rect:
         serializedVersion: 2
-        x: 817
-        y: 29
-        width: 54
+        x: 684
+        y: 23
+        width: 40
         height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c4da1d3d5d2aa04b9a5eff1d8ba5309
-      internalID: 998688689
+      spriteID: 008d88dd7a4794449bd081121eb896f2
+      internalID: 1174886075
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BowWalkUp_7
+      name: BowWalkRight_6
       rect:
         serializedVersion: 2
-        x: 946
-        y: 28
-        width: 53
-        height: 49
+        x: 810
+        y: 23
+        width: 43
+        height: 50
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5367544ad126e54e9689da1966381a4
-      internalID: 543793955
+      spriteID: 2c501469e8294474196c675669104702
+      internalID: -2068913977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BowWalkUp_8
+      name: BowWalkRight_7
       rect:
         serializedVersion: 2
-        x: 1073
-        y: 29
-        width: 54
-        height: 49
+        x: 939
+        y: 23
+        width: 47
+        height: 50
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 275db72af89e0354b9f14e803a01e16d
-      internalID: 586496625
+      spriteID: bed40b8e42daab54a87f57fc3d83a931
+      internalID: 1736886354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BowWalkRight_8
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 23
+        width: 46
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e14f55844184fec499e3109bc406eb52
+      internalID: 1888213659
       vertices: []
       indices: 
       edges: []
@@ -315,15 +315,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BowWalkUp_1: 1467824023
-      BowWalkUp_7: 543793955
-      BowWalkUp_6: 998688689
-      BowWalkUp_5: 890419959
-      BowWalkUp_8: 586496625
-      BowWalkUp_3: 8890980
-      BowWalkUp_4: -34318123
-      BowWalkUp_2: 170580891
-      BowWalkUp_0: 840821346
+      BowWalkRight_3: 389825485
+      BowWalkRight_5: 1174886075
+      BowWalkRight_8: 1888213659
+      BowWalkRight_0: 1212890796
+      BowWalkRight_7: 1736886354
+      BowWalkRight_1: 34399450
+      BowWalkRight_6: -2068913977
+      BowWalkRight_4: 1448423645
+      BowWalkRight_2: -18781816
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

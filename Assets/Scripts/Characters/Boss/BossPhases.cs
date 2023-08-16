@@ -170,7 +170,7 @@ public class BossPhases : MonoBehaviour
                 break;
             case 2:
                 phase=2;
-                dialogueManager.ShowDialogue();
+                dialogueManager.ShowDialogue(1);
                 SpawnEnemies(); // Invoke 2 grim reapers
                 angleStep = 5f;
                 numOfSpirals = 3;   
@@ -180,7 +180,7 @@ public class BossPhases : MonoBehaviour
                 break;
             case 3:
                 phase=3;   
-                dialogueManager.ShowDialogue();             
+                dialogueManager.ShowDialogue(2);             
                 SpawnEnemies(); // Invoke 2 skeletons
                 angleStep = 5f;
                 numOfSpirals = 4;
@@ -224,7 +224,12 @@ public class BossPhases : MonoBehaviour
         CancelInvoke();
         isLaunching=false;
         attackTimer = Random.Range(1,6);
-        dialogueManager.counter = 0;
+        StartCoroutine("WaitForDialogueToStart");
+    }
+
+    IEnumerator WaitForDialogueToStart(){
+        yield return new WaitForSeconds(1.2f);
+        dialogueManager.Start();
     }
     
 }

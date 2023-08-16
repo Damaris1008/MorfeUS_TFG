@@ -618,12 +618,14 @@ MonoBehaviour:
   loop: 0
   agent: {fileID: 8608099865896766944}
   followRange: 5
-  damageAmount: 4
+  damageAmount: 2
   timeToAttack: 0
   attackTimer: 0
   bone: {fileID: 0}
   healthBar: {fileID: 8608099864228314717}
-  maxHealth: 30
+  maxHealth: 100
+  timeInvincible: 0.2
+  isInvincible: 0
   dropPercentage: 0
   popUpAnimator: {fileID: 0}
   amountText: {fileID: 0}

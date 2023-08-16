@@ -400,7 +400,7 @@ MonoBehaviour:
   attackTimer: 0
   bone: {fileID: 0}
   healthBar: {fileID: 8781827061016915655}
-  maxHealth: 12
+  maxHealth: 20
   dropPercentage: 40
   popUpAnimator: {fileID: 8781827062165629142}
   amountText: {fileID: 8781827061822368769}

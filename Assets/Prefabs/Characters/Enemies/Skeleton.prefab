@@ -485,7 +485,9 @@ MonoBehaviour:
   attackTimer: 0
   bone: {fileID: 1185063165}
   healthBar: {fileID: 2778905826368487913}
-  maxHealth: 12
+  maxHealth: 35
+  timeInvincible: 0.2
+  isInvincible: 0
   dropPercentage: 50
   popUpAnimator: {fileID: 2229094310566601948}
   amountText: {fileID: 2731472448667852210}

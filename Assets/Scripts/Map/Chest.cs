@@ -33,7 +33,9 @@ public class Chest : MonoBehaviour
     public void Open(){
         if(!opened){
             opened=true;
-            player.SpendKeys(1);
+            if(typeOfChest==0 || typeOfChest==1){
+                player.SpendKeys(1);
+            }
             audioSource.Play();
             StartCoroutine("OpenChest");
         }

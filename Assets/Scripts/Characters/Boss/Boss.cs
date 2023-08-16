@@ -15,6 +15,14 @@ public class Boss : Enemy
         
         if(!isDead){
 
+            //Invincibility
+            if (isInvincible)
+            {
+                invincibleTimer -= Time.deltaTime;
+                if (invincibleTimer < 0)
+                    isInvincible = false;
+            }
+
             //Enemy sound
             soundTimer -= Time.deltaTime;
             if(soundTimer <=0){
@@ -94,6 +102,12 @@ public class Boss : Enemy
 
     public new void Damage(int amount){
         if(!isDead){
+
+            //Invincibility
+            if (isInvincible) return;
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+
             currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
             healthBar.TakeDamageBar(amount);
             if(currentHealth <= 0)
@@ -116,7 +130,7 @@ public class Boss : Enemy
         GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
         healthBar.SetActive(false);
 
-        dialogueManager.ShowDialogue();
+        dialogueManager.ShowDialogue(3);
 
         animator.SetTrigger("Dead");
         audioSource.PlayOneShot(enemyDeathSound);
@@ -138,6 +152,8 @@ public class Boss : Enemy
     public new void Revive(){
         bed.SetActive(false);
         gameObject.SetActive(true);
+        GameObject bossStartPoint = GameObject.FindWithTag("BossStartPoint");
+        rigidbody2d.position = bossStartPoint.transform.position;
         isDead = false;
         agent.enabled = true;
         spriteRenderer.sortingOrder = 4;

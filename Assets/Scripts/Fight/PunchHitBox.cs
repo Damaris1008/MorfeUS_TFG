@@ -9,9 +9,9 @@ public class PunchHitBox : MonoBehaviour
     private Player player;
 
     void Start(){
-        damageAttack = 2f;
         hitBoxCollider.GetComponent<Collider2D>();
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        damageAttack = player.punchDamageAttack;
     }
 
     void OnTriggerEnter2D(Collider2D col){

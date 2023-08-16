@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
                 backgroundMusic.mute = true;
             }
         }
+
     }
 
     private void Update(){

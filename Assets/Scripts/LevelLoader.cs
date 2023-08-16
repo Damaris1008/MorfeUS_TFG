@@ -14,10 +14,6 @@ public class LevelLoader : MonoBehaviour
         transition = GetComponent<Animator>();
     }
 
-    void Start(){
-        player = GameObject.FindWithTag("Player").GetComponent<Player>();
-    }
-
     public void LoadNextLevel(){
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
@@ -26,7 +22,11 @@ public class LevelLoader : MonoBehaviour
         transition.SetTrigger("StartCrossfade");
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(levelIndex);
-        player.canMove = true;
 
+        int scene = SceneManager.GetActiveScene().buildIndex;
+        if(scene == 3 || scene == 4 || scene == 5 || scene == 6){
+            player = GameObject.FindWithTag("Player").GetComponent<Player>();
+            player.canMove = true;
+        }
     }
 }
