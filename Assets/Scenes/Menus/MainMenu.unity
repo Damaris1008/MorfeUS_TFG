@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 75, y: 6.2001}
+  m_AnchoredPosition: {x: 76.39998, y: 6.2001}
   m_SizeDelta: {x: 26.7448, y: 28.7713}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &15487738
@@ -1355,6 +1355,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BrightnessPanelTest
       objectReference: {fileID: 0}
+    - target: {fileID: 4198106090224226667, guid: b3f0012d2412b3945b9dd409d158bc96, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7156312125229714133, guid: b3f0012d2412b3945b9dd409d158bc96, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2171,7 +2175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 27, y: 6.2}
+  m_AnchoredPosition: {x: 28.399982, y: 6.2}
   m_SizeDelta: {x: 60.6976, y: 3.807}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &361812785
@@ -3292,7 +3296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &577772043
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9286,6 +9290,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4198106090224226667, guid: b3f0012d2412b3945b9dd409d158bc96, type: 3}
       propertyPath: m_Name
+      value: BrightnessPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198106090224226667, guid: b3f0012d2412b3945b9dd409d158bc96, type: 3}
+      propertyPath: m_TagString
       value: BrightnessPanel
       objectReference: {fileID: 0}
     - target: {fileID: 7156312125229714133, guid: b3f0012d2412b3945b9dd409d158bc96, type: 3}

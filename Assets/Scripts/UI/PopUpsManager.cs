@@ -113,6 +113,8 @@ public class PopUpsManager : MonoBehaviour
         graphicsSettingsMenu.SetActive(false);
         soundSettingsMenu.SetActive(false);
         controlsMenu.SetActive(false);
+        //Disable brightness panel test
+        pauseMenu.GetComponent<MainMenuController>().DisableBrightnessPanelTest();
         //Leave the main menu active
         mainMenu.SetActive(true);
 
@@ -226,4 +228,6 @@ public class PopUpsManager : MonoBehaviour
         deadRandomPersonDialogue.SetActive(false);
         GameManager.ResumeGame();
     }
+
+
 }

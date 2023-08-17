@@ -58,8 +58,8 @@ public class Player : MonoBehaviour
     public AudioClip arrowSound;
 
     [Header("Scripts")]
-    public PopUpsManager popUpsManager;
-    public InventoryController inventoryManager;
+    private PopUpsManager popUpsManager;
+    private InventoryController inventoryManager;
 
     [Header("Weapons")]
     public bool isUsingSword;
@@ -82,14 +82,17 @@ public class Player : MonoBehaviour
         canMove = true;
 
         //Save and load
-        GameEvents.SaveInitiated += Save;
-        Load();
+        /*GameEvents.SaveInitiated += Save;
+        Load();*/
     }
 
-    void Start()
+    public void Start()
     {
-        Debug.Log("width:"+PlayerPrefs.GetInt("resolutionWidth"));
-        Debug.Log("height:"+PlayerPrefs.GetInt("resolutionHeight"));
+
+        // Scripts
+        popUpsManager = GameObject.FindWithTag("PopUpsManager").GetComponent<PopUpsManager>();
+        inventoryManager = GameObject.FindWithTag("InventoryManager").GetComponent<InventoryController>();
+
         if(SceneManager.GetActiveScene().buildIndex == 4){
             animator.SetFloat("Look X", 0f);
             animator.SetFloat("Look Y", 1f);
@@ -105,7 +108,6 @@ public class Player : MonoBehaviour
 
         popUpsManager.RefreshCoinsCounters(coins);
         popUpsManager.RefreshKeysCounters(keys);
-
     }
 
     void Update()
@@ -364,7 +366,7 @@ public class Player : MonoBehaviour
         popUpsManager.ShowPowerUpInfo(speedIncrease, damageMultiplier);
     }
 
-    public List<int> ToDataList1(){ 
+    /*public List<int> ToDataList1(){ 
         List<int> dataList = new List<int>();
         dataList.Add(keys);
         dataList.Add(coins);
@@ -394,6 +396,7 @@ public class Player : MonoBehaviour
         List<float> dataList2 = ToDataList2();
         SaveLoad.Save<List<int>>(dataList1, "PlayerStatus_part1");
         SaveLoad.Save<List<float>>(dataList2, "PlayerStatus_part2");
+        GameManager.playerSaved = true;
     }
 
     void Load(){
@@ -402,6 +405,6 @@ public class Player : MonoBehaviour
             List<float> dataList2 = SaveLoad.Load<List<float>>("PlayerStatus_part2");
             FillWithDataList(dataList1, dataList2);
         }
-    }
+    }*/
 
 }

@@ -15,9 +15,11 @@ public class InventoryController : MonoBehaviour
 
     [Header("Add Items")]
     public InventorySlot[] inventorySlots;
+    public List<GameObject> inventorySlotsGameObjects;
     public GameObject inventoryItemPrefab;
 
     [Header("Select Items")]
+    public GameObject mainInventory;
     public GameObject toolbar;
     int selectedSlot;
     private int toolbarNumOfSlots;
@@ -36,14 +38,23 @@ public class InventoryController : MonoBehaviour
     public GameObject shopMenu;
     public GameObject controlsMenu;
 
-    private void Start(){
+    public void Awake(){
+        for(int i=0; i<toolbar.transform.childCount; i++){
+            inventorySlotsGameObjects.Add(toolbar.transform.GetChild(i).gameObject);
+        }
+        for(int i=0; i<mainInventory.transform.childCount; i++){
+            inventorySlotsGameObjects.Add(mainInventory.transform.GetChild(i).gameObject);
+        }
+    }
+
+    public void Start(){
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         ChangeSelectedSlot(0);
         toolbarNumOfSlots = toolbar.transform.childCount;
 
         //Save and load
-        GameEvents.SaveInitiated += Save;
-        Load();
+        /*GameEvents.SaveInitiated += Save;
+        Load();*/
     }
 
     void Update()
@@ -98,7 +109,6 @@ public class InventoryController : MonoBehaviour
     }
 
 
-
     public bool AddItem(Item item){
 
         //Check if any slot has the same item with count lower than max
@@ -136,13 +146,10 @@ public class InventoryController : MonoBehaviour
     }
 
     public void SpawnAmountOfItemInSlot(Item item, int slotNumber, int amount){
-        InventorySlot slot = inventorySlots[slotNumber];
-        InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-        if(itemInSlot == null){
-            SpawnNewItem(item,slot);
-            itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            itemInSlot.count = amount;
-            itemInSlot.RefreshCount();
+        if(inventorySlots[slotNumber].GetComponentInChildren<InventoryItem>() == null){
+            SpawnNewItem(item,inventorySlots[slotNumber]);
+            inventorySlots[slotNumber].GetComponentInChildren<InventoryItem>().count = amount;
+            inventorySlots[slotNumber].GetComponentInChildren<InventoryItem>().RefreshCount();
         }
     }
 
@@ -158,6 +165,7 @@ public class InventoryController : MonoBehaviour
     }
 
     public Item UseSelectedItem(){
+        //Aqui, sin embargo, no falla
         InventorySlot slot = inventorySlots[selectedSlot];
         InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
         if(itemInSlot != null && Time.timeScale == 1.0f){
@@ -182,7 +190,7 @@ public class InventoryController : MonoBehaviour
     }
 
     public Item FindItemById(int itemId){
-        Item item = new Item();
+        Item item = itemsList[0];
         for(int i=0; i<itemsList.Length; i++){
             if(itemsList[i].id == itemId){
                 item = itemsList[i];
@@ -191,16 +199,19 @@ public class InventoryController : MonoBehaviour
         return item;
     }
 
-    public List<Tuple<int,int>> ToDataList(){ //First int of tuple: itemId, Second int of tuple: itemAmount
+    /*public List<Tuple<int,int>> ToDataList(){ //First int of tuple: itemId, Second int of tuple: itemAmount
         List<Tuple<int,int>> dataList = new List<Tuple<int,int>>();
-
         for(int i=0; i<inventorySlots.Length;i++){
+
+            Debug.Log("TO DATA LIST: "+inventorySlots[i].gameObject.name);
+
+            //EL ERROR DA AQUI, en la primera iteracion del bucle:
             InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            if(itemInSlot == null){
-                dataList.Add(Tuple.Create(-1, -1));
-            }else{
+            if(itemInSlot!=null){
                 dataList.Add(Tuple.Create(itemInSlot.item.id, itemInSlot.count));
+            }else{
+                dataList.Add(Tuple.Create(-1, -1));
             }
         }
         return dataList;
@@ -216,13 +227,13 @@ public class InventoryController : MonoBehaviour
                 Item item = FindItemById(itemId);
                 SpawnAmountOfItemInSlot(item, i, itemAmount);
             }
-
         }
     }
 
     void Save(){
         List<Tuple<int,int>> dataList = ToDataList();
         SaveLoad.Save<List<Tuple<int,int>>>(dataList, "Inventory");
+        GameManager.inventorySaved = true;
     }
 
     void Load(){
@@ -230,6 +241,6 @@ public class InventoryController : MonoBehaviour
             List<Tuple<int,int>> dataList = SaveLoad.Load<List<Tuple<int,int>>>("Inventory");
             FillWithDataList(dataList);
         }
-    }
+    }*/
 
 }

@@ -13,9 +13,13 @@ public class Interaction : MonoBehaviour
     public bool touchingDeadRandomPerson;
 
     [Header("Scripts")]
-    public PopUpsManager popUpsManager;
+    private PopUpsManager popUpsManager;
     public Chest chest;
     public Door door;
+
+    void Start(){
+        popUpsManager = GameObject.FindWithTag("PopUpsManager").GetComponent<PopUpsManager>();
+    }
 
     void Update(){
         if(Input.GetKeyDown(KeyCode.E)){

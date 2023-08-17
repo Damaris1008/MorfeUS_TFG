@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameEvents : MonoBehaviour
 {
-    public static System.Action SaveInitiated;
+    /*public static System.Action SaveInitiated;
 
     public static void OnSaveInitiated(){
         SaveInitiated?.Invoke();
-    }
+    }*/
 }

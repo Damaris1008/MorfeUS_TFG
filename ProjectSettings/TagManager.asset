@@ -25,6 +25,7 @@ TagManager:
   - DeadRandomPerson
   - BossStartPoint
   - BrightnessPanel
+  - Camera
   layers:
   - Default
   - TransparentFX

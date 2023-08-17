@@ -26,9 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/BossLevel.unity
     guid: 5a636c9cee98c964d947a5cce68e662c
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Ending/FinalScene.unity
     guid: 75182a763408e0b43b41d19b000fc6de

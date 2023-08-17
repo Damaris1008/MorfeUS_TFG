@@ -27,15 +27,6 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Image brightnessPanel;
     [SerializeField] private Image brightnessPanelTest;
     public float brightnessSliderValue;
-    //private float brightnessBlackValue;
-    //private float brightnessWhiteValue;
-
-    /*[Header("Resolution Dropdowns")]
-    public Dropdown resolutionDropdown;
-    private Resolution[] resolutions;
-    private List<Resolution> filteredResolutions;
-    private int currentResolutionIndex = 0;
-    private Resolution currentResolution;*/
 
     public void Start(){
         SaveLoad.SeriouslyDeleteAllSaveFiles();
@@ -47,13 +38,6 @@ public class MainMenuController : MonoBehaviour
         volumeLevelText.text = volume.ToString("0") + "%" ;
     }
 
-    /*public void SetResolution(int resolutionIndex)
-    {
-        currentResolution = filteredResolutions[resolutionIndex];
-        PlayerPrefs.SetInt("resolutionWidth", currentResolution.width);
-        PlayerPrefs.SetInt("resolutionHeight", currentResolution.height);
-    }*/
-
     public void SetFullscreen(bool isFullScreen)
     {
         _isFullScreen = isFullScreen;
@@ -64,39 +48,8 @@ public class MainMenuController : MonoBehaviour
         _backgroundMusic = backgroundMusic;
     }
 
-    /*public void LoadResolutions()
-    {
-        resolutions = Screen.resolutions;
-        filteredResolutions = new List<Resolution>();
-        resolutionDropdown.ClearOptions();
-
-        for(int i = 4; i < resolutions.Length; i++)
-        {
-            if(!(resolutions[i].width==1280 && resolutions[i].height==600))
-            {
-                filteredResolutions.Add(resolutions[i]);
-            }
-        }
-
-        List<string> options = new List<string>();
-        for(int i = 0; i < filteredResolutions.Count; i++)
-        {
-            string option = filteredResolutions[i].width + "x" + filteredResolutions[i].height;
-            options.Add(option);
-            if(filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height)
-            {
-                currentResolutionIndex = i;
-            }
-        }
-
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
-    }*/
-
     public void GraphicsApply()
     {
-        /*Screen.SetResolution(PlayerPrefs.GetInt("resolutionWidth"), PlayerPrefs.GetInt("resolutionHeight"), Screen.fullScreen);*/
         PlayerPrefs.SetInt("fullScreen", (_isFullScreen ? 1 : 0));
         Screen.fullScreen = _isFullScreen;
 
@@ -149,20 +102,12 @@ public class MainMenuController : MonoBehaviour
             enableFullScreenButton.SetActive(false);
         }
 
-        /*if(PlayerPrefs.HasKey("resolutionWidth")){
-            Screen.SetResolution(PlayerPrefs.GetInt("resolutionWidth"), PlayerPrefs.GetInt("resolutionHeight"), Screen.fullScreen);
-        }else{
-            Screen.SetResolution(1920, 1080, true);
-        }*/
-
         brightnessSlider.value = PlayerPrefs.GetFloat("Brightness", 1f);
         brightnessPanelTest.color = new Color(brightnessPanel.color.r, brightnessPanel.color.g, brightnessPanel.color.b, (100-brightnessSlider.value)*180/100/255);
     }
 
     public void ChangeSlider(float value)
     {
-        Debug.Log("valor del slider:"+value);
-        Debug.Log("valor del slider brillo:"+brightnessSlider.value);
         brightnessSliderValue = value;
         brightnessLevelText.text = value.ToString("0") + "%" ;
 

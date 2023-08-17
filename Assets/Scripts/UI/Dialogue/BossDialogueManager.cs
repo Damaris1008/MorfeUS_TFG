@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BossDialogueManager : IntroductionDialogueManager
 {
@@ -11,22 +12,28 @@ public class BossDialogueManager : IntroductionDialogueManager
     bool sceneStarting;
     GameObject levelLoader;
 
-    new void Awake(){
-        continueButton.onClick.AddListener(CloseDialogue);
-        audioSource = GetComponent<AudioSource>();
-        levelLoader = GameObject.FindWithTag("LevelLoader");
-        textOnScreen.text = interventions[0];
+    void Awake(){
+        if(SceneManager.GetActiveScene().buildIndex == 6){
+            continueButton.onClick.AddListener(CloseDialogue);
+            audioSource = GetComponent<AudioSource>();
+            levelLoader = GameObject.FindWithTag("LevelLoader");
+            textOnScreen.text = interventions[0];
+        }
     }
 
     public void Start(){
-        sceneStarting = true;
+        if(SceneManager.GetActiveScene().buildIndex == 6){
+            sceneStarting = true;
+        }
     }
 
     void Update(){
-        //Pause at start
-        if(sceneStarting && levelLoader.gameObject.GetComponent<CanvasGroup>().alpha <= 0f){
-            ShowDialogue(0);
-            sceneStarting = false;
+        if(SceneManager.GetActiveScene().buildIndex == 6){
+            //Pause at start
+            if(sceneStarting && levelLoader.gameObject.GetComponent<CanvasGroup>().alpha <= 0f){
+                ShowDialogue(0);
+                sceneStarting = false;
+            }
         }
     }
 

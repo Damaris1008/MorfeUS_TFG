@@ -14,7 +14,7 @@ public class Door : MonoBehaviour
     }
 
     public void OpenDoor(){
-        player.canMove = false;
+        //player.canMove = false;
         audioSource.Play();
         StartCoroutine("WaitToLoadScene");
     }

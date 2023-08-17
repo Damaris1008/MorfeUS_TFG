@@ -120,7 +120,7 @@ public class Boss : Enemy
         }
     }
 
-    new void Die(){
+    void Die(){
         bossPhasesScript.CancelInvoke();
         isDead = true;
         agent.enabled = false;
