@@ -30,6 +30,9 @@ public class BossDialogueManager : IntroductionDialogueManager
                 sceneStarting = false;
             }
         }
+        if(Input.GetKeyDown(KeyCode.E)){
+            CloseDialogue();
+        }
     }
 
     private void CloseDialogue(){

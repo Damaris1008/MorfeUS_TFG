@@ -1393,6 +1393,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BloodSplash (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 9040099688609963670, guid: 699ca577f3bedbd469a0249cb774d1f1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 699ca577f3bedbd469a0249cb774d1f1, type: 3}
 --- !u!4 &316218952 stripped
@@ -1805,6 +1809,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1312946203}
     m_Modifications:
+    - target: {fileID: 5503998840272120484, guid: e4d629ea0d5542d459d764b5487d7883, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6008316699820323641, guid: e4d629ea0d5542d459d764b5487d7883, type: 3}
       propertyPath: m_RootOrder
       value: 29
@@ -3611,6 +3619,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1312946203}
     m_Modifications:
+    - target: {fileID: 5503998840272120484, guid: e4d629ea0d5542d459d764b5487d7883, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6008316699820323641, guid: e4d629ea0d5542d459d764b5487d7883, type: 3}
       propertyPath: m_RootOrder
       value: 22
@@ -4685,6 +4697,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.33962262
       objectReference: {fileID: 0}
+    - target: {fileID: 5503998840272120484, guid: e4d629ea0d5542d459d764b5487d7883, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6008316699820323641, guid: e4d629ea0d5542d459d764b5487d7883, type: 3}
       propertyPath: m_RootOrder
       value: 34
@@ -4814,6 +4830,10 @@ PrefabInstance:
     - target: {fileID: 431126648378573687, guid: 4c9a65dda7f7ad64da5f7a1f3becf669, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458112234401740945, guid: 4c9a65dda7f7ad64da5f7a1f3becf669, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8759703987486813515, guid: 4c9a65dda7f7ad64da5f7a1f3becf669, type: 3}
       propertyPath: m_Name
@@ -5919,6 +5939,10 @@ PrefabInstance:
     - target: {fileID: 431126648378573687, guid: 4c9a65dda7f7ad64da5f7a1f3becf669, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458112234401740945, guid: 4c9a65dda7f7ad64da5f7a1f3becf669, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8759703987486813515, guid: 4c9a65dda7f7ad64da5f7a1f3becf669, type: 3}
       propertyPath: m_Name
@@ -7280,6 +7304,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.41509432
       objectReference: {fileID: 0}
+    - target: {fileID: 8458112234401740945, guid: 4c9a65dda7f7ad64da5f7a1f3becf669, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8759703987486813515, guid: 4c9a65dda7f7ad64da5f7a1f3becf669, type: 3}
       propertyPath: m_Name
       value: BloodSplash3
@@ -7389,6 +7417,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BloodSplash
       objectReference: {fileID: 0}
+    - target: {fileID: 9040099688609963670, guid: 699ca577f3bedbd469a0249cb774d1f1, type: 3}
+      propertyPath: m_SortingOrder
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 699ca577f3bedbd469a0249cb774d1f1, type: 3}
 --- !u!4 &1380554055 stripped
@@ -7436,6 +7468,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1312946203}
     m_Modifications:
+    - target: {fileID: 5503998840272120484, guid: e4d629ea0d5542d459d764b5487d7883, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6008316699820323641, guid: e4d629ea0d5542d459d764b5487d7883, type: 3}
       propertyPath: m_RootOrder
       value: 27
@@ -10300,6 +10336,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1312946203}
     m_Modifications:
+    - target: {fileID: 5503998840272120484, guid: e4d629ea0d5542d459d764b5487d7883, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6008316699820323641, guid: e4d629ea0d5542d459d764b5487d7883, type: 3}
       propertyPath: m_RootOrder
       value: 26
@@ -38442,6 +38482,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1312946203}
     m_Modifications:
+    - target: {fileID: 5503998840272120484, guid: e4d629ea0d5542d459d764b5487d7883, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6008316699820323641, guid: e4d629ea0d5542d459d764b5487d7883, type: 3}
       propertyPath: m_RootOrder
       value: 23

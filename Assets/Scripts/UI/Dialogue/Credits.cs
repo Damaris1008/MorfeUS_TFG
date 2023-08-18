@@ -12,7 +12,7 @@ public class Credits : MonoBehaviour
             transform.Translate(Vector3.up * Time.deltaTime * speed);
         }
 
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.E)){
             GameManager.LeaveGame();
         }
     }

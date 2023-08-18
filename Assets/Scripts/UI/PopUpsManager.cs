@@ -125,12 +125,14 @@ public class PopUpsManager : MonoBehaviour
 
     public void OpenInventory(){
         inventory.SetActive(true);
+        pauseButton.SetActive(false);
         showInventoryButton.SetActive(false);
         GameManager.PauseGame();
     }
 
     public void CloseInventory(){
         inventory.SetActive(false);
+        pauseButton.SetActive(true);
         HideItemInfo();
         showInventoryButton.SetActive(true);
         GameManager.ResumeGame();
@@ -141,9 +143,8 @@ public class PopUpsManager : MonoBehaviour
     void OnGUI(){
         int scene = SceneManager.GetActiveScene().buildIndex;
         if(scene == 3 || scene == 4 || scene == 5 || scene == 6){
-            float msec = deltaTime * 1000.0f;
             float fps = 1.0f / deltaTime;
-            fpsCounter.GetComponent<Text>().text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
+            fpsCounter.GetComponent<Text>().text = string.Format("{0:0.} fps", fps);
         }
     }
 
@@ -203,11 +204,13 @@ public class PopUpsManager : MonoBehaviour
 
     public void OpenShop(){
         shopMenu.SetActive(true);
+        GameManager.PauseGame();
     }
 
     public void CloseShop(){
         shopController.ResetSelectedSlot();
         shopMenu.SetActive(false); 
+        GameManager.ResumeGame();
     }
 
     // COINS AND KEYS COUNTERS

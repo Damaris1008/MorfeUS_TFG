@@ -637,6 +637,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2123605069}
     m_Modifications:
+    - target: {fileID: 2133622969897174031, guid: abb3c94e582b89d4abf108e9df97b234, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4962300744548247733, guid: abb3c94e582b89d4abf108e9df97b234, type: 3}
       propertyPath: m_Name
       value: BloodSplash5 (1)
@@ -1027,6 +1031,10 @@ PrefabInstance:
     - target: {fileID: 431126648378573687, guid: 4c9a65dda7f7ad64da5f7a1f3becf669, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458112234401740945, guid: 4c9a65dda7f7ad64da5f7a1f3becf669, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8759703987486813515, guid: 4c9a65dda7f7ad64da5f7a1f3becf669, type: 3}
       propertyPath: m_Name
@@ -1871,6 +1879,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2123605069}
     m_Modifications:
+    - target: {fileID: 2133622969897174031, guid: abb3c94e582b89d4abf108e9df97b234, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4962300744548247733, guid: abb3c94e582b89d4abf108e9df97b234, type: 3}
       propertyPath: m_Name
       value: BloodSplash5
@@ -19391,31 +19403,11 @@ PrefabInstance:
       propertyPath: inventoryController
       value: 
       objectReference: {fileID: 369807251}
-    - target: {fileID: 1379077007, guid: 8026b222748c81641988639c93449e84, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 119.5092
-      objectReference: {fileID: 0}
-    - target: {fileID: 1379077007, guid: 8026b222748c81641988639c93449e84, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 119.5139
-      objectReference: {fileID: 0}
-    - target: {fileID: 1379077007, guid: 8026b222748c81641988639c93449e84, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -140
-      objectReference: {fileID: 0}
-    - target: {fileID: 1379077007, guid: 8026b222748c81641988639c93449e84, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 134.75696
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808674692, guid: 8026b222748c81641988639c93449e84, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -454
-      objectReference: {fileID: 0}
-    - target: {fileID: 1808674693, guid: 8026b222748c81641988639c93449e84, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 259933822917932417, guid: 8026b222748c81641988639c93449e84, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1254821394}
+    - target: {fileID: 1043784978186629896, guid: 8026b222748c81641988639c93449e84, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1254821394}
@@ -19531,10 +19523,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 369807251}
-    - target: {fileID: 2598524836612754313, guid: 8026b222748c81641988639c93449e84, type: 3}
-      propertyPath: backgroundMusicSource
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2598524836766553931, guid: 8026b222748c81641988639c93449e84, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
