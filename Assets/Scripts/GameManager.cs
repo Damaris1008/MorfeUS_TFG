@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static LevelLoader levelLoader;
-    private Image brightnessPanel;
-    public static bool inventorySaved;
-    public static bool playerSaved;
+    private static Image brightnessPanel;
+    private static GameObject backgroundMusicSource;
+    private static BackgroundMusic backgroundMusicScript;
 
     private void Awake(){
         levelLoader = GameObject.FindWithTag("LevelLoader").GetComponent<LevelLoader>();
@@ -21,9 +21,10 @@ public class GameManager : MonoBehaviour
         
         //Apply audio settings
         AudioListener.volume = PlayerPrefs.GetFloat("volumeLevel");
-        GameObject backgroundMusicSource = GameObject.FindWithTag("MusicSource");
+        backgroundMusicSource = GameObject.FindWithTag("MusicSource");
         if(backgroundMusicSource!=null){
             AudioSource backgroundMusic = backgroundMusicSource.GetComponent<AudioSource>();
+            backgroundMusicScript = backgroundMusicSource.GetComponent<BackgroundMusic>();
             if(PlayerPrefs.GetInt("backgroundMusic")==0){
                 backgroundMusic.mute = true;
             }else{
@@ -34,13 +35,13 @@ public class GameManager : MonoBehaviour
         //Apply graphics settings (brightness)
         float brightnessSliderValue = PlayerPrefs.GetFloat("Brightness", 1f);
         brightnessPanel.color = new Color(brightnessPanel.color.r, brightnessPanel.color.g, brightnessPanel.color.b, (100-brightnessSliderValue)*180/100/255);
-
-
     }
 
     public static void PlayNewGame()
     {
+        DeleteAllSavedGameObjects();
         SceneManager.LoadSceneAsync(2);
+        backgroundMusicScript.SetBackgroundMusic(2);
     }
 
     //Close game
@@ -52,6 +53,8 @@ public class GameManager : MonoBehaviour
     //Go back to main menu
     public static void LeaveGame()
     {
+        DeleteAllSavedGameObjects();
+        Destroy(backgroundMusicSource);
         SceneManager.LoadSceneAsync(0);
     }
 
@@ -66,21 +69,19 @@ public class GameManager : MonoBehaviour
     }
 
     public static void GameOver(){
-        SaveLoad.SeriouslyDeleteAllSaveFiles();
         SceneManager.LoadSceneAsync(1);
+        backgroundMusicScript.SetBackgroundMusic(1);        
     }
 
     public static void NextScene(){
-        int scene = SceneManager.GetActiveScene().buildIndex;
-        /*if(scene==3 || scene==4 || scene==5) //Only save on levels
-        {
-            Save();
-        }*/
+        levelLoader = GameObject.FindWithTag("LevelLoader").GetComponent<LevelLoader>();
         levelLoader.LoadNextLevel();
+
+        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+        backgroundMusicScript.SetBackgroundMusic(nextScene); 
     }
 
     public static void RefreshScripts(){
-
         InventoryController inventoryManager = GameObject.FindWithTag("InventoryManager").GetComponent<InventoryController>();
         inventoryManager.Start();
 
@@ -90,7 +91,24 @@ public class GameManager : MonoBehaviour
         player.GetComponent<Player>().Start();
     }
 
-    /*public static void Save(){
-        GameEvents.OnSaveInitiated();
-    }*/
+    public static void DeleteAllSavedGameObjects(){
+        GameObject canvas = GameObject.FindWithTag("Canvas");
+        GameObject scripts = GameObject.FindWithTag("Scripts");
+        GameObject player = GameObject.FindWithTag("Player");
+        GameObject arrowExplosion = GameObject.FindWithTag("Punch");
+        if(canvas!=null){
+            Destroy(canvas);
+        }
+        if(scripts!=null){
+            Destroy(scripts);
+        }
+        if(player!=null){
+            Destroy(player);
+        }
+        if(arrowExplosion != null){
+            Destroy(arrowExplosion);
+        }
+    }
+
+
 }

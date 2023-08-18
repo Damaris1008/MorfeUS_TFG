@@ -26,6 +26,11 @@ TagManager:
   - BossStartPoint
   - BrightnessPanel
   - Camera
+  - BossDialogueManager
+  - HackedPanel
+  - Canvas
+  - Scripts
+  - MusicSourceInstance
   layers:
   - Default
   - TransparentFX

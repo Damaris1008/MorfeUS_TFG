@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PopUpsManager : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class PopUpsManager : MonoBehaviour
     [SerializeField] Text deathMenuLives = null;
 
     [Header("Show/Hide Hacked Screen")]
-    [SerializeField] GameObject hackedScreen = null;
+    [SerializeField] GameObject hackedPanel = null;
 
     [Header("FPS Counter")]
     float deltaTime = 0.0f;
@@ -138,9 +139,12 @@ public class PopUpsManager : MonoBehaviour
     // FPS COUNTER
 
     void OnGUI(){
-        float msec = deltaTime * 1000.0f;
-        float fps = 1.0f / deltaTime;
-        fpsCounter.GetComponent<Text>().text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
+        int scene = SceneManager.GetActiveScene().buildIndex;
+        if(scene == 3 || scene == 4 || scene == 5 || scene == 6){
+            float msec = deltaTime * 1000.0f;
+            float fps = 1.0f / deltaTime;
+            fpsCounter.GetComponent<Text>().text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
+        }
     }
 
     // ITEM INFO
@@ -178,9 +182,21 @@ public class PopUpsManager : MonoBehaviour
 
     // HACKED SCREEN
     public IEnumerator HackScreen(){
-        hackedScreen.SetActive(true);
+        //Activate hacked panel
+        for(int i = 0; i < hackedPanel.transform.childCount; ++i) {
+            hackedPanel.transform.GetChild(i).gameObject.SetActive(true);
+        } 
         yield return new WaitForSeconds(3f);
-        hackedScreen.SetActive(false);
+        //Dectivate hacked panel
+        for(int i = 0; i < hackedPanel.transform.childCount; ++i) {
+            hackedPanel.transform.GetChild(i).gameObject.SetActive(false);
+        } 
+    }
+
+    public void CloseHackedPanel(){
+        for(int i = 0; i < hackedPanel.transform.childCount; ++i) {
+            hackedPanel.transform.GetChild(i).gameObject.SetActive(false);
+        }  
     }
 
     // SHOP MENU

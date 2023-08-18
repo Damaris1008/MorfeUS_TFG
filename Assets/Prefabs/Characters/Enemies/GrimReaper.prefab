@@ -394,13 +394,15 @@ MonoBehaviour:
   waypoints: []
   loop: 1
   agent: {fileID: 8781827060782706244}
-  followRange: 3
+  followRange: 4
   damageAmount: 6
   timeToAttack: 3
   attackTimer: 0
   bone: {fileID: 0}
   healthBar: {fileID: 8781827061016915655}
   maxHealth: 20
+  timeInvincible: 0.2
+  isInvincible: 0
   dropPercentage: 40
   popUpAnimator: {fileID: 8781827062165629142}
   amountText: {fileID: 8781827061822368769}
@@ -408,6 +410,7 @@ MonoBehaviour:
   keyImg: {fileID: 8781827061697008685}
   timeToColor: 0.25
   hittedColor: {r: 1, g: 0.30196077, b: 0.30196077, a: 1}
+  hackedPanel: {fileID: 0}
 --- !u!195 &8781827060782706244
 NavMeshAgent:
   m_ObjectHideFlags: 0

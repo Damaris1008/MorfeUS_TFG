@@ -6,9 +6,8 @@ public class Boss : Enemy
 {
     [Header("Boss")]
     public GameObject bed;
-    public GameObject hackedPanel;
     public BossPhases bossPhasesScript;
-    public BossDialogueManager dialogueManager;
+    private BossDialogueManager dialogueManager;
 
     void FixedUpdate()
     {
@@ -126,11 +125,15 @@ public class Boss : Enemy
         agent.enabled = false;
         spriteRenderer.sortingOrder = 3;
 
-        hackedPanel.SetActive(false);
+        //Deactivate hacked panel
+        for(int i = 0; i < hackedPanel.transform.childCount; ++i) {
+            hackedPanel.transform.GetChild(i).gameObject.SetActive(false);
+        } 
+        
         GameObject healthBar = this.gameObject.transform.GetChild(0).gameObject;
         healthBar.SetActive(false);
 
-        dialogueManager.ShowDialogue(3);
+        bossPhasesScript.dialogueManager.ShowDialogue(3);
 
         animator.SetTrigger("Dead");
         audioSource.PlayOneShot(enemyDeathSound);

@@ -72,6 +72,9 @@ public class Enemy : MonoBehaviour
     protected SpriteRenderer spriteRenderer;
     Color defaultColor;
 
+    [Header("Boss")]
+    public GameObject hackedPanel;
+
     void Awake(){
         rigidbody2d = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
@@ -89,7 +92,10 @@ public class Enemy : MonoBehaviour
     }
 
     void Start()
-    {
+    {        
+        //Boss hacked panel
+        hackedPanel = GameObject.FindWithTag("HackedPanel");
+        
         GameObject playerGo = GameObject.FindWithTag("Player");
         player = playerGo.GetComponent<Player>();
         playerTransform = playerGo.transform;

@@ -80,10 +80,6 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         isDead = false;
         canMove = true;
-
-        //Save and load
-        /*GameEvents.SaveInitiated += Save;
-        Load();*/
     }
 
     public void Start()
@@ -102,8 +98,9 @@ public class Player : MonoBehaviour
         }
 
         if(SceneManager.GetActiveScene().buildIndex != 3){
-
             animator.Play("Idle");
+        }else{
+            animator.Play("Awaking");
         }
 
         popUpsManager.RefreshCoinsCounters(coins);
@@ -114,6 +111,14 @@ public class Player : MonoBehaviour
     {
         if(!canMove){
             return;
+        }
+
+        // Run
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 3.25f + speedIncrease;
+        }else{
+            speed = 2.5f + speedIncrease;
         }
 
         if (isInvincible)
@@ -157,13 +162,7 @@ public class Player : MonoBehaviour
 
         }
 
-        // Run
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            speed = 2.5f + speedIncrease;
-        }else{
-            speed = 1.5f + speedIncrease;
-        }
+
 
         // Movement
         horizontal = Input.GetAxis("Horizontal");
@@ -251,7 +250,10 @@ public class Player : MonoBehaviour
         //If its boss level
         if(SceneManager.GetActiveScene().buildIndex == 6){
             GameObject hackedPanel = GameObject.Find("Boss").GetComponent<Boss>().hackedPanel;
-            hackedPanel.SetActive(false);
+            //Deactivate hacked panel
+            for(int i = 0; i < hackedPanel.transform.childCount; ++i) {
+                hackedPanel.transform.GetChild(i).gameObject.SetActive(false);
+            } 
         }
         audioSource.PlayOneShot(deathSound);
         StartCoroutine("WaitForDeathMenu");
@@ -321,7 +323,7 @@ public class Player : MonoBehaviour
 
         audioSource.PlayOneShot(arrowSound);
         LaunchObject launch = arrow.GetComponent<LaunchObject>();
-        launch.Launch(lookDirection, 250);
+        launch.Launch(lookDirection, 350);
         
 
     }
@@ -361,50 +363,9 @@ public class Player : MonoBehaviour
     }
 
     public void WinPowerUp(){
-        speedIncrease = 1.25f;
+        speedIncrease = 0.75f;
         damageMultiplier = 1.5f;
         popUpsManager.ShowPowerUpInfo(speedIncrease, damageMultiplier);
     }
-
-    /*public List<int> ToDataList1(){ 
-        List<int> dataList = new List<int>();
-        dataList.Add(keys);
-        dataList.Add(coins);
-        dataList.Add(maxHealth);
-        dataList.Add(currentHealth);
-        return dataList;
-    }
-
-    public List<float> ToDataList2(){ 
-        List<float> dataList = new List<float>();
-        dataList.Add(speedIncrease);
-        dataList.Add(damageMultiplier);
-        return dataList;
-    }
-
-    public void FillWithDataList(List<int> dataList1, List<float> dataList2){
-        keys = dataList1[0];
-        coins = dataList1[1];
-        maxHealth = dataList1[2];
-        currentHealth = dataList1[3];
-        speedIncrease = dataList2[0];
-        damageMultiplier = dataList2[1];
-    }
-
-    void Save(){
-        List<int> dataList1 = ToDataList1();
-        List<float> dataList2 = ToDataList2();
-        SaveLoad.Save<List<int>>(dataList1, "PlayerStatus_part1");
-        SaveLoad.Save<List<float>>(dataList2, "PlayerStatus_part2");
-        GameManager.playerSaved = true;
-    }
-
-    void Load(){
-        if(SaveLoad.SaveExists("PlayerStatus_part1") && SaveLoad.SaveExists("PlayerStatus_part2")){
-            List<int> dataList1 = SaveLoad.Load<List<int>>("PlayerStatus_part1");
-            List<float> dataList2 = SaveLoad.Load<List<float>>("PlayerStatus_part2");
-            FillWithDataList(dataList1, dataList2);
-        }
-    }*/
 
 }

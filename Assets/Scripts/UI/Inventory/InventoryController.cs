@@ -51,10 +51,6 @@ public class InventoryController : MonoBehaviour
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         ChangeSelectedSlot(0);
         toolbarNumOfSlots = toolbar.transform.childCount;
-
-        //Save and load
-        /*GameEvents.SaveInitiated += Save;
-        Load();*/
     }
 
     void Update()
@@ -73,13 +69,34 @@ public class InventoryController : MonoBehaviour
         }
         
 
-        if(Input.inputString != null){
+        /*if(Input.inputString != null){
             
             bool isNumber = int.TryParse(Input.inputString, out int number);
             if(isNumber && number > 0 && number < 10){
                 ChangeSelectedSlot(number - 1);
             }
-        } 
+        } */
+        
+        if(Input.GetKeyDown(KeyCode.Alpha1)){
+            ChangeSelectedSlot(0);
+        }else if(Input.GetKeyDown(KeyCode.Alpha2)){
+            ChangeSelectedSlot(1);
+        }else if(Input.GetKeyDown(KeyCode.Alpha3)){
+            ChangeSelectedSlot(2);
+        }else if(Input.GetKeyDown(KeyCode.Alpha4)){
+            ChangeSelectedSlot(3);
+        }else if(Input.GetKeyDown(KeyCode.Alpha5)){
+            ChangeSelectedSlot(4);
+        }else if(Input.GetKeyDown(KeyCode.Alpha6)){
+            ChangeSelectedSlot(5);
+        }else if(Input.GetKeyDown(KeyCode.Alpha7)){
+            ChangeSelectedSlot(6);
+        }else if(Input.GetKeyDown(KeyCode.Alpha8)){
+            ChangeSelectedSlot(7);
+        }else if(Input.GetKeyDown(KeyCode.Alpha9)){
+            ChangeSelectedSlot(8);
+        }
+
 
         if(Input.GetKeyDown(KeyCode.R)){
             UseSelectedItem();
@@ -165,7 +182,6 @@ public class InventoryController : MonoBehaviour
     }
 
     public Item UseSelectedItem(){
-        //Aqui, sin embargo, no falla
         InventorySlot slot = inventorySlots[selectedSlot];
         InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
         if(itemInSlot != null && Time.timeScale == 1.0f){
@@ -188,59 +204,5 @@ public class InventoryController : MonoBehaviour
             return null;
         }
     }
-
-    public Item FindItemById(int itemId){
-        Item item = itemsList[0];
-        for(int i=0; i<itemsList.Length; i++){
-            if(itemsList[i].id == itemId){
-                item = itemsList[i];
-            }
-        }
-        return item;
-    }
-
-    /*public List<Tuple<int,int>> ToDataList(){ //First int of tuple: itemId, Second int of tuple: itemAmount
-        List<Tuple<int,int>> dataList = new List<Tuple<int,int>>();
-        for(int i=0; i<inventorySlots.Length;i++){
-
-            Debug.Log("TO DATA LIST: "+inventorySlots[i].gameObject.name);
-
-            //EL ERROR DA AQUI, en la primera iteracion del bucle:
-            InventorySlot slot = inventorySlots[i];
-            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            if(itemInSlot!=null){
-                dataList.Add(Tuple.Create(itemInSlot.item.id, itemInSlot.count));
-            }else{
-                dataList.Add(Tuple.Create(-1, -1));
-            }
-        }
-        return dataList;
-    }
-
-    public void FillWithDataList(List<Tuple<int,int>> dataList){
-        for(int i=0; i<inventorySlots.Length;i++){
-            Tuple<int,int> tuple = dataList[i];
-            int itemId = tuple.Item1;
-            int itemAmount = tuple.Item2;
-            
-            if(itemAmount>0){
-                Item item = FindItemById(itemId);
-                SpawnAmountOfItemInSlot(item, i, itemAmount);
-            }
-        }
-    }
-
-    void Save(){
-        List<Tuple<int,int>> dataList = ToDataList();
-        SaveLoad.Save<List<Tuple<int,int>>>(dataList, "Inventory");
-        GameManager.inventorySaved = true;
-    }
-
-    void Load(){
-        if(SaveLoad.SaveExists("Inventory")){
-            List<Tuple<int,int>> dataList = SaveLoad.Load<List<Tuple<int,int>>>("Inventory");
-            FillWithDataList(dataList);
-        }
-    }*/
 
 }

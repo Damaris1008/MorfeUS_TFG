@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
 
     private Animator transition;
-    public float transitionTime = 2f;
+    public float transitionTime = 1f;
     private Player player;
     private bool levelSaved;
 
@@ -19,19 +20,16 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    private bool AreDataSaved()
-    {
-        return GameManager.inventorySaved && GameManager.playerSaved;
+    public void LoadTheLevel(int levelIndex){
+        StartCoroutine(LoadLevel(levelIndex));
     }
 
-    private bool IsNewLevelLoaded(int levelIndex)
+    public bool IsNewLevelLoaded(int levelIndex)
     {
         return (SceneManager.GetActiveScene().buildIndex == levelIndex);
     }
 
     IEnumerator LoadLevel(int levelIndex){
-        //yield return new WaitUntil(AreDataSaved);
-        
         transition.SetTrigger("StartCrossfade");
         yield return new WaitForSeconds(transitionTime);
         transition.SetTrigger("EndCrossfade");
@@ -39,13 +37,17 @@ public class LevelLoader : MonoBehaviour
 
         //Refresh scripts
         yield return new WaitUntil(() => IsNewLevelLoaded(levelIndex));
-        GameManager.RefreshScripts();
+        if(levelIndex >= 3 && levelIndex <= 6){
+            GameManager.RefreshScripts();
+        }else{
+            GameManager.DeleteAllSavedGameObjects();
+            SetBrightnessAlpha(levelIndex);
+        }    
+    }
 
-        /*int scene = SceneManager.GetActiveScene().buildIndex;
-        if(scene == 3 || scene == 4 || scene == 5 || scene == 6){
-            player = GameObject.FindWithTag("Player").GetComponent<Player>();
-            player.canMove = true;
-        }*/
-    
+    public void SetBrightnessAlpha(int sceneIndex){
+        Image brightnessPanel = GameObject.FindWithTag("BrightnessPanel").GetComponent<Image>();
+        float brightnessSliderValue = PlayerPrefs.GetFloat("Brightness", 1f);
+        brightnessPanel.color = new Color(brightnessPanel.color.r, brightnessPanel.color.g, brightnessPanel.color.b, (100-brightnessSliderValue)*180/100/255);
     }
 }

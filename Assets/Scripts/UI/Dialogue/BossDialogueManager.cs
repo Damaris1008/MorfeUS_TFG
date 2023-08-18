@@ -10,19 +10,14 @@ public class BossDialogueManager : IntroductionDialogueManager
     public string[] interventions = new string[4];
 
     bool sceneStarting;
-    GameObject levelLoader;
+    public GameObject levelLoader;
 
-    void Awake(){
+    public void Start(){
+        levelLoader = GameObject.FindWithTag("LevelLoader");
         if(SceneManager.GetActiveScene().buildIndex == 6){
             continueButton.onClick.AddListener(CloseDialogue);
             audioSource = GetComponent<AudioSource>();
-            levelLoader = GameObject.FindWithTag("LevelLoader");
             textOnScreen.text = interventions[0];
-        }
-    }
-
-    public void Start(){
-        if(SceneManager.GetActiveScene().buildIndex == 6){
             sceneStarting = true;
         }
     }

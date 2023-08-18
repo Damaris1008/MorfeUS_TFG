@@ -623,7 +623,7 @@ MonoBehaviour:
   attackTimer: 0
   bone: {fileID: 0}
   healthBar: {fileID: 8608099864228314717}
-  maxHealth: 100
+  maxHealth: 300
   timeInvincible: 0.2
   isInvincible: 0
   dropPercentage: 0
@@ -633,10 +633,9 @@ MonoBehaviour:
   keyImg: {fileID: 0}
   timeToColor: 0.25
   hittedColor: {r: 1, g: 0.30196077, b: 0.30196077, a: 1}
-  bed: {fileID: 0}
   hackedPanel: {fileID: 0}
+  bed: {fileID: 0}
   bossPhasesScript: {fileID: 7089873555772764735}
-  dialogueManager: {fileID: 0}
 --- !u!114 &7089873555772764735
 MonoBehaviour:
   m_ObjectHideFlags: 0

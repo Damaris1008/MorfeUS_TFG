@@ -47,6 +47,7 @@ public class BossPhases : MonoBehaviour
 
 
     void Start(){
+        dialogueManager = GameObject.FindWithTag("BossDialogueManager").GetComponent<BossDialogueManager>();
         radius = 5f;
         boss = GameObject.Find("Boss");
         bossScript = boss.GetComponent<Boss>();
@@ -167,6 +168,7 @@ public class BossPhases : MonoBehaviour
                 rateOfSpiralProjectiles = 0.3f;
                 rateOfRadialProjectiles = 0.8f;
                 numOfRadialProjectiles = 10;
+                StartCoroutine("WaitForDialogueToStart");
                 break;
             case 2:
                 phase=2;
@@ -220,11 +222,10 @@ public class BossPhases : MonoBehaviour
     }
 
     public void RestartPhases(){
-        StartPhase(1);
         CancelInvoke();
+        StartPhase(1);
         isLaunching=false;
         attackTimer = Random.Range(1,6);
-        StartCoroutine("WaitForDialogueToStart");
     }
 
     IEnumerator WaitForDialogueToStart(){

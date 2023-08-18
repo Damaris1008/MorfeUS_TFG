@@ -8,7 +8,6 @@ public class MainMenuController : MonoBehaviour
 {
 
     [Header("Audio Settings")]
-    [SerializeField] public AudioSource backgroundMusicSource = null;
     [SerializeField] private Text volumeLevelText = null;
     [SerializeField] private Slider volumeSlider = null;
     [SerializeField] private GameObject muteMusicButton = null;
@@ -27,10 +26,6 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private Image brightnessPanel;
     [SerializeField] private Image brightnessPanelTest;
     public float brightnessSliderValue;
-
-    public void Start(){
-        SaveLoad.SeriouslyDeleteAllSaveFiles();
-    }
 
     public void SetVolume(float volume)
     {
@@ -63,11 +58,13 @@ public class MainMenuController : MonoBehaviour
         PlayerPrefs.SetFloat("volumeLevel", _volumeLevel);
         AudioListener.volume = _volumeLevel;
         PlayerPrefs.SetInt("backgroundMusic", (_backgroundMusic ? 1:0));
+        GameObject backgroundMusicSource = GameObject.FindWithTag("MusicSource");
         if(backgroundMusicSource!=null){
+            AudioSource audioSource = backgroundMusicSource.GetComponent<AudioSource>();
             if(PlayerPrefs.GetInt("backgroundMusic") == 0){
-                backgroundMusicSource.mute = true;
+                audioSource.mute = true;
             }else{
-                backgroundMusicSource.mute = false;
+                audioSource.mute = false;
             }
         }
     }
