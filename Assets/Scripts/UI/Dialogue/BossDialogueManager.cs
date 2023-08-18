@@ -36,10 +36,11 @@ public class BossDialogueManager : IntroductionDialogueManager
     }
 
     private void CloseDialogue(){
-        audioSource.PlayOneShot(continueSound);
-        transform.GetChild(0).gameObject.SetActive(false);
-        //Resume game
-        GameManager.ResumeGame();
+        if(transform.GetChild(0).gameObject.activeSelf){
+            audioSource.PlayOneShot(continueSound);
+            transform.GetChild(0).gameObject.SetActive(false);
+            GameManager.ResumeGame();
+        }
     }
 
     public void ShowDialogue(int intervention){

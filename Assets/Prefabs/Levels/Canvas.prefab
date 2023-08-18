@@ -24058,6 +24058,14 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6114662428090718125, guid: c8baf31dce6719542b66b92005b3d015, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114662428090718125, guid: c8baf31dce6719542b66b92005b3d015, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8baf31dce6719542b66b92005b3d015, type: 3}
 --- !u!1 &2598524837337543888 stripped
@@ -24077,6 +24085,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac6c0e09568ae14180ebaa157bd986f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 233835944}
+  dialogueClick: {fileID: 8300000, guid: 950cf9f2a1706584697f1b9d559a180a, type: 3}
 --- !u!224 &8865454765275863548 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6114662428090718121, guid: c8baf31dce6719542b66b92005b3d015, type: 3}
