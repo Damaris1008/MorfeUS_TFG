@@ -15,9 +15,9 @@ MonoBehaviour:
   stackable: 1
   maxStack: 12
   image: {fileID: 21300000, guid: 393f105f66c097f4a89dabb7e69abb04, type: 3}
-  type: 0
+  id: 5
+  type: 1
   name: BOLITAS DE QUESO
-  description: 
   stats: 6
   cost: 3
   sound: {fileID: 8300000, guid: 64c95f3ee00e0254aa1ae8b829e0db1f, type: 3}

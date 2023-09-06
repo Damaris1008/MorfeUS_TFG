@@ -6,16 +6,19 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
 
+    [Header("Movement")]
+    public bool canMove;
     Rigidbody2D rigidbody2d;
+    Animator animator;
     float horizontal; 
     float vertical;
-
-    Animator animator;
+    public float speed;
     Vector2 lookDirection = new Vector2(0,-1);
+    public Sprite idleUp;
 
-    [Header("Speed")]
-    public float speed = 1.80f;
-    
+    [Header("Fight")]
+    public float punchDamageAttack;
+
     [Header("Health")]
     public HealthHeartsManager healthHeartsManager;
     public int maxHealth = 24;
@@ -23,7 +26,6 @@ public class Player : MonoBehaviour
     public int health { get { return currentHealth; }}
     bool isHitted = false;
     bool isHealing = false;
-    bool healthIsFull;
     bool isDead = false;
 
     [Header("Resources")]
@@ -39,12 +41,15 @@ public class Player : MonoBehaviour
 
     [Header("Invincibility")]
     public float timeInvincible = 0.3f;
-    bool isInvincible;
+    public bool isInvincible;
     float invincibleTimer;
 
     [Header("Launch")]
-    //public GameObject punchHand;
     public GameObject arrow;
+
+    [Header("Power-Up")]
+    public float speedIncrease;
+    public float damageMultiplier;
 
     [Header("Sounds")]
     AudioSource audioSource;
@@ -53,38 +58,70 @@ public class Player : MonoBehaviour
     public AudioClip arrowSound;
 
     [Header("Scripts")]
-    public PopUpsManager popUpsManager;
-    public InventoryController inventoryManager;
+    private PopUpsManager popUpsManager;
+    private InventoryController inventoryManager;
 
     [Header("Weapons")]
     public bool isUsingSword;
     public bool isUsingBow;
 
     void Awake(){
+        //Power-up initialization
+        speedIncrease = 0f;
+        damageMultiplier = 1f;
+
         coins = 3;
-        keys = 1;
+        keys = 2;
         currentHealth = maxHealth;
-        healthIsFull = true;
         rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         defaultColor = spriteRenderer.color;
         animator = GetComponent<Animator>();
         isDead = false;
+        canMove = true;
     }
 
-    void Start()
+    public void Start()
     {
-        if(SceneManager.GetActiveScene().buildIndex != 2){
-            animator.Play("Idle");
+
+        // Scripts
+        popUpsManager = GameObject.FindWithTag("PopUpsManager").GetComponent<PopUpsManager>();
+        inventoryManager = GameObject.FindWithTag("InventoryManager").GetComponent<InventoryController>();
+
+        if(SceneManager.GetActiveScene().buildIndex == 4){
+            animator.SetFloat("Look X", 0f);
+            animator.SetFloat("Look Y", 1f);
+        }else{
+            animator.SetFloat("Look X", 0f);
+            animator.SetFloat("Look Y", -1f);
         }
+
+        if(SceneManager.GetActiveScene().buildIndex != 3){
+            animator.Play("Idle");
+        }else{
+            animator.Play("Awaking");
+            StartCoroutine(popUpsManager.ShowGameGoal());
+        }
+
         popUpsManager.RefreshCoinsCounters(coins);
         popUpsManager.RefreshKeysCounters(keys);
-
     }
 
     void Update()
     {
+        if(!canMove){
+            return;
+        }
+
+        // Run
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 3.25f + speedIncrease;
+        }else{
+            speed = 2.5f + speedIncrease;
+        }
+
         if (isInvincible)
         {
             invincibleTimer -= Time.deltaTime;
@@ -112,6 +149,7 @@ public class Player : MonoBehaviour
             animator.SetBool("Bow", false);  
         }
 
+        // Attack
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if(isUsingSword){
@@ -126,6 +164,8 @@ public class Player : MonoBehaviour
         }
 
 
+
+        // Movement
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
@@ -136,23 +176,12 @@ public class Player : MonoBehaviour
         {
             lookDirection.Set(move.x, move.y);
             lookDirection.Normalize();
-        }
-        //If the main character is not moving, it will face the cursor
-        else{
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 difference = mousePosition - transform.position;
-            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-            if(rotationZ >= 45 && rotationZ < 135){             lookDirection.Set(0, 1);
-            }else if(rotationZ >= 135  || rotationZ < -135){    lookDirection.Set(-1, 0);
-            }else if(rotationZ >= -135 && rotationZ < -45){     lookDirection.Set(0, -1);
-            }else if(rotationZ >= -45 || rotationZ < 45){       lookDirection.Set(1, 0);
-            }             
+            //We are sending the variables to the animator
+            animator.SetFloat("Look X", lookDirection.x);
+            animator.SetFloat("Look Y", lookDirection.y);
         }
                 
-        //We are sending the variables to the animator
-        animator.SetFloat("Look X", lookDirection.x);
-        animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", move.magnitude);
 
         if(animator.GetCurrentAnimatorStateInfo(0).IsName("Moving") || 
@@ -176,7 +205,6 @@ public class Player : MonoBehaviour
         isInvincible = true;
         isHitted = true;
         invincibleTimer = timeInvincible;
-        healthIsFull = false;
 
         //This assures that the currentHealth will never be less than 0 or greater than maxHealth
         currentHealth = Mathf.Clamp(currentHealth - amount, 0, maxHealth);
@@ -193,15 +221,12 @@ public class Player : MonoBehaviour
     }
 
     public void Heal(int amount){ //Replace parameter with (Item item) and make the audio sound from here
-        if(healthIsFull || isDead){
+        if(currentHealth == maxHealth || isDead){
             return;
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         healthHeartsManager.DrawHearts();
         isHealing = true;
-        if(currentHealth == maxHealth){
-            healthIsFull = true;
-        }
         StartCoroutine("SwitchColor");
     }
 
@@ -222,6 +247,15 @@ public class Player : MonoBehaviour
     public void Die(){
         isDead = true;
         animator.SetTrigger("Dead");
+        gameObject.layer = LayerMask.NameToLayer("DeadPlayer");
+        //If its boss level
+        if(SceneManager.GetActiveScene().buildIndex == 6){
+            GameObject hackedPanel = GameObject.Find("Boss").GetComponent<Boss>().hackedPanel;
+            //Deactivate hacked panel
+            for(int i = 0; i < hackedPanel.transform.childCount; ++i) {
+                hackedPanel.transform.GetChild(i).gameObject.SetActive(false);
+            } 
+        }
         audioSource.PlayOneShot(deathSound);
         StartCoroutine("WaitForDeathMenu");
     }
@@ -237,43 +271,42 @@ public class Player : MonoBehaviour
 
     public void Revive(){
         if(isDead){
+            Start();
+            gameObject.layer = LayerMask.NameToLayer("Player");
             popUpsManager.CloseDeathMenu();
             isDead = false;
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             GameObject startPoint = GameObject.FindWithTag("StartPoint");
             rigidbody2d.position = startPoint.transform.position;
-            animator.Play("Awaking");
             maxHealth = maxHealth - 4;
             currentHealth = maxHealth;
-            healthIsFull = true;
             healthHeartsManager.DrawHearts();
+
+            if(SceneManager.GetActiveScene().name == "BossLevel"){
+                //All enemies: revive and make inactive
+                Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>(true);
+                for(int i=0; i<enemies.Length;i++){
+                    enemies[i].Revive();
+                    enemies[i].gameObject.SetActive(false);
+                }
+                //Boss: revive
+                Boss boss = GameObject.FindObjectOfType<Boss>(true);
+                boss.Revive();
+            }else{
+                //All enemies: revive
+                Enemy[] enemies = GameObject.FindObjectsOfType<Enemy>(true);
+                for(int i=0; i<enemies.Length;i++){
+                    enemies[i].Revive();
+                }
+            }
+
         }
     }
-
-/*
-    public void Punch(){
-
-        float angle = Vector2.SignedAngle(Vector2.up, lookDirection);
-        punchHand.transform.position = rigidbody2d.position + Vector2.up * (-0.2f);
-        punchHand.transform.rotation = Quaternion.Euler(x:0, y:0, z:angle);
-        if(angle < 0 && angle > -180){
-            punchHand.GetComponent<SpriteRenderer>().flipX = true;
-        }
-
-        LaunchObject punch = punchHand.GetComponent<LaunchObject>();
-        punch.Launch(lookDirection, 150);
-
-        animator.SetTrigger("Punch");
-
-    }
-*/
 
     IEnumerator LaunchArrow(){
         
         yield return new WaitForSeconds(0.6f);
 
         float angle = Vector2.SignedAngle(Vector2.up, lookDirection);
-        Debug.Log(angle);
         arrow.transform.position = rigidbody2d.position + Vector2.up * (0.1f);
         arrow.transform.rotation = Quaternion.Euler(x:0, y:0, z:angle);
         //If the player is looking to the right
@@ -291,13 +324,18 @@ public class Player : MonoBehaviour
 
         audioSource.PlayOneShot(arrowSound);
         LaunchObject launch = arrow.GetComponent<LaunchObject>();
-        launch.Launch(lookDirection, 250);
+        launch.Launch(lookDirection, 350);
         
 
     }
 
     public void SpendCoins(int amount){
-        coins -= amount;
+        int result = coins - amount;
+        if(result >= 0){
+            coins = result;
+        }else{
+            coins = 0;
+        }
         popUpsManager.RefreshCoinsCounters(coins);
     }
 
@@ -307,7 +345,12 @@ public class Player : MonoBehaviour
     }
 
     public void SpendKeys(int amount){
-        keys -= amount;
+        int result = keys - amount;
+        if(result >= 0){
+            keys = result;
+        }else{
+            keys = 0;
+        }
         popUpsManager.RefreshKeysCounters(keys);
     }
 
@@ -318,6 +361,12 @@ public class Player : MonoBehaviour
 
     public void WinItem(Item item){
         inventoryManager.AddItem(item);
+    }
+
+    public void WinPowerUp(){
+        speedIncrease = 0.75f;
+        damageMultiplier = 1.5f;
+        popUpsManager.ShowPowerUpInfo(speedIncrease, damageMultiplier);
     }
 
 }

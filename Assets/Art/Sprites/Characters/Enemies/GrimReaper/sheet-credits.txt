@@ -1,0 +1,41 @@
+Authors: bluecarrot16, Johannes Sj?lund (wulax), Stephen Challener (Redshrike), Johannes Sjölund (wulax), David Conway Jr. (JaidynReiman), Thane Brimhall (pennomi), laetissima, Nila122
+
+- body/bodies/skeleton/universal/skeleton.png: by bluecarrot16, Johannes Sj?lund (wulax), Stephen Challener (Redshrike). License(s): CC-BY-SA 3.0, GPL 3.0. 
+    - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
+    - https://opengameart.org/content/lpc-medieval-fantasy-character-sprites
+    - https://opengameart.org/content/lpc-skeleton
+    - https://opengameart.org/content/lpc-character-bases
+
+- head/heads/skeleton/universal/skeleton.png: by bluecarrot16, Johannes Sj?lund (wulax), Stephen Challener (Redshrike). License(s): OGA-BY 3.0, CC-BY-SA 3.0, GPL 3.0. 
+    - https://opengameart.org/content/liberated-pixel-cup-lpc-base-assets-sprites-map-tiles
+    - https://opengameart.org/content/lpc-medieval-fantasy-character-sprites
+    - https://opengameart.org/content/lpc-skeleton
+    - https://opengameart.org/content/lpc-character-bases
+
+- hat/cloth/male/hood_white.png: by Johannes Sjölund (wulax). License(s): CC-BY-SA 3.0, GPL 3.0. ? Recolor
+    - https://opengameart.org/content/lpc-medieval-fantasy-character-sprites
+
+- torso/clothes/longsleeve/male/gray.png: by David Conway Jr. (JaidynReiman), Johannes Sjölund (wulax). License(s): CC-BY-SA 3.0, GPL 3.0. 
+    - https://opengameart.org/content/lpc-medieval-fantasy-character-sprites
+    - http://opengameart.org/content/lpc-clothing-updates
+
+- torso/clothes/vest/male/slate.png: by bluecarrot16, Thane Brimhall (pennomi), laetissima. License(s): CC-BY-SA 3.0, GPL 3.0. 
+    - https://opengameart.org/content/lpc-2-characters
+    - https://opengameart.org/content/lpc-gentleman
+    - https://opengameart.org/content/lpc-pirates
+
+- legs/pantaloons/male/slate.png: by Nila122, Johannes Sjölund (wulax), Stephen Challener (Redshrike). License(s): CC-BY-SA 3.0, GPL 2.0, GPL 3.0. 
+    - https://opengameart.org/content/lpc-pirates
+    - https://opengameart.org/content/more-lpc-clothes-and-hair
+
+- weapon/polearm/scythe/scythe.png: by bluecarrot16. License(s): CC-BY-SA 3.0. 
+    - https://opengameart.org/content/lpc-extended-weapon-animations
+
+- weapon/polearm/scythe/universal_behind/scythe.png: by bluecarrot16. License(s): CC-BY-SA 3.0. 
+    - https://opengameart.org/content/lpc-extended-weapon-animations
+
+- weapon/polearm/scythe/attack_slash/behind/scythe.png: by bluecarrot16. License(s): CC-BY-SA 3.0. 
+    - https://opengameart.org/content/lpc-extended-weapon-animations
+
+- weapon/polearm/scythe/attack_slash/scythe.png: by bluecarrot16. License(s): CC-BY-SA 3.0. 
+    - https://opengameart.org/content/lpc-extended-weapon-animations

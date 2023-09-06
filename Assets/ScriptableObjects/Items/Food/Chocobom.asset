@@ -15,9 +15,9 @@ MonoBehaviour:
   stackable: 1
   maxStack: 12
   image: {fileID: 21300000, guid: 76dbe8ebc35cfac498d17351332929e5, type: 3}
+  id: 6
   type: 1
   name: CHOCOBOM
-  description: 
   stats: 12
   cost: 6
   sound: {fileID: 8300000, guid: 64c95f3ee00e0254aa1ae8b829e0db1f, type: 3}

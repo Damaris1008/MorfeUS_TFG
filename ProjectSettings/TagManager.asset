@@ -16,6 +16,21 @@ TagManager:
   - VendingMachine
   - Door
   - Chest
+  - EnemyHitBox
+  - EnemyProjectile
+  - LevelLoader
+  - EvolutionedVirus
+  - Virus
+  - EnemiesSet
+  - DeadRandomPerson
+  - BossStartPoint
+  - BrightnessPanel
+  - Camera
+  - BossDialogueManager
+  - HackedPanel
+  - Canvas
+  - Scripts
+  - MusicSourceInstance
   layers:
   - Default
   - TransparentFX
@@ -30,8 +45,8 @@ TagManager:
   - DeadEnemies
   - PlayerAttackHitbox
   - Walls
-  - 
-  - 
+  - EnemyProjectile
+  - DeadPlayer
   - 
   - 
   - 

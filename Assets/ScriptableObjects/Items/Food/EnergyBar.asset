@@ -15,9 +15,9 @@ MonoBehaviour:
   stackable: 1
   maxStack: 12
   image: {fileID: 21300000, guid: e27ce5458616cc84eb1cdbfddb74e982, type: 3}
+  id: 9
   type: 1
   name: "BARRA ENERG\xC9TICA"
-  description: 
   stats: 24
   cost: 10
   sound: {fileID: 8300000, guid: 64c95f3ee00e0254aa1ae8b829e0db1f, type: 3}
