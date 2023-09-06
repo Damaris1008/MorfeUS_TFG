@@ -278,8 +278,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -2448}
-  m_SizeDelta: {x: 1627.5, y: 3656.9165}
+  m_AnchoredPosition: {x: 0, y: -2554.2124}
+  m_SizeDelta: {x: 1627.5, y: 3869.3413}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &705147838
 MonoBehaviour:
@@ -314,12 +314,16 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.3
-  m_Text: "<size=100>CR\xC9DITOS</size>\n\n\nProductora\n<size=40>D\xE1maris G\xF3mez
-    Serrano</size>\n\nArtista de concepto\n<size=40>D\xE1maris G\xF3mez Serrano</size>\n\nDise\xF1o
-    de personajes\n<size=40>D\xE1maris G\xF3mez Serrano</size>\n\nDise\xF1o de niveles\n<size=40>D\xE1maris
-    G\xF3mez Serrano</size>\n\nAnimaciones\n<size=40>D\xE1maris G\xF3mez Serrano</size>\n\nProgramadora\n<size=40>D\xE1maris
-    G\xF3mez Serrano</size>\n\nEdici\xF3n de audio\n<size=40>D\xE1maris G\xF3mez
-    Serrano</size>\n\nAnalista de calidad\n<size=40>D\xE1maris G\xF3mez Serrano</size>\n\n\n\n\n\n\n\xA1Muchas
+  m_Text: "<size=100>CR\xC9DITOS</size>\n\n\nArtista de concepto\n<size=40>D\xE1maris
+    G\xF3mez Serrano</size>\n\nDise\xF1adora del videojuego\n<size=40>D\xE1maris
+    G\xF3mez Serrano</size>\n\nCreadora de animaciones\n<size=40>D\xE1maris G\xF3mez
+    Serrano</size>\n\nProgramadora\n<size=40>D\xE1maris G\xF3mez Serrano</size>\n\nAnalista
+    de calidad\n<size=40>D\xE1maris G\xF3mez Serrano</size>\n\nUsuarios piloto\n<size=40>Juan
+    Castro Albertos</size>\n<size=40>Sebasti\xE1n G\xF3mez M\xE1rquez</size>\n<size=40>Ra\xFAl
+    G\xF3mez S\xE1nchez</size>\n<size=40>Adri\xE1n G\xF3mez Serrano</size>\n<size=40>Clara
+    Granado Beltr\xE1n</size>\n<size=40>Ismael P\xE9rez Ortiz</size>\n<size=40>Miguel
+    \xC1ngel Rivas Rosado</size>\n<size=40>Maribel Serrano Acu\xF1a</size>\n<size=40>Alejandro
+    Serrano Capote</size>\n<size=40>Fausto V\xE1zquez Rodr\xEDguez</size>\n\n\n\n\n\n\n\n\xA1Muchas
     gracias por jugar!\n"
 --- !u!222 &705147839
 CanvasRenderer:

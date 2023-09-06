@@ -52,6 +52,9 @@ public class PopUpsManager : MonoBehaviour
     [Header("Dead Random Person Dialogue")]
     [SerializeField] GameObject deadRandomPersonDialogue = null;
 
+    [Header("Game Goal")]
+    [SerializeField] GameObject gameGoal = null;
+
     private void Update(){
 
         deltaTime += (Time.unscaledDeltaTime - deltaTime) * 0.1f;
@@ -248,5 +251,17 @@ public class PopUpsManager : MonoBehaviour
         GameManager.ResumeGame();
     }
 
+    // GAME GOAL
+
+    public IEnumerator ShowGameGoal(){
+        yield return new WaitForSeconds(4.0f);
+        gameGoal.SetActive(true);
+        GameManager.PauseGame();
+    }
+
+    public void HideGameGoal(){
+        gameGoal.SetActive(false);
+        GameManager.ResumeGame();
+    }
 
 }

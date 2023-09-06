@@ -101,6 +101,7 @@ public class Player : MonoBehaviour
             animator.Play("Idle");
         }else{
             animator.Play("Awaking");
+            StartCoroutine(popUpsManager.ShowGameGoal());
         }
 
         popUpsManager.RefreshCoinsCounters(coins);

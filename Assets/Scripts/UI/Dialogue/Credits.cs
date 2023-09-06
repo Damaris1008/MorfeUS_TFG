@@ -8,7 +8,7 @@ public class Credits : MonoBehaviour
 
     void Update()
     {
-        if(transform.position.y < 1725f){
+        if(transform.position.y < 1950f){
             transform.Translate(Vector3.up * Time.deltaTime * speed);
         }
 
