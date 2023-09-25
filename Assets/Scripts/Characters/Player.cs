@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
 
     [Header("Fight")]
     public float punchDamageAttack;
+    private Button canvasBackground; 
 
     [Header("Health")]
     public HealthHeartsManager healthHeartsManager;
@@ -80,10 +82,12 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         isDead = false;
         canMove = true;
+        canvasBackground = GameObject.FindWithTag("CanvasBackground").GetComponent<Button>();
     }
 
     public void Start()
     {
+        canvasBackground.onClick.AddListener(Attack);
 
         // Scripts
         popUpsManager = GameObject.FindWithTag("PopUpsManager").GetComponent<PopUpsManager>();
@@ -149,22 +153,6 @@ public class Player : MonoBehaviour
             animator.SetBool("Bow", false);  
         }
 
-        // Attack
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if(isUsingSword){
-                animator.SetTrigger("Hit");
-            }else if(isUsingBow){
-                animator.SetTrigger("LaunchArrow");
-                StartCoroutine("LaunchArrow");
-            }else{
-                animator.SetTrigger("Punch");
-            }
-
-        }
-
-
-
         // Movement
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
@@ -197,6 +185,17 @@ public class Player : MonoBehaviour
 
     public Vector3 GetPosition() {
         return transform.position;
+    }
+
+    public void Attack(){
+        if(isUsingSword){
+            animator.SetTrigger("Hit");
+        }else if(isUsingBow){
+            animator.SetTrigger("LaunchArrow");
+            StartCoroutine("LaunchArrow");
+        }else{
+            animator.SetTrigger("Punch");
+        }
     }
 
     public void Damage(int amount){

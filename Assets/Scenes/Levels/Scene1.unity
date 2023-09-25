@@ -3327,6 +3327,7 @@ MonoBehaviour:
   optionsMenu: {fileID: 325700789}
   graphicsSettingsMenu: {fileID: 2096194652}
   controlsMenu: {fileID: 771844076}
+  controlsMenuContent: {fileID: 2598524835797471795}
   soundSettingsMenu: {fileID: 2062605485}
   inventory: {fileID: 1335856235}
   showInventoryButton: {fileID: 1280992586}
@@ -19408,6 +19409,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1254821394}
+    - target: {fileID: 259933822917932417, guid: 8026b222748c81641988639c93449e84, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowControlsMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 1043784978186629896, guid: 8026b222748c81641988639c93449e84, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -19876,6 +19881,11 @@ GameObject:
 --- !u!82 &2598524835797471794 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 233835944, guid: 8026b222748c81641988639c93449e84, type: 3}
+  m_PrefabInstance: {fileID: 2598524835797471790}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2598524835797471795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 957338120852888580, guid: 8026b222748c81641988639c93449e84, type: 3}
   m_PrefabInstance: {fileID: 2598524835797471790}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2598524835797471796 stripped
