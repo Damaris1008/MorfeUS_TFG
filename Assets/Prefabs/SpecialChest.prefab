@@ -382,6 +382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUpAnimator: {fileID: 8704405043130312207}
+  closedChestSprite: {fileID: 1012968201, guid: 946234f08844c32449c7a4e8d6e3ba8a, type: 3}
   item: {fileID: 11400000, guid: 20084c7a2a973e14ab5d42933c261d27, type: 2}
   typeOfChest: 2
   amount: 1

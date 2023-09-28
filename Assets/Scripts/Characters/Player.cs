@@ -72,8 +72,8 @@ public class Player : MonoBehaviour
         speedIncrease = 0f;
         damageMultiplier = 1f;
 
-        coins = 3;
-        keys = 2;
+        coins = 5;
+        keys = 3;
         currentHealth = maxHealth;
         rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -296,6 +296,11 @@ public class Player : MonoBehaviour
                 for(int i=0; i<enemies.Length;i++){
                     enemies[i].Revive();
                 }
+                //All chests: reopen
+                GameObject[] chests = GameObject.FindGameObjectsWithTag("Chest");
+                for(int i=0; i<chests.Length;i++){
+                    chests[i].GetComponent<Chest>().CloseChest();
+                }            
             }
 
         }
