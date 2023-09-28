@@ -53,12 +53,21 @@ public class Chest : MonoBehaviour
         StartCoroutine("PopUp");
     }
 
+    public void CloseChest(){
+        if(typeOfChest==0 || typeOfChest==1){
+            this.opened = false;
+            animator.SetTrigger("Closed");
+            popUpAnimator.SetTrigger("RestartText");
+        }
+    }
+
     IEnumerator PopUp(){
 
         //Activate
         yield return new WaitForSeconds(0.7f);
 
         // Animation
+        popUp.SetActive(true);
         rewardImg.SetActive(true);
         if(typeOfChest == 0 || typeOfChest == 1) // Resource Chest
         {

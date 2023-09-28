@@ -751,7 +751,6 @@ MonoBehaviour:
   touchingChest: 0
   touchingDoor: 0
   touchingDeadRandomPerson: 0
-  popUpsManager: {fileID: 0}
   chest: {fileID: 2051807538}
   door: {fileID: 0}
 --- !u!114 &2051807538
@@ -767,6 +766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUpAnimator: {fileID: 2122182180}
+  closedChestSprite: {fileID: -893749829, guid: 946234f08844c32449c7a4e8d6e3ba8a, type: 3}
   item: {fileID: 0}
   typeOfChest: 1
   amount: 1
