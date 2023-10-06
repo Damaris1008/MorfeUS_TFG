@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameObject levelLoaderGo;
     public static LevelLoader levelLoader;
     private static Image brightnessPanel;
     private static GameObject backgroundMusicSource;
@@ -74,11 +75,22 @@ public class GameManager : MonoBehaviour
     }
 
     public static void NextScene(){
-        levelLoader = GameObject.FindWithTag("LevelLoader").GetComponent<LevelLoader>();
-        levelLoader.LoadNextLevel();
-
+        levelLoaderGo = GameObject.FindWithTag("LevelLoader");
+        if(levelLoaderGo!=null){
+            levelLoader = levelLoaderGo.GetComponent<LevelLoader>();
+            levelLoader.LoadNextLevel();
+        }
+        
         int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
         backgroundMusicScript.SetBackgroundMusic(nextScene); 
+
+        //Hiding power-up pop-up
+        if(nextScene == 6){
+            GameObject powerUpPopUp = GameObject.FindWithTag("PowerUpPopUp");
+            if(powerUpPopUp!=null){
+                powerUpPopUp.SetActive(false);
+            }
+        }
     }
 
     public static void RefreshScripts(){
