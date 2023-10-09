@@ -49,7 +49,11 @@ public class InventoryController : MonoBehaviour
 
     public void Start(){
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
-        ChangeSelectedSlot(0);
+        if(selectedSlot!=null){
+            ChangeSelectedSlot(selectedSlot);    
+        }else{
+            ChangeSelectedSlot(0);
+        }
         toolbarNumOfSlots = toolbar.transform.childCount;
     }
 

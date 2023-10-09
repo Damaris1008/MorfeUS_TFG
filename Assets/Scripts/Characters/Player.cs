@@ -249,7 +249,7 @@ public class Player : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("DeadPlayer");
         //If its boss level
         if(SceneManager.GetActiveScene().buildIndex == 6){
-            GameObject hackedPanel = GameObject.Find("Boss").GetComponent<Boss>().hackedPanel;
+            GameObject hackedPanel = GameObject.FindWithTag("HackedPanel");
             //Deactivate hacked panel
             for(int i = 0; i < hackedPanel.transform.childCount; ++i) {
                 hackedPanel.transform.GetChild(i).gameObject.SetActive(false);
