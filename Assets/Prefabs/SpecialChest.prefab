@@ -243,7 +243,7 @@ Transform:
   m_GameObject: {fileID: 2785126595692657585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 20.874722, y: 5.126481, z: 0.04575465}
-  m_LocalScale: {x: 3.2729278, y: 3.4162679, z: 2.9658334}
+  m_LocalScale: {x: 2.5022, y: 2.5022, z: 2.9658334}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 960837708778192471}
@@ -382,7 +382,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUpAnimator: {fileID: 8704405043130312207}
-  closedChestSprite: {fileID: 1012968201, guid: 946234f08844c32449c7a4e8d6e3ba8a, type: 3}
   item: {fileID: 11400000, guid: 20084c7a2a973e14ab5d42933c261d27, type: 2}
   typeOfChest: 2
   amount: 1
