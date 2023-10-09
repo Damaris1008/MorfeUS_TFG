@@ -251,11 +251,9 @@ public class Player : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex == 6){
             GameObject hackedPanel = GameObject.FindWithTag("HackedPanel");
             //Deactivate hacked panel
-            if(hackedPanel!=null){
-                for(int i = 0; i < hackedPanel.transform.childCount; ++i) {
-                    hackedPanel.transform.GetChild(i).gameObject.SetActive(false);
-                } 
-            }
+            for(int i = 0; i < hackedPanel.transform.childCount; ++i) {
+                hackedPanel.transform.GetChild(i).gameObject.SetActive(false);
+            } 
         }
         audioSource.PlayOneShot(deathSound);
         StartCoroutine("WaitForDeathMenu");
